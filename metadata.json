@@ -1,0 +1,6 @@
+{
+  "name": "中國貨櫃 CCTC - 官方網站 Homepage Prototype",
+  "description": "中國貨櫃股份有限公司 (CCTC 股票代碼 2613) 現代國際化、高質感響應式首頁原型，具備真實可操作互動與 WordPress Block Editor 相容架構。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

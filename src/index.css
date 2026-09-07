@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Surface tones — reserved for backgrounds/overlays (hero, dark panels), never for text */
+    --color-navy: #0a2540;
+    --color-navy-deep: #061a30;
+    --color-ocean: #0369a1;
+    --color-primary: #0284c7;
+    --color-sky: #38bdf8;
+    --color-sky-pale: #e0f2fe;
+    --color-orange: #f97316;
+    --color-orange-deep: #ea580c;
+
+    /* Typography blue hierarchy — one brand blue, six depths. Extended from the
+       existing brand primary (#0284c7); nothing here is an unrelated new hue. */
+    --color-blue-900: #0b3b66; /* Level 1 — Section Title (deep, but clearly blue, never near-black) */
+    --color-blue-800: #0e4c82; /* Level 3 — H3 / Card Title / important UI */
+    --color-blue-700: #0284c7; /* Brand primary — Button / CTA / main interactive UI */
+    --color-blue-500: #3aa0e0; /* Level 2 — H2 / secondary heading / card accent / link */
+    --color-blue-300: #a8dcf7; /* Light — border / highlight / hover surfaces */
+    --color-blue-100: #eef8ff; /* Very light — section backgrounds / subtle fills */
+
+    /* Body copy — blue-gray, never pure black */
+    --color-text-body: #5b6b7b;  /* Level 4 — supporting/body text */
+    --color-text-label: #94a3b8; /* Level 5 — small labels/meta text */
+
+    /* ESG-only soft green system — differentiates the section while staying inside
+       the same design language (radius, spacing, hover language stay identical). */
+    --color-green-bg: #f2faf4;
+    --color-green-card: #e3f5e8;
+    --color-green-card-hover: #d3eeda;
+    --color-green-600: #2f9e63;
+    --color-green-700: #22834f;
+    --color-green-900: #0f3d24;
+
+    /* Unified corner-radius scale — every card/image/panel in the homepage picks one of these two */
+    --radius-card: 20px;
+    --radius-panel: 28px;
+  }
+
+  html {
+    font-family: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Clears the fixed header when jumping to a section via nav/anchor links —
+   without this, scrollIntoView lands section titles right behind the header. */
+main [id] {
+  scroll-margin-top: 100px;
+}
+
+/* Layered surface helpers — shared "depth" language across sections */
+.layer-shadow-soft {
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px -8px rgba(10, 37, 64, 0.12);
+}
+.layer-shadow-raised {
+  box-shadow: 0 2px 4px rgba(10, 37, 64, 0.06), 0 16px 40px -12px rgba(10, 37, 64, 0.18);
+}
+.bg-blue-mesh {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.16), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(249, 115, 22, 0.10), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(3, 105, 161, 0.25), transparent 55%);
+}
+
+/* Section Title — Level 1 typography: deep brand blue + a short, quiet underline rule */
+.section-title {
+  color: var(--color-blue-900);
+}
+.section-title-rule {
+  display: block;
+  width: 40px;
+  height: 3px;
+  border-radius: 2px;
+  margin-top: 10px;
+  background: var(--color-primary);
+}
+
+@keyframes swipe-hint {
+  0%, 100% { transform: translateX(0); opacity: 0.5; }
+  50% { transform: translateX(6px); opacity: 1; }
+}
+.animate-swipe-hint {
+  animation: swipe-hint 1.6s ease-in-out infinite;
+}
+
+/* Industrial Corner Markers for CCTC Precision Design */
+.industrial-corner {
+  position: relative;
+}
+.industrial-corner::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #f97316;
+  border-right: 2px solid #f97316;
+  pointer-events: none;
+  z-index: 10;
+}
+.industrial-corner::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #f97316;
+  border-left: 2px solid #f97316;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Custom Scrollbar for sleek corporate UI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
