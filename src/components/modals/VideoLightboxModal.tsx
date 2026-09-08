@@ -1,15 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { X, Play, Pause, Volume2, VolumeX, Maximize2, ShieldCheck } from 'lucide-react';
-import { Language } from '../../types';
+import { Language, VideoItem } from '../../types';
 
 interface VideoLightboxModalProps {
-  isOpen: boolean;
+  video: VideoItem | null;
   onClose: () => void;
   language: Language;
 }
 
 export const VideoLightboxModal: React.FC<VideoLightboxModalProps> = ({
-  isOpen,
+  video,
   onClose,
   language
 }) => {
@@ -17,7 +17,7 @@ export const VideoLightboxModal: React.FC<VideoLightboxModalProps> = ({
   const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  if (!isOpen) return null;
+  if (!video) return null;
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -52,7 +52,7 @@ export const VideoLightboxModal: React.FC<VideoLightboxModalProps> = ({
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#f97316]"></span>
             <span className="text-xs font-mono font-bold tracking-wider text-slate-300">
-              CCTC CORPORATE FILM · HD 1080P
+              {language === 'zh' ? video.titleZh : video.titleEn} · {video.durationLabel}
             </span>
           </div>
           <button
@@ -65,11 +65,10 @@ export const VideoLightboxModal: React.FC<VideoLightboxModalProps> = ({
 
         {/* Video Player Container */}
         <div className="relative aspect-video bg-black flex items-center justify-center">
-          {/* Authentic Marine & Container Port Video Stream */}
           <video
+            key={video.id}
             ref={videoRef}
-            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-            poster="https://lh3.googleusercontent.com/aida-public/AB6AXuDW4n3uB0TpH30xziswhzG2djuiuaBVSwCPNAZjwg5sNSIW7Wv52M32gvhgr9xG95n8vjgxygh6lcVpFtgpdP8cBZMXcHn_kehFBzuwPfpon3QqxIUeAXVwMYzcLlFged4y9kL_iyy1bpWNjLaFRksuI6eb0BZ9Toq6HkQC_3enJa4_lrPhzpJ96eMbkKqfAJFPKb3FJbp4NiYZVTQQGW0CzSUqoRM7z5fJsBvY_y5Hhp15tl_bv-c8Tw"
+            src={video.src}
             autoPlay
             playsInline
             loop
@@ -95,14 +94,11 @@ export const VideoLightboxModal: React.FC<VideoLightboxModalProps> = ({
                 {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
               </button>
 
-              <div className="text-xs font-mono text-slate-300">
-                <span>01:14</span> / <span>03:20</span>
-              </div>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="text-xs text-slate-300 hidden sm:inline">
-                {language === 'zh' ? '跨越半世紀的航運樞紐 · 智慧港埠新動能' : 'CCTC Smart Maritime Terminal'}
+                {language === 'zh' ? video.titleZh : video.titleEn}
               </span>
             </div>
           </div>

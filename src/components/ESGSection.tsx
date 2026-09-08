@@ -83,9 +83,12 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
                 <button
                   key={item.id}
                   onClick={() => onOpenESG(item)}
-                  className="flex items-center gap-3 sm:gap-4 bg-white/15 hover:bg-white/25 border border-white/20 hover:border-white/40 rounded-[var(--radius-card)] p-4 sm:p-5 transition-all duration-300 group backdrop-blur-sm text-left cursor-pointer"
+                  className="flex items-center gap-3 sm:gap-4 bg-white/15 hover:bg-white/30 border border-white/20 hover:border-white/50 rounded-[var(--radius-card)] p-4 sm:p-5 transition-all duration-300 group backdrop-blur-sm text-left cursor-pointer"
                 >
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300" style={{ color: 'var(--color-green-600)' }}>
+                  <div
+                    className="esg-icon-circle w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 group-hover:scale-105 transition-all duration-300"
+                    style={{ '--icon-accent': item.accentColor } as React.CSSProperties}
+                  >
                     {getIcon(item.iconName)}
                   </div>
                   <span className="text-white font-bold text-sm sm:text-base leading-snug">

@@ -81,6 +81,19 @@ main [id] {
 .card-framed:hover {
   border-color: var(--color-blue-500);
 }
+
+/* ESG icon buttons — each icon takes on its own category accent color
+   (set via the --icon-accent custom property) and fully inverts fill/icon
+   color on hover, so the hover state reads as an obvious color change
+   rather than a subtle opacity shift. */
+.esg-icon-circle {
+  background: #fff;
+  color: var(--icon-accent, var(--color-green-600));
+}
+.group:hover .esg-icon-circle {
+  background: var(--icon-accent, var(--color-green-600));
+  color: #fff;
+}
 .bg-blue-mesh {
   background-image:
     radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.16), transparent 45%),
@@ -88,7 +101,9 @@ main [id] {
     radial-gradient(circle at 50% 100%, rgba(3, 105, 161, 0.25), transparent 55%);
 }
 
-/* Section Title — Level 1 typography: deep brand blue + a short, quiet underline rule */
+/* Section Title — Level 1 typography: deep brand blue heading + a warm orange
+   underline rule. The orange accent recurs site-wide as the secondary brand
+   color so the page doesn't read as a single monochrome blue wash. */
 .section-title {
   color: var(--color-blue-900);
 }
@@ -98,7 +113,7 @@ main [id] {
   height: 3px;
   border-radius: 2px;
   margin-top: 10px;
-  background: var(--color-primary);
+  background: var(--color-orange);
 }
 
 @keyframes swipe-hint {

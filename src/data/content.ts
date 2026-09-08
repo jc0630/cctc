@@ -1,6 +1,23 @@
-import { HeroSlide, ServiceItem, TerminalLocation, ESGItem, NewsArticle } from '../types';
+import { HeroSlide, ServiceItem, TerminalLocation, ESGItem, NewsArticle, VideoItem } from '../types';
 
 export const LOGO_URL = 'https://lh3.googleusercontent.com/aida-public/AB6AXuB_3aphyF7CaHZ57DW_YkpfmkijZxNPvlbRZKysWlY9FeVrljVRI8Ea3yogyKXH9lcvULbM36EXGUc2w00nU3uyhPQYC8o8osx0NtBSvACYHZGvtCQuv2DyN5B6tDzS4R-jcq_8VQaAhKNpI8CCTU8FVfFWtFZ674cvCjLxU80XFgpf4gItvkn-UnZLwwGz_nj4-aaABdhYO4mP9azaFPCVyoCW5qyHjzSnK3h6l9AUfAXJ3oGg1za6izb1xjrvZM8bOBc';
+
+export const VIDEO_ITEMS: VideoItem[] = [
+  {
+    id: 'keelung-gantry-crane',
+    titleZh: '基隆站新軌道機啟用典禮',
+    titleEn: 'Keelung Depot New Rail Gantry Crane Launch',
+    durationLabel: 'HD',
+    src: '/videos/keelung-gantry-crane-ceremony.mp4'
+  },
+  {
+    id: 'taichung-electric-tractor',
+    titleZh: '台中站電動拖車頭',
+    titleEn: 'Taichung Depot Electric Yard Tractor',
+    durationLabel: 'HD',
+    src: '/videos/taichung-electric-tractor.mp4'
+  }
+];
 
 export const HERO_SLIDES: HeroSlide[] = [
   {

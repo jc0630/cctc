@@ -78,7 +78,7 @@ export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
               onClick={() => scrollToIndex(idx)}
               aria-label={`${ariaLabelPrefix} ${idx + 1}`}
               className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                idx === activeIndex ? 'w-6 bg-[var(--color-primary)]' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                idx === activeIndex ? 'w-6 bg-[var(--color-orange)]' : 'w-2 bg-slate-300 hover:bg-slate-400'
               }`}
             />
           ))}
@@ -89,7 +89,7 @@ export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
             onClick={() => scrollToIndex(activeIndex - 1)}
             disabled={activeIndex === 0}
             aria-label={`${ariaLabelPrefix} previous`}
-            className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] cursor-pointer"
+            className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-orange)] hover:text-[var(--color-orange)] cursor-pointer"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -97,7 +97,7 @@ export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
             onClick={() => scrollToIndex(activeIndex + 1)}
             disabled={activeIndex === total - 1}
             aria-label={`${ariaLabelPrefix} next`}
-            className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] cursor-pointer"
+            className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-orange)] hover:text-[var(--color-orange)] cursor-pointer"
           >
             <ChevronRight className={`w-4 h-4 ${activeIndex < total - 1 ? 'animate-swipe-hint' : ''}`} />
           </button>

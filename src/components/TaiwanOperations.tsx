@@ -32,7 +32,7 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
 
           <button
             onClick={onViewAllLocations}
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-blue-500)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer group"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-blue-500)] hover:text-[var(--color-orange)] transition-colors duration-200 cursor-pointer group"
           >
             <span>{language === 'zh' ? '查看所有據點' : 'View All'}</span>
             <ArrowRight className="w-4 h-4 text-[var(--color-orange)] transition-transform duration-200 group-hover:translate-x-1" />

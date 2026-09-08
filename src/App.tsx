@@ -17,14 +17,14 @@ import { LocationDetailModal } from './components/modals/LocationDetailModal';
 import { NewsDetailModal } from './components/modals/NewsDetailModal';
 import { GenericInfoModal, ModalType } from './components/modals/GenericInfoModal';
 
-import { Language, TerminalLocation, NewsArticle, ESGItem } from './types';
+import { Language, TerminalLocation, NewsArticle, ESGItem, VideoItem } from './types';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('zh');
 
   // Modal States
   const [isTrackingOpen, setIsTrackingOpen] = useState(false);
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<TerminalLocation | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsArticle | null>(null);
   const [genericModalType, setGenericModalType] = useState<ModalType>(null);
@@ -76,7 +76,7 @@ export default function App() {
           {/* 03: Corporate Video Section */}
           <VideoSection
             language={language}
-            onPlayVideo={() => setIsVideoOpen(true)}
+            onPlayVideo={(video) => setSelectedVideo(video)}
           />
 
           {/* 04: About China Container Section */}
@@ -135,8 +135,8 @@ export default function App() {
       />
 
       <VideoLightboxModal
-        isOpen={isVideoOpen}
-        onClose={() => setIsVideoOpen(false)}
+        video={selectedVideo}
+        onClose={() => setSelectedVideo(null)}
         language={language}
       />
 

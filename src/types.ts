@@ -59,6 +59,14 @@ export interface NewsArticle {
   image: string;
 }
 
+export interface VideoItem {
+  id: string;
+  titleZh: string;
+  titleEn: string;
+  durationLabel: string;
+  src: string;
+}
+
 export interface HeroSlide {
   id: number;
   badgeZh: string;

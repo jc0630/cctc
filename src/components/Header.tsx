@@ -174,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({
                       onClick={() => handleNavClick(item.id)}
                       className={`w-full flex items-center justify-between py-4 px-5 text-left border-b border-slate-100 transition-colors cursor-pointer ${
                         isActive
-                          ? 'bg-[var(--color-primary)]'
+                          ? 'bg-[#f97316]'
                           : 'hover:bg-slate-50'
                       }`}
                     >
