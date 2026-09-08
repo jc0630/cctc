@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, MapPin, Phone, Printer, Mail, ShieldCheck, Globe } from 'lucide-react';
+import { ArrowUp, MapPin, Phone, Printer, ShieldCheck, Globe } from 'lucide-react';
 import { Language } from '../types';
 import { LOGO_URL } from '../data/content';
 
@@ -55,52 +55,26 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
         {/* Top Grid: Company Info + 4 Columns Links */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-200">
-          {/* Col 1: Brand & Contact Info (span 4) */}
-          <div className="lg:col-span-4 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img
-                  src={LOGO_URL}
-                  alt="中國貨櫃 CCTC"
-                  className="h-9 w-auto object-contain"
-                />
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 font-normal max-w-sm">
-                {language === 'zh'
-                  ? '中國貨櫃股份有限公司 (TWSE: 2613) 成立於 1967 年，為台灣貨櫃集散與港埠裝卸服務領航者，深耕基隆、五堵與台中港區。'
-                  : 'China Container Terminal Corp. (TWSE: 2613), founded in 1967, is Taiwan’s premier container terminal operator connecting international ports.'}
-              </p>
-
-              {/* Verified Badge */}
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-[#f0f7ff] border border-sky-200 text-[#0369a1] text-xs font-semibold rounded-sm mb-5">
-                <ShieldCheck className="w-4 h-4 text-[var(--color-primary)]" />
-                <span>ISO 9001 · ISO 14001 · ISO 45001 認證</span>
-              </div>
+          {/* Col 1: Brand Info (span 4) */}
+          <div className="lg:col-span-4">
+            <div className="flex items-center gap-3 mb-4">
+              <img
+                src={LOGO_URL}
+                alt="中國貨櫃 CCTC"
+                className="h-9 w-auto object-contain"
+              />
             </div>
 
-            {/* Direct Contact Details */}
-            <div className="space-y-2 text-xs text-slate-600 font-normal">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#f97316] shrink-0 mt-0.5" />
-                <span>
-                  {language === 'zh'
-                    ? '新北市汐止區大同路三段 193 號 (221412)'
-                    : 'No. 193, Sec. 3, Datong Rd., Xizhi Dist., New Taipei City 221412'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#f97316] shrink-0" />
-                <a href="tel:0286482111" className="hover:text-[#f97316] font-mono font-semibold">
-                  (02) 8648-2111 (代表號)
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#f97316] shrink-0" />
-                <a href="mailto:service@cctcorp.com.tw" className="hover:text-[#f97316] font-mono">
-                  service@cctcorp.com.tw
-                </a>
-              </div>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 font-normal max-w-sm">
+              {language === 'zh'
+                ? '中國貨櫃股份有限公司 (TWSE: 2613) 成立於 1967 年，為台灣貨櫃集散與港埠裝卸服務領航者，深耕基隆、五堵與台中港區。'
+                : 'China Container Terminal Corp. (TWSE: 2613), founded in 1967, is Taiwan’s premier container terminal operator connecting international ports.'}
+            </p>
+
+            {/* Verified Badge */}
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-[#f0f7ff] border border-sky-200 text-[#0369a1] text-xs font-semibold rounded-sm mb-5">
+              <ShieldCheck className="w-4 h-4 text-[var(--color-primary)]" />
+              <span>ISO 9001 · ISO 14001 · ISO 45001 認證</span>
             </div>
           </div>
 
