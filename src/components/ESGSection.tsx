@@ -35,27 +35,28 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
   return (
     <section
       id="esg"
-      className="relative w-full py-16 sm:py-24 overflow-hidden"
+      className="w-full py-16 sm:py-24 bg-[var(--color-blue-100)]"
     >
-      {/* Background photo + soft green tint */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={ESG_IMAGE}
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = ESG_IMAGE_FALLBACK;
-          }}
-          alt={language === 'zh' ? 'ESG 永續發展' : 'ESG Sustainability'}
-          className="w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(24, 92, 56, 0.8)' }}
-        />
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-12 sm:py-16 px-6 sm:px-10 lg:px-14">
+          {/* Background photo + soft green tint, contained within the rounded frame */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src={ESG_IMAGE}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = ESG_IMAGE_FALLBACK;
+              }}
+              alt={language === 'zh' ? 'ESG 永續發展' : 'ESG Sustainability'}
+              className="w-full h-full object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{ backgroundColor: 'rgba(24, 92, 56, 0.8)' }}
+            />
+          </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left: Intro text + CTA */}
           <div className="lg:col-span-5 text-white">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
@@ -95,6 +96,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

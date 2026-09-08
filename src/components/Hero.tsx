@@ -66,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* Centered Title Only */}
-      <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
+      <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-12 sm:px-16 lg:px-8 flex flex-col items-center justify-center text-center">
         <h1
           id="hero-title"
           key={`title-${currentSlide.id}`}
@@ -76,20 +76,20 @@ export const Hero: React.FC<HeroProps> = ({
         </h1>
       </div>
 
-      {/* Carousel Prev / Next Controls (Hidden on small screens) */}
+      {/* Carousel Prev / Next Controls */}
       <button
         onClick={handlePrev}
         aria-label={language === 'zh' ? '上一張輪播圖' : 'Previous slide'}
-        className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/20 hover:bg-white/20 text-white backdrop-blur-sm items-center justify-center transition-all border border-white/30 cursor-pointer"
+        className="flex absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/20 hover:bg-white/20 text-white backdrop-blur-sm items-center justify-center transition-all border border-white/30 cursor-pointer"
       >
-        <ChevronLeft className="w-8 h-8" />
+        <ChevronLeft className="w-5 h-5 sm:w-8 sm:h-8" />
       </button>
       <button
         onClick={handleNext}
         aria-label={language === 'zh' ? '下一張輪播圖' : 'Next slide'}
-        className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/20 hover:bg-white/20 text-white backdrop-blur-sm items-center justify-center transition-all border border-white/30 cursor-pointer"
+        className="flex absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/20 hover:bg-white/20 text-white backdrop-blur-sm items-center justify-center transition-all border border-white/30 cursor-pointer"
       >
-        <ChevronRight className="w-8 h-8" />
+        <ChevronRight className="w-5 h-5 sm:w-8 sm:h-8" />
       </button>
 
       {/* Carousel Indicator Dots */}

@@ -16,10 +16,8 @@ import { VideoLightboxModal } from './components/modals/VideoLightboxModal';
 import { LocationDetailModal } from './components/modals/LocationDetailModal';
 import { NewsDetailModal } from './components/modals/NewsDetailModal';
 import { GenericInfoModal, ModalType } from './components/modals/GenericInfoModal';
-import { QuickSearchModal } from './components/modals/QuickSearchModal';
 
 import { Language, TerminalLocation, NewsArticle, ESGItem } from './types';
-import { TERMINAL_LOCATIONS } from './data/content';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('zh');
@@ -27,7 +25,6 @@ export default function App() {
   // Modal States
   const [isTrackingOpen, setIsTrackingOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<TerminalLocation | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsArticle | null>(null);
   const [genericModalType, setGenericModalType] = useState<ModalType>(null);
@@ -51,26 +48,12 @@ export default function App() {
     }
   };
 
-  const handleQuickSearchAction = (type: string, id?: string) => {
-    if (type === 'tracking') {
-      setIsTrackingOpen(true);
-    } else if (type === 'location' && id) {
-      const loc = TERMINAL_LOCATIONS.find((l) => l.id === id);
-      if (loc) setSelectedLocation(loc);
-    } else if (type === 'esg') {
-      handleNavigate('esg');
-    } else if (type === 'investor') {
-      setGenericModalType('investor');
-    }
-  };
-
   return (
     <div className="min-h-screen w-full bg-white overflow-x-hidden">
         {/* Site Header */}
         <Header
           language={language}
           onToggleLanguage={(lang) => setLanguage(lang)}
-          onOpenSearch={() => setIsSearchOpen(true)}
           onOpenPortal={() => setGenericModalType('portal')}
           onNavigateSection={handleNavigate}
         />
@@ -173,13 +156,6 @@ export default function App() {
         modalType={genericModalType}
         onClose={() => setGenericModalType(null)}
         language={language}
-      />
-
-      <QuickSearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        language={language}
-        onSelectAction={handleQuickSearchAction}
       />
     </div>
   );

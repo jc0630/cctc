@@ -47,7 +47,7 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
               key={loc.id}
               id={`location-card-${loc.id}`}
               onClick={() => onSelectLocation(loc)}
-              className="h-full group cursor-pointer"
+              className="h-full group cursor-pointer card-framed"
             >
               <div className="relative overflow-hidden rounded-[var(--radius-card)] aspect-[4/3] bg-slate-100">
                 <img
@@ -57,7 +57,7 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
                 />
                 <div className="absolute inset-0 rounded-[var(--radius-card)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
               </div>
-              <h3 className="mt-4 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug">
+              <h3 className="mt-4 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug">
                 {language === 'zh' ? loc.nameZh : loc.nameEn}
               </h3>
             </div>

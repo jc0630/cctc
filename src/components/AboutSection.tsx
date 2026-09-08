@@ -28,6 +28,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               <span className="section-title-rule" />
             </div>
 
+            <p className="text-sm sm:text-base text-[var(--color-text-body)] leading-relaxed">
+              {language === 'zh'
+                ? '中櫃股份有限公司成立於民國58年，為臺灣貨櫃集散站經營業的先驅。多年來秉持卓越、誠信與創新的經營理念，持續提升服務品質與營運效能，並於民國84年正式掛牌上市。憑藉完善的全臺營運據點、國際管理系統認證及專業團隊，中櫃致力提供安全、便捷、高效率的貨櫃倉儲與物流服務，與客戶攜手邁向永續發展。'
+                : 'China Container Terminal Corporation was founded in 1969, pioneering Taiwan\'s container terminal and depot industry. Guided by excellence, integrity, and innovation, we have continuously enhanced service quality and operational efficiency, and were officially listed on the Taiwan Stock Exchange in 1995. With comprehensive terminal locations across Taiwan, international management system certifications, and a professional team, CCTC is dedicated to providing safe, convenient, and efficient container storage and logistics services, growing sustainably together with our customers.'}
+            </p>
+
             <div className="pt-2">
               <button
                 id="about-cta-link"

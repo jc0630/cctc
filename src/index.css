@@ -42,6 +42,16 @@
   html {
     font-family: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
+    /* Client asked for larger body text: 18px on mobile, 20px on desktop.
+       Bumping the root size (rather than each text-* class) scales every
+       rem-based font size and spacing value together, so proportions and
+       wrapping stay exactly as designed at both sizes. */
+    font-size: 18px;
+  }
+  @media (min-width: 768px) {
+    html {
+      font-size: 20px;
+    }
   }
 }
 
@@ -57,6 +67,19 @@ main [id] {
 }
 .layer-shadow-raised {
   box-shadow: 0 2px 4px rgba(10, 37, 64, 0.06), 0 16px 40px -12px rgba(10, 37, 64, 0.18);
+}
+
+/* Framed product-card look — hairline blue border only, for photo cards that
+   should feel "boxed" rather than floating on bare background. */
+.card-framed {
+  background: #fff;
+  border: 1px solid var(--color-blue-300);
+  border-radius: var(--radius-panel);
+  padding: 14px 14px 20px;
+  transition: border-color 0.3s ease;
+}
+.card-framed:hover {
+  border-color: var(--color-blue-500);
 }
 .bg-blue-mesh {
   background-image:

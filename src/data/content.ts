@@ -139,7 +139,7 @@ export const TERMINAL_LOCATIONS: TerminalLocation[] = [
     addressEn: 'No. 193, Sec. 3, Datong Rd., Xizhi Dist., New Taipei City',
     descZh: '保稅倉庫、重櫃儲放與全功能車隊調度中心。',
     descEn: 'Bonded warehouse, heavy container yard and comprehensive fleet dispatch center.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDhEn2Kf1wmW1IQOY7tNIF9nVztrN2cRwBqnf7xV1NEhJz7LZJZZOJ2IHsXGZIrUYQSfI0fGZGPR_BJbGEqIwn-mdZ5Xjojwdr27Qrzb_RJm2Zcfrl4pe04m5l5jEVnkY5pzCbaOyUYO9Re1xb35XoFZ5mNrWZtVeXM3abRx6aJ-kGdX4A2Kbfv8XXZ64Y2pTxNNSkAsJihhGkHWuPfn9QjlalGNV2S5GDIyldmKB1O3ANoS7npdC9yAw',
+    image: '/hero/hero-3.jpg',
     specs: {
       berthsZh: '內陸轉運集散站',
       berthsEn: 'Inland Container Depot',
@@ -159,7 +159,7 @@ export const TERMINAL_LOCATIONS: TerminalLocation[] = [
     addressEn: 'Port District, Zhongshan Dist., Keelung City',
     descZh: '專用碼頭靠泊、高效率快裝快卸與通關整合。',
     descEn: 'Dedicated berth docking, rapid stevedoring and customs integration.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDnVdb6QJ6ZWtv-C9NyoJca_eVXD5XgKRZ0aa1664-BGiTf-BBISbRpdQfGRjD3RBuZxf_aseuuJhA0K8igicm1KUb5PTwhP0_uMPNX5Hb2iix993JeWdai3KfUNLLj36yIuMmGZ2Lcwwr9Gfp3zhR-gZN3O9OFRl95gJSru6ymKj5NGOatxzCaMMFao6QPOC6y1PHPfgjBjSR_XfckdbdGGz35v0Wy7zS8oNFdDeT6D59POt1dvfTd3A',
+    image: '/hero/hero-1.jpg',
     specs: {
       berthsZh: '專用深水席位 2 席',
       berthsEn: '2 Dedicated Deepwater Berths',
@@ -179,7 +179,7 @@ export const TERMINAL_LOCATIONS: TerminalLocation[] = [
     addressEn: 'Port Area Rd., Wuqi Dist., Taichung City',
     descZh: '深水專用泊位、全自動門機作業與寬廣堆置場。',
     descEn: 'Deep-water specialized berths, automated gantry operations, extensive yard.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAlGoWIHInGrS8UjZxmUW5J6VNoHYPB0c6tFM_ry1IWsgY2w3ABvd0pURTlnHwnCG054turcKb-uy14Ol5PbrmtWRcKvAVteal91bw0uX8tNTdh9zl4PPB9fR2NbqrXZaCRsLznKojii13QHPFm8SXHC2wYjgjCMDKDQ8FAISm_XmsY0dmtqqva5DfpeDQyWsG9lupBUMrDXsr155fuHgXjAqI8rwtGSQdi1aPBD4OFYRbor9irXT34Mw',
+    image: '/hero/hero-5.jpg',
     specs: {
       berthsZh: '10號、11號深水專用席',
       berthsEn: 'Berths No. 10 & 11',
@@ -199,7 +199,7 @@ export const TERMINAL_LOCATIONS: TerminalLocation[] = [
     addressEn: 'Huan-gang S. Rd., Longjing Dist., Taichung City',
     descZh: '智慧櫃場監控、低碳綠色門機與冷鏈配套服務。',
     descEn: 'Smart container surveillance, eco-friendly gantries, cold-chain terminal.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBKXeGKrMZ_2LoRRxNAvW21W8-x0_HSBZ3X2q8Vlg5ywt83WIpXTQa_QPZaKwPkMQhFzVfBBdPGunLfpO0J8YLfZ2aY1BOw7bx9MuRyfc-MGrZqXWHMWqzyMAwOUAJcBo9IxqoAcByc_uTC6JyGsp8_wep14MTIa1kY90RFj12zjt1LZVbyByRjpIW-0ArO2tp0LSJSZmmOXCZEwP-_ngLETIkgKWGKHiW-RVemd9dMTuBg6dsBpuDNWw',
+    image: '/hero/hero-2.jpg',
     specs: {
       berthsZh: '31號高規格貨櫃碼頭席位',
       berthsEn: 'Berth No. 31 Smart Quay',
@@ -265,7 +265,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     titleEn: 'CCTC Awarded TCSA Taiwan Corporate Sustainability Award for Green Port Achievements',
     summaryZh: '落實環境永續與誠信治理，於本年度全國性評選中榮獲優良永續實踐獎項，持續朝低碳智慧碼頭前進。',
     summaryEn: 'Recognized for environmental sustainability and governance excellence, continuing progress toward low-carbon smart port infrastructure.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBKXeGKrMZ_2LoRRxNAvW21W8-x0_HSBZ3X2q8Vlg5ywt83WIpXTQa_QPZaKwPkMQhFzVfBBdPGunLfpO0J8YLfZ2aY1BOw7bx9MuRyfc-MGrZqXWHMWqzyMAwOUAJcBo9IxqoAcByc_uTC6JyGsp8_wep14MTIa1kY90RFj12zjt1LZVbyByRjpIW-0ArO2tp0LSJSZmmOXCZEwP-_ngLETIkgKWGKHiW-RVemd9dMTuBg6dsBpuDNWw',
+    image: '/hero/hero-4.jpg',
     contentZh: [
       '中國貨櫃股份有限公司於 2024 年度「TCSA 台灣企業永續獎」評選中，以「智慧港埠綠色節能永續專案」榮獲企業永續實踐楷模獎。',
       '評審團高度肯定中櫃近年來在各港區全面引進全電能門式起重機、佈建港埠智慧高壓岸電系統，以及於五堵集散站設置屋頂型太陽能發電系統之具體成果。',
@@ -287,7 +287,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     titleEn: 'Wudu Container Depot Completes Intelligent Gantry & Facility Upgrades',
     summaryZh: '全數門機導入精準定位與自動化通報系統，全面提升提領車流效率逾百分之二十。',
     summaryEn: 'All gantry units upgraded with precise GPS positioning and automated dispatch, boosting truck turnaround efficiency by 20%.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDhEn2Kf1wmW1IQOY7tNIF9nVztrN2cRwBqnf7xV1NEhJz7LZJZZOJ2IHsXGZIrUYQSfI0fGZGPR_BJbGEqIwn-mdZ5Xjojwdr27Qrzb_RJm2Zcfrl4pe04m5l5jEVnkY5pzCbaOyUYO9Re1xb35XoFZ5mNrWZtVeXM3abRx6aJ-kGdX4A2Kbfv8XXZ64Y2pTxNNSkAsJihhGkHWuPfn9QjlalGNV2S5GDIyldmKB1O3ANoS7npdC9yAw',
+    image: '/hero/hero-1.jpg',
     contentZh: [
       '為因應日益增長的貨櫃吞吐量與嚴格的交期需求，中櫃五堵貨櫃集散站歷時六個月的場域自動化全面升級工程於本月正式竣工投產。',
       '本次升級包含光纖通訊網路全面覆蓋、門機配備 3D 鐳射防撞感測與自動集裝箱辨識 (OCR)，並將拖車叫號系統直接串接海關通關即時資料庫。',
@@ -309,7 +309,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     titleEn: 'Active Participation in Keelung Coastal Cleanup, Protecting Marine Ecosystems',
     summaryZh: '同仁與在地志工共同清除廢棄物逾 500 公斤，以具體行動實踐企業社會責任並守護蔚藍海岸。',
     summaryEn: 'Over 500 kg of marine debris removed alongside local volunteers, demonstrating our environmental commitment to pristine shores.',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDnVdb6QJ6ZWtv-C9NyoJca_eVXD5XgKRZ0aa1664-BGiTf-BBISbRpdQfGRjD3RBuZxf_aseuuJhA0K8igicm1KUb5PTwhP0_uMPNX5Hb2iix993JeWdai3KfUNLLj36yIuMmGZ2Lcwwr9Gfp3zhR-gZN3O9OFRl95gJSru6ymKj5NGOatxzCaMMFao6QPOC6y1PHPfgjBjSR_XfckdbdGGz35v0Wy7zS8oNFdDeT6D59POt1dvfTd3A',
+    image: '/hero/hero-3.jpg',
     contentZh: [
       '中櫃志工社攜手基隆港務分公司及在地環保組織，於基隆外木山沿岸共同舉辦「蔚藍守護·中櫃同行」春季公益淨灘活動。',
       '共有超過 120 位同仁及其眷屬主動參與，共計清理海岸垃圾 528 公斤，包含廢棄漁網、塑膠微粒與廢棄輪胎，均落實分類回收與環境登錄。',

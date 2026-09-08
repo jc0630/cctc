@@ -78,7 +78,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
               key={article.id}
               id={`news-card-${article.id}`}
               onClick={() => onSelectArticle(article)}
-              className="h-full group cursor-pointer"
+              className="h-full group cursor-pointer card-framed"
             >
               <div className="relative overflow-hidden rounded-[var(--radius-card)] aspect-[4/3] bg-slate-100">
                 <img
@@ -88,7 +88,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
                 />
                 <div className="absolute inset-0 rounded-[var(--radius-card)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
               </div>
-              <h3 className="mt-4 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug line-clamp-2">
+              <h3 className="mt-4 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug line-clamp-2">
                 {language === 'zh' ? article.titleZh : article.titleEn}
               </h3>
             </article>

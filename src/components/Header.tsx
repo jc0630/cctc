@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, Globe, User, ChevronRight, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X, Globe, User, ChevronRight, ExternalLink } from 'lucide-react';
 import { Language } from '../types';
 import { LOGO_URL } from '../data/content';
 
 interface HeaderProps {
   language: Language;
   onToggleLanguage: (lang: Language) => void;
-  onOpenSearch: () => void;
   onOpenPortal: () => void;
   onNavigateSection: (sectionId: string) => void;
 }
@@ -14,21 +13,11 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   language,
   onToggleLanguage,
-  onOpenSearch,
   onOpenPortal,
   onNavigateSection
 }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeNavId, setActiveNavId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
     { id: 'about', labelZh: '關於中櫃', labelEn: 'About Us' },
@@ -59,19 +48,15 @@ export const Header: React.FC<HeaderProps> = ({
     <>
     <header
       id="site-header"
-      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200 py-3'
-          : 'bg-transparent py-4'
-      }`}
+      className="relative w-full z-40 bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200 py-3"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo & Stock Info */}
+        {/* Brand Logo */}
         <div className="flex items-center gap-3">
           <a
             href="#"
             id="brand-logo-link"
-            className="flex items-center gap-2.5 group bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full"
+            className="flex items-center gap-2.5 group"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -80,17 +65,8 @@ export const Header: React.FC<HeaderProps> = ({
             <img
               src={LOGO_URL}
               alt="中國貨櫃 CCTC"
-              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02] brightness-0 invert"
-              style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
-            <div className="hidden xl:flex flex-col border-l border-white/30 pl-2.5">
-              <span className={`text-xs font-bold tracking-tight leading-tight ${isScrolled ? 'text-[#0a2540]' : 'text-white'}`}>
-                {language === 'zh' ? '中國貨櫃' : 'China Container'}
-              </span>
-              <span className={`text-[10px] font-mono font-semibold uppercase tracking-wider ${isScrolled ? 'text-slate-500' : 'text-white/80'}`}>
-                TWSE · 2613
-              </span>
-            </div>
           </a>
         </div>
 
@@ -101,11 +77,7 @@ export const Header: React.FC<HeaderProps> = ({
               key={item.id}
               id={`nav-${item.id}`}
               onClick={() => handleNavClick(item.id)}
-              className={`text-[13px] 2xl:text-[14px] font-semibold px-2.5 py-1.5 rounded-sm transition-colors cursor-pointer ${
-                isScrolled
-                  ? 'text-[#0a2540]/80 hover:text-[#0284c7] hover:bg-[#f0f7ff]'
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
+              className="shrink-0 whitespace-nowrap text-[20px] font-semibold px-2 py-1.5 rounded-sm transition-colors cursor-pointer text-[#0a2540]/80 hover:text-[#0284c7] hover:bg-[#f0f7ff]"
             >
               {language === 'zh' ? item.labelZh : item.labelEn}
             </button>
@@ -117,21 +89,15 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Language Switcher */}
           <div
             id="language-switcher"
-            className={`flex items-center border rounded-full p-0.5 text-xs font-semibold shadow-xs ${
-              isScrolled ? 'bg-slate-100/90 border-slate-200' : 'bg-white/10 border-white/20 backdrop-blur-sm'
-            }`}
+            className="flex items-center border rounded-full p-0.5 text-xs font-semibold shadow-xs bg-slate-100/90 border-slate-200"
           >
             <button
               id="lang-zh-btn"
               onClick={() => onToggleLanguage('zh')}
               className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
                 language === 'zh'
-                  ? isScrolled 
-                    ? 'bg-white text-[#0369a1] shadow-xs border border-slate-200/80'
-                    : 'bg-white text-[#0369a1] shadow-xs'
-                  : isScrolled
-                    ? 'text-slate-500 hover:text-[#0a2540]'
-                    : 'text-white/70 hover:text-white'
+                  ? 'bg-white text-[#0369a1] shadow-xs border border-slate-200/80'
+                  : 'text-slate-500 hover:text-[#0a2540]'
               }`}
             >
               繁中
@@ -141,41 +107,19 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onToggleLanguage('en')}
               className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
                 language === 'en'
-                  ? isScrolled 
-                    ? 'bg-white text-[#0369a1] shadow-xs border border-slate-200/80'
-                    : 'bg-white text-[#0369a1] shadow-xs'
-                  : isScrolled
-                    ? 'text-slate-500 hover:text-[#0a2540]'
-                    : 'text-white/70 hover:text-white'
+                  ? 'bg-white text-[#0369a1] shadow-xs border border-slate-200/80'
+                  : 'text-slate-500 hover:text-[#0a2540]'
               }`}
             >
               EN
             </button>
           </div>
 
-          {/* Quick Search */}
-          <button
-            id="search-trigger-btn"
-            onClick={onOpenSearch}
-            aria-label={language === 'zh' ? '全站搜尋' : 'Site Search'}
-            className={`w-9 h-9 flex items-center justify-center rounded-full border transition-all cursor-pointer ${
-              isScrolled
-                ? 'text-slate-600 hover:text-[#0284c7] hover:bg-[#f0f7ff] border-transparent hover:border-sky-200'
-                : 'text-white hover:bg-white/20 border-white/20 backdrop-blur-sm'
-            }`}
-          >
-            <Search className="w-4 h-4" />
-          </button>
-
           {/* Customer Portal CTA (Orange Accent) */}
           <button
             id="portal-cta-btn"
             onClick={onOpenPortal}
-            className={`hidden sm:inline-flex items-center gap-1.5 text-white text-xs lg:text-sm font-bold px-3.5 py-2 rounded-full transition-all cursor-pointer group ${
-              isScrolled
-                ? 'bg-[#f97316] hover:bg-[#ea580c] shadow-xs hover:shadow-sm'
-                : 'bg-white/20 hover:bg-[#f97316] border border-white/30 hover:border-transparent backdrop-blur-sm'
-            }`}
+            className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap text-white text-xs lg:text-sm font-bold px-3.5 py-2 rounded-full transition-all cursor-pointer group bg-[#f97316] hover:bg-[#ea580c] shadow-xs hover:shadow-sm"
           >
             <User className="w-3.5 h-3.5" />
             <span>{language === 'zh' ? '客戶專區 / 線上申辦' : 'Client Portal'}</span>
@@ -186,11 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
             id="mobile-menu-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? '關閉選單' : '開啟選單'}
-            className={`xl:hidden w-9 h-9 flex items-center justify-center rounded-full border transition-colors cursor-pointer ${
-              isScrolled
-                ? 'bg-white text-[#0a2540] hover:text-[#0284c7] border-slate-200 hover:border-[#0284c7]'
-                : 'bg-white/20 text-white border-white/30 backdrop-blur-sm hover:bg-white/30'
-            }`}
+            className="xl:hidden w-9 h-9 flex items-center justify-center rounded-full border transition-colors cursor-pointer bg-white text-[#0a2540] hover:text-[#0284c7] border-slate-200 hover:border-[#0284c7]"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -238,7 +178,7 @@ export const Header: React.FC<HeaderProps> = ({
                           : 'hover:bg-slate-50'
                       }`}
                     >
-                      <span className={`text-[15px] font-medium ${isActive ? 'text-white' : 'text-[var(--color-blue-900)]'}`}>
+                      <span className={`text-[18px] font-medium ${isActive ? 'text-white' : 'text-[var(--color-blue-900)]'}`}>
                         {language === 'zh' ? item.labelZh : item.labelEn}
                       </span>
                       <ChevronRight className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`} />
