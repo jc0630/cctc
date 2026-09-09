@@ -7,6 +7,48 @@ interface AboutSectionProps {
   onExploreMore: () => void;
 }
 
+/* Container Geometry Design System — small line-art icons built from the
+   container's own physical vocabulary (corrugated panel, stacking yard,
+   distribution network, ISO corner-casting) instead of generic shipping
+   iconography like anchors, waves, globes or compasses. */
+const ContainerUnitIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="3" y="6" width="18" height="12" rx="1.5" />
+    <line x1="8" y1="6" x2="8" y2="18" />
+    <line x1="13" y1="6" x2="13" y2="18" />
+    <line x1="18" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
+const StackYardIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="2" y="13" width="9" height="6" rx="1" />
+    <rect x="13" y="13" width="9" height="6" rx="1" />
+    <rect x="7" y="5" width="9" height="6" rx="1" />
+  </svg>
+);
+
+const NetworkIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" cy="12" r="2" />
+    <circle cx="4" cy="5" r="1.75" />
+    <circle cx="20" cy="5" r="1.75" />
+    <circle cx="4" cy="19" r="1.75" />
+    <circle cx="20" cy="19" r="1.75" />
+    <line x1="12" y1="12" x2="4" y2="5" />
+    <line x1="12" y1="12" x2="20" y2="5" />
+    <line x1="12" y1="12" x2="4" y2="19" />
+    <line x1="12" y1="12" x2="20" y2="19" />
+  </svg>
+);
+
+const CornerCastingIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <ellipse cx="12" cy="12" rx="4.5" ry="3" />
+  </svg>
+);
+
 export const AboutSection: React.FC<AboutSectionProps> = ({
   language,
   onExploreMore
@@ -62,6 +104,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {/* Stat 1: 56+ Years */}
           <div className="bg-white border border-slate-200 hover:border-[var(--color-blue-300)] p-4 sm:p-6 rounded-[var(--radius-card)] flex flex-col items-center text-center transition-all duration-300 layer-shadow-soft group cursor-pointer">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[var(--color-blue-100)] text-[var(--color-blue-700)] flex items-center justify-center mb-2 sm:mb-3 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors duration-300">
+              <ContainerUnitIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+            </div>
             <span className="text-3xl sm:text-4xl lg:text-5xl text-[var(--color-blue-800)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-primary)] transition-colors duration-300">
               56<span className="text-[var(--color-orange)] font-bold">+</span>
             </span>
@@ -72,6 +117,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
           {/* Stat 2: 4 Major Hubs */}
           <div className="bg-white border border-slate-200 hover:border-[var(--color-blue-300)] p-4 sm:p-6 rounded-[var(--radius-card)] flex flex-col items-center text-center transition-all duration-300 layer-shadow-soft group cursor-pointer">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[var(--color-blue-100)] text-[var(--color-blue-700)] flex items-center justify-center mb-2 sm:mb-3 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors duration-300">
+              <StackYardIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+            </div>
             <span className="text-3xl sm:text-4xl lg:text-5xl text-[var(--color-blue-800)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-primary)] transition-colors duration-300">
               4
             </span>
@@ -82,6 +130,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
           {/* Stat 3: 2613 Listed Stock */}
           <div className="bg-white border border-slate-200 hover:border-[var(--color-orange)] p-4 sm:p-6 rounded-[var(--radius-card)] flex flex-col items-center text-center transition-all duration-300 layer-shadow-soft group cursor-pointer">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[var(--color-orange)]/10 text-[var(--color-orange)] flex items-center justify-center mb-2 sm:mb-3 group-hover:bg-[var(--color-orange)] group-hover:text-white transition-colors duration-300">
+              <NetworkIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+            </div>
             <span className="text-3xl sm:text-4xl lg:text-5xl text-[var(--color-orange)] font-extrabold mb-1 sm:mb-2 tracking-tight font-mono group-hover:text-[var(--color-blue-800)] transition-colors duration-300">
               2613
             </span>
@@ -92,6 +143,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
           {/* Stat 4: ISO Certified */}
           <div className="bg-white border border-slate-200 hover:border-[var(--color-blue-300)] p-4 sm:p-6 rounded-[var(--radius-card)] flex flex-col items-center text-center transition-all duration-300 layer-shadow-soft group cursor-pointer">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[var(--color-blue-100)] text-[var(--color-blue-700)] flex items-center justify-center mb-2 sm:mb-3 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors duration-300">
+              <CornerCastingIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+            </div>
             <span className="text-3xl sm:text-4xl lg:text-5xl text-[var(--color-blue-800)] font-extrabold mb-1 sm:mb-2 tracking-tight font-mono group-hover:text-[var(--color-primary)] transition-colors duration-300">
               ISO
             </span>

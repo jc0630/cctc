@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from 'react';
+import React, { useRef, useState, useLayoutEffect, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HorizontalCarouselProps {
@@ -10,6 +10,11 @@ interface HorizontalCarouselProps {
  * Shared scroll-snap carousel: shows 3 items per view on desktop, 2 on
  * tablet, 1 on mobile. Renders dot indicators + prev/next controls with a
  * subtle pulsing hint on the "next" arrow to signal it's swipeable.
+ *
+ * Dots represent reachable scroll stops, not raw items — with N items per
+ * view, the container can only ever scroll until `total - N` items remain
+ * to its left, so a dot per item would leave trailing dots permanently
+ * dead (and no dots at all reachable once `total <= itemsPerView`).
  */
 export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
   items,
@@ -17,7 +22,21 @@ export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [maxIndex, setMaxIndex] = useState(0);
   const total = items.length;
+
+  const recalculateMaxIndex = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container || container.children.length < 2) {
+      setMaxIndex(0);
+      return;
+    }
+    const first = container.children[0] as HTMLElement;
+    const second = container.children[1] as HTMLElement;
+    const pitch = second.offsetLeft - first.offsetLeft;
+    const visibleCount = pitch > 0 ? Math.max(1, Math.round(container.clientWidth / pitch)) : 1;
+    setMaxIndex(Math.max(0, total - visibleCount));
+  }, [total]);
 
   // Guard against the browser restoring a stale horizontal scroll offset on reload
   useLayoutEffect(() => {
@@ -25,10 +44,16 @@ export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
       scrollRef.current.scrollLeft = 0;
     }
     setActiveIndex(0);
-  }, []);
+    recalculateMaxIndex();
+  }, [recalculateMaxIndex]);
+
+  useEffect(() => {
+    window.addEventListener('resize', recalculateMaxIndex);
+    return () => window.removeEventListener('resize', recalculateMaxIndex);
+  }, [recalculateMaxIndex]);
 
   const scrollToIndex = (index: number) => {
-    const clamped = Math.max(0, Math.min(index, total - 1));
+    const clamped = Math.max(0, Math.min(index, maxIndex));
     setActiveIndex(clamped);
     const container = scrollRef.current;
     const card = container?.children[clamped] as HTMLElement | undefined;
@@ -49,7 +74,7 @@ export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
         closestIdx = idx;
       }
     });
-    setActiveIndex(closestIdx);
+    setActiveIndex(Math.min(closestIdx, maxIndex));
   };
 
   return (
@@ -69,40 +94,43 @@ export const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
         ))}
       </div>
 
-      {/* Controls: dot indicators + prev/next, with an animated swipe hint */}
-      <div className="mt-5 flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
-          {items.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => scrollToIndex(idx)}
-              aria-label={`${ariaLabelPrefix} ${idx + 1}`}
-              className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                idx === activeIndex ? 'w-6 bg-[var(--color-orange)]' : 'w-2 bg-slate-300 hover:bg-slate-400'
-              }`}
-            />
-          ))}
-        </div>
+      {/* Controls: dot indicators + prev/next, with an animated swipe hint.
+          Hidden entirely when every item already fits in one view. */}
+      {maxIndex > 0 && (
+        <div className="mt-5 flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => scrollToIndex(idx)}
+                aria-label={`${ariaLabelPrefix} ${idx + 1}`}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                  idx === activeIndex ? 'w-6 bg-[var(--color-orange)]' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => scrollToIndex(activeIndex - 1)}
-            disabled={activeIndex === 0}
-            aria-label={`${ariaLabelPrefix} previous`}
-            className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-orange)] hover:text-[var(--color-orange)] cursor-pointer"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => scrollToIndex(activeIndex + 1)}
-            disabled={activeIndex === total - 1}
-            aria-label={`${ariaLabelPrefix} next`}
-            className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-orange)] hover:text-[var(--color-orange)] cursor-pointer"
-          >
-            <ChevronRight className={`w-4 h-4 ${activeIndex < total - 1 ? 'animate-swipe-hint' : ''}`} />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scrollToIndex(activeIndex - 1)}
+              disabled={activeIndex === 0}
+              aria-label={`${ariaLabelPrefix} previous`}
+              className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-orange)] hover:text-[var(--color-orange)] cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scrollToIndex(activeIndex + 1)}
+              disabled={activeIndex === maxIndex}
+              aria-label={`${ariaLabelPrefix} next`}
+              className="w-11 h-11 rounded-full border border-slate-300 bg-white text-slate-600 disabled:opacity-40 flex items-center justify-center transition-colors hover:border-[var(--color-orange)] hover:text-[var(--color-orange)] cursor-pointer"
+            >
+              <ChevronRight className={`w-4 h-4 ${activeIndex < maxIndex ? 'animate-swipe-hint' : ''}`} />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
