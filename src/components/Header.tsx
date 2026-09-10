@@ -50,13 +50,13 @@ export const Header: React.FC<HeaderProps> = ({
       id="site-header"
       className="relative w-full z-40 bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200 py-3"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 flex items-center justify-between">
         {/* Brand Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <a
             href="#"
             id="brand-logo-link"
-            className="flex items-center gap-2.5 group"
+            className="flex items-center gap-2.5 group shrink-0"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -65,19 +65,19 @@ export const Header: React.FC<HeaderProps> = ({
             <img
               src={LOGO_URL}
               alt="中國貨櫃 CCTC"
-              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              className="h-11 sm:h-12 md:h-14 w-auto shrink-0 object-contain transition-transform group-hover:scale-[1.02]"
             />
           </a>
         </div>
 
         {/* Desktop Navigation */}
-        <nav aria-label="主要導覽" className="hidden xl:flex items-center gap-1 2xl:gap-1.5">
+        <nav aria-label="主要導覽" className="hidden xl:flex items-center gap-0 2xl:gap-1.5">
           {navItems.map((item) => (
             <button
               key={item.id}
               id={`nav-${item.id}`}
               onClick={() => handleNavClick(item.id)}
-              className="shrink-0 whitespace-nowrap text-[20px] font-semibold px-2 py-1.5 rounded-sm transition-colors cursor-pointer text-[#0a2540]/80 hover:text-[#0284c7] hover:bg-[#f0f7ff]"
+              className="shrink-0 whitespace-nowrap text-[20px] font-semibold px-1.5 py-1.5 rounded-sm transition-colors cursor-pointer text-[#0a2540]/80 hover:text-[#0284c7] hover:bg-[#f0f7ff]"
             >
               {language === 'zh' ? item.labelZh : item.labelEn}
             </button>
@@ -119,7 +119,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="portal-cta-btn"
             onClick={onOpenPortal}
-            className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap text-white text-xs lg:text-sm font-bold px-3.5 py-2 rounded-full transition-all cursor-pointer group bg-[#f97316] hover:bg-[#ea580c] shadow-xs hover:shadow-sm"
+            className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap text-white text-xs lg:text-sm font-bold px-3 py-2 rounded-full transition-all cursor-pointer group bg-[#f97316] hover:bg-[#ea580c] shadow-xs hover:shadow-sm"
           >
             <User className="w-3.5 h-3.5" />
             <span>{language === 'zh' ? '客戶專區 / 線上申辦' : 'Client Portal'}</span>
