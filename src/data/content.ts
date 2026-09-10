@@ -1,6 +1,6 @@
 import { HeroSlide, ServiceItem, TerminalLocation, ESGItem, NewsArticle, VideoItem } from '../types';
 
-export const LOGO_URL = 'https://lh3.googleusercontent.com/aida-public/AB6AXuB_3aphyF7CaHZ57DW_YkpfmkijZxNPvlbRZKysWlY9FeVrljVRI8Ea3yogyKXH9lcvULbM36EXGUc2w00nU3uyhPQYC8o8osx0NtBSvACYHZGvtCQuv2DyN5B6tDzS4R-jcq_8VQaAhKNpI8CCTU8FVfFWtFZ674cvCjLxU80XFgpf4gItvkn-UnZLwwGz_nj4-aaABdhYO4mP9azaFPCVyoCW5qyHjzSnK3h6l9AUfAXJ3oGg1za6izb1xjrvZM8bOBc';
+export const LOGO_URL = '/images/cctc-logo.png';
 
 export const VIDEO_ITEMS: VideoItem[] = [
   {
