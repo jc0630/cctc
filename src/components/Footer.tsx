@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowUp, MapPin, Phone, Printer, ShieldCheck, Globe } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowUp, Phone, Mail, Plus } from 'lucide-react';
 import { Language } from '../types';
 import { LOGO_URL } from '../data/content';
 
@@ -10,30 +10,76 @@ interface FooterProps {
   onOpenTerms: () => void;
 }
 
-const CONTACT_LOCATIONS = [
+interface FooterLink {
+  labelZh: string;
+  labelEn: string;
+  sectionId: string;
+}
+
+interface FooterColumn {
+  titleZh: string;
+  titleEn: string;
+  links: FooterLink[];
+}
+
+// Every link routes to the closest matching real section on this one-page
+// site (there are no separate sub-pages yet) — a sitemap footer still needs
+// each item to go somewhere real rather than dead-end.
+const FOOTER_COLUMNS: FooterColumn[] = [
   {
-    addressZh: '新北市汐止區大同路三段 275 號',
-    addressEn: 'No. 275, Sec. 3, Datong Rd., Xizhi Dist., New Taipei City',
-    phone: '(02) 8648-2211',
-    fax: '(02) 2649-1299'
+    titleZh: '關於中櫃',
+    titleEn: 'About Us',
+    links: [
+      { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about' },
+      { labelZh: '中櫃大事記', labelEn: 'Milestones', sectionId: 'about' },
+      { labelZh: '獲獎及認證', labelEn: 'Awards & Certifications', sectionId: 'about' },
+      { labelZh: '人才招募', labelEn: 'Careers', sectionId: 'careers' },
+      { labelZh: '最新消息', labelEn: 'News', sectionId: 'news' },
+      { labelZh: '聯絡資訊', labelEn: 'Contact', sectionId: 'site-footer' },
+      { labelZh: '採購資訊', labelEn: 'Procurement', sectionId: 'about' }
+    ]
   },
   {
-    addressZh: '基隆市中山區中山三路 56 號',
-    addressEn: 'No. 56, Zhongshan 3rd Rd., Zhongshan Dist., Keelung City',
-    phone: '(02) 8643-0168',
-    fax: '(02) 8643-0169'
+    titleZh: '企業永續',
+    titleEn: 'Sustainability',
+    links: [
+      { labelZh: '經營者的話', labelEn: "Management's Message", sectionId: 'about' },
+      { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'esg' },
+      { labelZh: '利害關係人', labelEn: 'Stakeholders', sectionId: 'esg' },
+      { labelZh: '風險管理', labelEn: 'Risk Management', sectionId: 'esg' },
+      { labelZh: '供應鏈管理', labelEn: 'Supply Chain Management', sectionId: 'esg' },
+      { labelZh: '職場健康安全', labelEn: 'Workplace Health & Safety', sectionId: 'esg' }
+    ]
   },
   {
-    addressZh: '臺中市清水區中橫十三路 15 號',
-    addressEn: 'No. 15, Zhonghengshisan Rd., Qingshui Dist., Taichung City',
-    phone: '(02) 8643-0168',
-    fax: '(02) 8643-0169'
+    titleZh: '投資人服務',
+    titleEn: 'Investor Services',
+    links: [
+      { labelZh: '公司治理', labelEn: 'Corporate Governance', sectionId: 'esg' },
+      { labelZh: '股東專區', labelEn: 'Shareholder Zone', sectionId: 'investor-relations' },
+      { labelZh: '聯絡資訊', labelEn: 'Contact', sectionId: 'site-footer' }
+    ]
   },
   {
-    addressZh: '高雄市鼓山區臨海一路 21 號之 7',
-    addressEn: 'No. 21-7, Linhai 1st Rd., Gushan Dist., Kaohsiung City',
-    phone: '(07) 551-9987',
-    fax: '(07) 532-2708'
+    titleZh: '營運服務',
+    titleEn: 'Operations',
+    links: [
+      { labelZh: '據點圖', labelEn: 'Terminal Map', sectionId: 'operations' },
+      { labelZh: '五堵集散站', labelEn: 'Wudu Depot', sectionId: 'operations' },
+      { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
+      { labelZh: '台中港貨櫃集散站（10-11號碼頭）', labelEn: 'Taichung Berths 10-11', sectionId: 'operations' },
+      { labelZh: '台中港貨櫃集散站（31號碼頭）', labelEn: 'Taichung Berth 31', sectionId: 'operations' }
+    ]
+  },
+  {
+    titleZh: '快速服務',
+    titleEn: 'Quick Services',
+    links: [
+      { labelZh: '櫃動查詢', labelEn: 'Container Tracking', sectionId: 'services' },
+      { labelZh: '船期查詢', labelEn: 'Berth Schedule', sectionId: 'services' },
+      { labelZh: 'LINE BOT', labelEn: 'LINE BOT', sectionId: 'services' },
+      { labelZh: '表單下載', labelEn: 'Document Downloads', sectionId: 'services' }
+    ]
   }
 ];
 
@@ -43,96 +89,155 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenPrivacy,
   onOpenTerms
 }) => {
+  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const toggleColumn = (idx: number) => {
+    setOpenIndices((prev) => {
+      const next = new Set(prev);
+      if (next.has(idx)) {
+        next.delete(idx);
+      } else {
+        next.add(idx);
+      }
+      return next;
+    });
   };
 
   return (
     <footer
       id="site-footer"
-      className="relative w-full bg-white text-[var(--color-blue-800)] pb-8"
+      className="relative w-full bg-[var(--color-blue-100)] text-[var(--color-blue-800)]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-        {/* Top Grid: Company Info + 4 Columns Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-200">
-          {/* Col 1: Brand Info (span 4) */}
-          <div className="lg:col-span-4">
-            <div className="flex items-center gap-3 mb-4">
-              <img
-                src={LOGO_URL}
-                alt="中國貨櫃 CCTC"
-                className="h-9 w-auto object-contain"
-              />
+      {/* Tier 1: 5-column sitemap menu — plain grid on desktop, accordion on mobile */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 border-b border-slate-200">
+        {/* Desktop / tablet: always-expanded columns */}
+        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6">
+          {FOOTER_COLUMNS.map((col, idx) => (
+            <div key={idx}>
+              <h4 className="text-sm font-bold text-[var(--color-blue-800)] mb-4 pb-2 border-b-2 border-[var(--color-orange)] inline-block">
+                {language === 'zh' ? col.titleZh : col.titleEn}
+              </h4>
+              <ul className="space-y-2.5">
+                {col.links.map((link, i) => (
+                  <li key={i}>
+                    <button
+                      onClick={() => onNavigateSection(link.sectionId)}
+                      className="text-left text-xs sm:text-sm text-slate-600 hover:text-[var(--color-orange)] transition-colors cursor-pointer"
+                    >
+                      {language === 'zh' ? link.labelZh : link.labelEn}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 font-normal max-w-sm">
-              {language === 'zh'
-                ? '中國貨櫃股份有限公司 (TWSE: 2613) 成立於 1967 年，為台灣貨櫃集散與港埠裝卸服務領航者，深耕基隆、五堵與台中港區。'
-                : 'China Container Terminal Corp. (TWSE: 2613), founded in 1967, is Taiwan’s premier container terminal operator connecting international ports.'}
-            </p>
-
-            {/* Verified Badge */}
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-[#f0f7ff] border border-sky-200 text-[#0369a1] text-xs font-semibold rounded-sm mb-5">
-              <ShieldCheck className="w-4 h-4 text-[var(--color-primary)]" />
-              <span>ISO 9001 · ISO 14001 · ISO 45001 認證</span>
-            </div>
-          </div>
-
-          {/* Col 2: Regional Contact Addresses (span 8) */}
-          <div className="lg:col-span-8">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--color-blue-800)] pb-2 mb-3 border-b-2 border-[#f97316] inline-block">
-              {language === 'zh' ? '服務據點' : 'LOCATIONS'}
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
-              {CONTACT_LOCATIONS.map((loc, idx) => (
-                <div key={idx} className="space-y-1.5 text-xs sm:text-sm text-slate-600">
-                  <div className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-[#f97316] shrink-0 mt-0.5" />
-                    <span>{language === 'zh' ? loc.addressZh : loc.addressEn}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-[#f97316] shrink-0" />
-                    <span className="font-mono">{loc.phone}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Printer className="w-4 h-4 text-[#f97316] shrink-0" />
-                    <span className="font-mono">{loc.fax}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Bottom Bar: Copyright & Back to Top */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div className="flex flex-wrap items-center gap-3">
-            <span>© 2024 中國貨櫃股份有限公司 China Container Terminal Corp.</span>
-            <span className="hidden sm:inline text-slate-300">|</span>
-            <button
-              onClick={onOpenPrivacy}
-              className="hover:text-[#f97316] transition-colors cursor-pointer"
-            >
-              {language === 'zh' ? '隱私權保護政策' : 'Privacy Policy'}
-            </button>
-            <span className="text-slate-300">|</span>
-            <button
-              onClick={onOpenTerms}
-              className="hover:text-[#f97316] transition-colors cursor-pointer"
-            >
-              {language === 'zh' ? '資訊安全及免責聲明' : 'Security & Disclaimer'}
-            </button>
+        {/* Mobile: collapsible accordion, one row per category */}
+        <div className="md:hidden -mx-4 sm:-mx-6">
+          {FOOTER_COLUMNS.map((col, idx) => {
+            const isOpen = openIndices.has(idx);
+            return (
+              <div key={idx} className="border-b border-slate-200">
+                <button
+                  onClick={() => toggleColumn(idx)}
+                  className="w-full flex items-center justify-between px-4 sm:px-6 py-4 text-left cursor-pointer"
+                >
+                  <span className="text-base font-bold text-[var(--color-blue-800)]">
+                    {language === 'zh' ? col.titleZh : col.titleEn}
+                  </span>
+                  <Plus
+                    className={`w-5 h-5 text-[var(--color-orange)] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
+                  />
+                </button>
+                {isOpen && (
+                  <ul className="px-4 sm:px-6 pb-4 space-y-3">
+                    {col.links.map((link, i) => (
+                      <li key={i}>
+                        <button
+                          onClick={() => onNavigateSection(link.sectionId)}
+                          className="text-left text-sm text-slate-600 hover:text-[var(--color-orange)] transition-colors cursor-pointer"
+                        >
+                          {language === 'zh' ? link.labelZh : link.labelEn}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Tier 2: Company info — logo stacked above the company name, same logo size as the header */}
+      <div className="border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-6">
+          <div className="flex flex-col items-center sm:items-start gap-2">
+            <img
+              src={LOGO_URL}
+              alt="中國貨櫃 CCTC"
+              className="h-12 sm:h-[3.25rem] md:h-[3.75rem] w-auto object-contain"
+            />
+            <div className="text-center sm:text-left">
+              <p className="text-sm font-bold text-[var(--color-blue-800)]">
+                {language === 'zh' ? '中國貨櫃股份有限公司' : 'China Container Terminal Corporation'}
+              </p>
+              <p className="text-xs text-slate-500">
+                {language === 'zh' ? 'China Container Terminal Corporation' : 'TWSE: 2613'}
+              </p>
+            </div>
           </div>
 
+          <div className="flex items-center gap-5 sm:gap-6">
+            <a href="tel:0286482111" className="flex items-center gap-2.5 group">
+              <span className="w-9 h-9 rounded-full border border-slate-300 flex items-center justify-center shrink-0 group-hover:border-[var(--color-orange)] group-hover:text-[var(--color-orange)] transition-colors">
+                <Phone className="w-4 h-4" />
+              </span>
+              <span className="text-sm font-mono">(02) 8648-2111</span>
+            </a>
+            <a href="mailto:service@cctcorp.com.tw" className="flex items-center gap-2.5 group">
+              <span className="w-9 h-9 rounded-full border border-slate-300 flex items-center justify-center shrink-0 group-hover:border-[var(--color-orange)] group-hover:text-[var(--color-orange)] transition-colors">
+                <Mail className="w-4 h-4" />
+              </span>
+              <span className="text-sm font-bold">{language === 'zh' ? '聯絡我們' : 'Contact Us'}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Tier 3: Copyright */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <span>© 2026 中國貨櫃股份有限公司 China Container Terminal Corp.</span>
+          <span className="hidden sm:inline text-slate-300">|</span>
           <button
-            id="scroll-to-top-btn"
-            onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm border border-slate-200 hover:border-[#f97316] text-[var(--color-blue-800)] hover:text-[#f97316] bg-white transition-all cursor-pointer shadow-2xs font-semibold"
+            onClick={onOpenPrivacy}
+            className="hover:text-[var(--color-orange)] transition-colors cursor-pointer"
           >
-            <span>{language === 'zh' ? '回到頁首' : 'Back to Top'}</span>
-            <ArrowUp className="w-3.5 h-3.5 text-[#f97316]" />
+            {language === 'zh' ? '隱私權保護政策' : 'Privacy Policy'}
+          </button>
+          <span className="text-slate-300">|</span>
+          <button
+            onClick={onOpenTerms}
+            className="hover:text-[var(--color-orange)] transition-colors cursor-pointer"
+          >
+            {language === 'zh' ? '資訊安全及免責聲明' : 'Security & Disclaimer'}
           </button>
         </div>
+
+        <button
+          id="scroll-to-top-btn"
+          onClick={scrollToTop}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-pill)] border border-slate-200 hover:border-[var(--color-orange)] text-[var(--color-blue-800)] hover:text-[var(--color-orange)] bg-white transition-all cursor-pointer shadow-2xs font-semibold"
+        >
+          <span>{language === 'zh' ? '回到頁首' : 'Back to Top'}</span>
+          <ArrowUp className="w-3.5 h-3.5" />
+        </button>
       </div>
     </footer>
   );

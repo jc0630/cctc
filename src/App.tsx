@@ -11,7 +11,6 @@ import { InvestorRelationsCareers } from './components/InvestorRelationsCareers'
 import { Footer } from './components/Footer';
 
 // Modals
-import { ContainerTrackingModal } from './components/modals/ContainerTrackingModal';
 import { VideoLightboxModal } from './components/modals/VideoLightboxModal';
 import { LocationDetailModal } from './components/modals/LocationDetailModal';
 import { NewsDetailModal } from './components/modals/NewsDetailModal';
@@ -23,7 +22,6 @@ export default function App() {
   const [language, setLanguage] = useState<Language>('zh');
 
   // Modal States
-  const [isTrackingOpen, setIsTrackingOpen] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<TerminalLocation | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsArticle | null>(null);
@@ -36,35 +34,30 @@ export default function App() {
     }
   };
 
-  const handleServiceClick = (serviceId: string) => {
-    if (serviceId === 'tracking') {
-      setIsTrackingOpen(true);
-    } else if (serviceId === 'berth') {
-      setGenericModalType('berth');
-    } else if (serviceId === 'forms') {
-      setGenericModalType('forms');
-    } else if (serviceId === 'support') {
-      setGenericModalType('support');
-    }
+  const handleServiceClick = (_serviceId: string) => {
+    // Quick-nav cards are link-style only for now — no popups.
   };
 
   return (
-    <div className="min-h-screen w-full bg-white overflow-x-hidden">
+    <div className="min-h-screen w-full bg-white">
         {/* Site Header */}
         <Header
           language={language}
           onToggleLanguage={(lang) => setLanguage(lang)}
-          onOpenPortal={() => setGenericModalType('portal')}
           onNavigateSection={handleNavigate}
         />
 
+        {/* overflow-x-hidden lives here (not on the root wrapper) so it guards
+            against any full-bleed section without becoming a containing block
+            for the sticky Header above it — overflow-x on an ancestor forces
+            overflow-y to compute to auto too, which silently breaks `sticky`. */}
+        <div className="overflow-x-hidden">
         {/* Main Content Sections (Strictly in prescribed order) */}
         <main>
           {/* 01: Hero Section */}
           <Hero
             language={language}
             onExploreClick={() => handleNavigate('about')}
-            onTrackingClick={() => setIsTrackingOpen(true)}
           />
 
           {/* 02: Online Services Section (4 items) */}
@@ -126,14 +119,9 @@ export default function App() {
           onOpenPrivacy={() => setGenericModalType('privacy')}
           onOpenTerms={() => setGenericModalType('terms')}
         />
+        </div>
 
       {/* Interactive Modals */}
-      <ContainerTrackingModal
-        isOpen={isTrackingOpen}
-        onClose={() => setIsTrackingOpen(false)}
-        language={language}
-      />
-
       <VideoLightboxModal
         video={selectedVideo}
         onClose={() => setSelectedVideo(null)}

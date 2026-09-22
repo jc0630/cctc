@@ -25,13 +25,13 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
   onOpenCareers
 }) => {
   return (
-    <section className="w-full py-12 sm:py-16 bg-white">
+    <section className="w-full py-[1.1rem] sm:py-[1.375rem] bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Block 1: Investor Relations — full-width photo, no panel, white text + shadow */}
           <div
             id="investor-relations"
-            className="group relative overflow-hidden rounded-[var(--radius-panel)] aspect-[4/3] sm:aspect-[16/11] layer-shadow-soft"
+            className="group relative overflow-hidden rounded-[var(--radius-panel)] aspect-[8/3] sm:aspect-[3/1] layer-shadow-soft"
           >
             <img
               src={INVESTOR_IMAGE}
@@ -45,14 +45,14 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
             {/* faint edge fade so white text stays legible — not a color wash */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent pointer-events-none" />
 
-            <div className="absolute left-6 right-6 bottom-6 sm:left-8 sm:bottom-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4" style={TEXT_SHADOW}>
+            <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3" style={TEXT_SHADOW}>
                 {language === 'zh' ? '投資人專區' : 'Investor Relations'}
               </h3>
               <button
                 id="investor-cta-btn"
                 onClick={onOpenInvestor}
-                className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[var(--color-blue-900)] px-6 py-3 rounded-full font-bold text-sm transition-colors duration-200 cursor-pointer group/btn"
+                className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[var(--color-blue-900)] px-5 py-2 rounded-[var(--radius-pill)] font-bold text-sm transition-colors duration-200 cursor-pointer group/btn"
               >
                 <span>{language === 'zh' ? '進入專區' : 'Learn More'}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
@@ -63,7 +63,7 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
           {/* Block 2: Careers — identical structure, different photo */}
           <div
             id="careers"
-            className="group relative overflow-hidden rounded-[var(--radius-panel)] aspect-[4/3] sm:aspect-[16/11] layer-shadow-soft"
+            className="group relative overflow-hidden rounded-[var(--radius-panel)] aspect-[8/3] sm:aspect-[3/1] layer-shadow-soft"
           >
             <img
               src={CAREERS_IMAGE}
@@ -76,14 +76,14 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent pointer-events-none" />
 
-            <div className="absolute left-6 right-6 bottom-6 sm:left-8 sm:bottom-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4" style={TEXT_SHADOW}>
+            <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3" style={TEXT_SHADOW}>
                 {language === 'zh' ? '人才招募' : 'Careers'}
               </h3>
               <button
                 id="careers-cta-btn"
                 onClick={onOpenCareers}
-                className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[var(--color-blue-900)] px-6 py-3 rounded-full font-bold text-sm transition-colors duration-200 cursor-pointer group/btn"
+                className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[var(--color-blue-900)] px-5 py-2 rounded-[var(--radius-pill)] font-bold text-sm transition-colors duration-200 cursor-pointer group/btn"
               >
                 <span>{language === 'zh' ? '加入我們' : 'Join Us'}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />

@@ -35,8 +35,11 @@
     --color-green-900: #0f3d24;
 
     /* Unified corner-radius scale — every card/image/panel in the homepage picks one of these two */
-    --radius-card: 20px;
-    --radius-panel: 28px;
+    --radius-card: 10px;
+    --radius-panel: 14px;
+    /* Button-only radius — bumped back up ~50% from the previous pass per
+       client feedback, while cards/panels stay at the reduced values above. */
+    --radius-pill: 15px;
   }
 
   html {
@@ -108,8 +111,10 @@ main [id] {
   color: var(--color-blue-900);
 }
 .section-title-rule {
+  /* Spans the full width of the title's first two characters at heading
+     size, instead of a short generic tick mark. */
   display: block;
-  width: 40px;
+  width: 84px;
   height: 3px;
   border-radius: 2px;
   margin-top: 10px;

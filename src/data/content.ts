@@ -16,6 +16,14 @@ export const VIDEO_ITEMS: VideoItem[] = [
     titleEn: 'Taichung Depot Electric Yard Tractor',
     durationLabel: 'HD',
     src: '/videos/taichung-electric-tractor.mp4'
+  },
+  {
+    // Placeholder — reuses the Taichung clip until a 3rd unique video is available.
+    id: 'taichung-electric-tractor-2',
+    titleZh: '台中站營運紀實',
+    titleEn: 'Taichung Depot Operations',
+    durationLabel: 'HD',
+    src: '/videos/taichung-electric-tractor.mp4'
   }
 ];
 
@@ -116,12 +124,22 @@ export const ONLINE_SERVICES: ServiceItem[] = [
   {
     id: 'berth',
     iconName: 'Ship',
-    titleZh: '船席圖查詢',
+    titleZh: '船席圖',
     titleEn: 'Berth Schedule',
     descZh: '各港口船舶靠泊時程與動態監控。',
     descEn: 'Vessel berthing schedules, real-time docking monitoring across ports.',
     actionZh: '即時掌握',
     actionEn: 'View Schedule'
+  },
+  {
+    id: 'linebot',
+    iconName: 'MessageCircle',
+    titleZh: 'LINE BOT',
+    titleEn: 'LINE BOT',
+    descZh: '加入官方帳號，隨時掌握貨櫃動態與客服訊息。',
+    descEn: 'Add our official account for on-the-go tracking and customer updates.',
+    actionZh: '加入好友',
+    actionEn: 'Add Friend'
   },
   {
     id: 'forms',
@@ -132,16 +150,6 @@ export const ONLINE_SERVICES: ServiceItem[] = [
     descEn: 'Port operation forms, application templates and regulatory standards.',
     actionZh: '文件中心',
     actionEn: 'Download Forms'
-  },
-  {
-    id: 'support',
-    iconName: 'Headphones',
-    titleZh: '客戶服務',
-    titleEn: 'Customer Support',
-    descZh: '專屬窗口諮詢、異常處理與常見問題。',
-    descEn: 'Dedicated customer desk, cargo exception handling and FAQ assistance.',
-    actionZh: '支援專線',
-    actionEn: 'Contact Desk'
   }
 ];
 

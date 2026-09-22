@@ -58,21 +58,30 @@ export const Hero: React.FC<HeroProps> = ({
           alt={language === 'zh' ? currentSlide.titleZh : currentSlide.titleEn}
           className="w-full h-full object-cover object-center animate-in fade-in duration-1000"
         />
-        {/* Readability overlay */}
-        <div className="absolute inset-0 bg-[var(--color-navy-deep)]/35" />
-        {/* Bottom gradient fade — blends the banner smoothly into the white section below */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/0 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--color-navy-deep)]/50 to-transparent" />
       </div>
 
-      {/* Centered Title Only */}
-      <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-12 sm:px-16 lg:px-8 flex flex-col items-center justify-center text-center">
+      {/* Title — centered horizontally, weighted toward the upper half vertically */}
+      <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-12 sm:px-16 lg:px-8 flex flex-col items-center justify-center text-center -translate-y-[125px] sm:-translate-y-[143px] lg:-translate-y-[160px]">
         <h1
           id="hero-title"
           key={`title-${currentSlide.id}`}
-          className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-wide leading-[1.2] text-white drop-shadow-md animate-in fade-in slide-in-from-bottom-4 duration-700"
+          className="text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-wide leading-[1.2] text-white animate-in fade-in slide-in-from-bottom-4 duration-700"
+          style={{ textShadow: '0 2px 16px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.4)' }}
         >
-          {language === 'zh' ? currentSlide.titleZh : currentSlide.titleEn}
+          {(() => {
+            const title = language === 'zh' ? currentSlide.titleZh : currentSlide.titleEn;
+            const parts = title.split(' ');
+            if (parts.length === 2 && parts[0] && parts[1]) {
+              return (
+                <>
+                  <span className="block sm:inline">{parts[0]}</span>
+                  <span className="hidden sm:inline"> </span>
+                  <span className="block sm:inline">{parts[1]}</span>
+                </>
+              );
+            }
+            return title;
+          })()}
         </h1>
       </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Language, NewsArticle } from '../types';
 import { NEWS_ARTICLES } from '../data/content';
@@ -15,23 +15,15 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
   onSelectArticle,
   onViewAllNews
 }) => {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'announcement' | 'operations' | 'esg'>('all');
-
-  const filteredArticles = activeFilter === 'all'
-    ? NEWS_ARTICLES
-    : NEWS_ARTICLES.filter((a) => a.categoryType === activeFilter);
-
-  const filters = [
-    { id: 'all', labelZh: '全部消息', labelEn: 'All' },
-    { id: 'announcement', labelZh: '公司公告', labelEn: 'Announcements' },
-    { id: 'operations', labelZh: '營運資訊', labelEn: 'Operations' },
-    { id: 'esg', labelZh: 'ESG 活動', labelEn: 'ESG Events' }
-  ];
+  // Homepage shows only the 3 most recent articles, sorted by date, no filtering
+  const articles = [...NEWS_ARTICLES]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <section
       id="news"
-      className="w-full py-12 sm:py-16 bg-white"
+      className="w-full py-[1.1rem] sm:py-[1.375rem] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -45,35 +37,17 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
 
           <button
             onClick={onViewAllNews}
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-blue-500)] hover:text-[var(--color-orange)] transition-colors duration-200 cursor-pointer group"
+            className="inline-flex items-center justify-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-blue-900)] text-white text-sm sm:text-base font-bold px-7 py-3.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group layer-shadow-soft"
           >
             <span>{language === 'zh' ? '查看所有消息' : 'View All News'}</span>
-            <ArrowRight className="w-4 h-4 text-[var(--color-orange)] transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
-        </div>
-
-        {/* Category Filters — compact, low visual weight */}
-        <div className="flex flex-wrap items-center gap-2 mb-8">
-          {filters.map((filter) => (
-            <button
-              key={filter.id}
-              onClick={() => setActiveFilter(filter.id as any)}
-              className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer ${
-                activeFilter === filter.id
-                  ? 'bg-[var(--color-blue-900)] text-white'
-                  : 'bg-slate-100 text-[var(--color-text-body)] hover:bg-slate-200/80'
-              }`}
-            >
-              {language === 'zh' ? filter.labelZh : filter.labelEn}
-            </button>
-          ))}
         </div>
 
         {/* Horizontal carousel: 3 per view on desktop, 1 on mobile — Image + Title only */}
         <HorizontalCarousel
-          key={activeFilter}
           ariaLabelPrefix={language === 'zh' ? '消息' : 'News'}
-          items={filteredArticles.map((article) => (
+          items={articles.map((article) => (
             <article
               key={article.id}
               id={`news-card-${article.id}`}
