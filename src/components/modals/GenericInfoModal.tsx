@@ -1,10 +1,9 @@
 import React from 'react';
-import { X, FileText, Download, Phone, Ship, Briefcase, CheckCircle2, UserCheck, ShieldCheck } from 'lucide-react';
+import { X, Phone, Ship, Briefcase, CheckCircle2, UserCheck, ShieldCheck } from 'lucide-react';
 import { Language } from '../../types';
 
 export type ModalType =
   | 'berth'
-  | 'forms'
   | 'support'
   | 'portal'
   | 'investor'
@@ -78,39 +77,6 @@ export const GenericInfoModal: React.FC<GenericInfoModalProps> = ({
                   </tr>
                 </tbody>
               </table>
-            </div>
-          </div>
-        );
-
-      case 'forms':
-        return (
-          <div className="space-y-3">
-            <p className="text-xs sm:text-sm text-slate-600">
-              {language === 'zh'
-                ? '提供港埠集散站各項常用標準申辦書表，歡迎下載填寫。'
-                : 'Download official terminal application forms, tariff guides, and certificates.'}
-            </p>
-            <div className="divide-y divide-slate-200 border border-slate-200 rounded-sm">
-              {[
-                { name: '進口貨櫃提領切結書 (Container Release Form)', size: '240 KB · PDF' },
-                { name: '危險品重櫃進場申報表 (Dangerous Cargo Declaration)', size: '180 KB · PDF' },
-                { name: '冷凍櫃插電溫控記錄申請表 (Reefer Monitoring Request)', size: '150 KB · PDF' },
-                { name: '中櫃 2024 年度港埠業務費率規章 (Official Tariff 2024)', size: '820 KB · PDF' }
-              ].map((doc, i) => (
-                <div key={i} className="p-3 flex items-center justify-between hover:bg-slate-50">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-[#0a2540]">
-                    <FileText className="w-4 h-4 text-[#0284c7]" />
-                    <span>{doc.name}</span>
-                  </div>
-                  <button
-                    onClick={() => alert(`已下載: ${doc.name}`)}
-                    className="inline-flex items-center gap-1 text-xs text-[#f97316] font-bold hover:underline cursor-pointer"
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    <span>下載</span>
-                  </button>
-                </div>
-              ))}
             </div>
           </div>
         );
@@ -277,8 +243,6 @@ export const GenericInfoModal: React.FC<GenericInfoModalProps> = ({
     switch (modalType) {
       case 'berth':
         return language === 'zh' ? '船席圖查詢 · 即時靠泊動態' : 'Berth Schedule & Live Tracking';
-      case 'forms':
-        return language === 'zh' ? '表單規章下載中心' : 'Document & Forms Download Center';
       case 'support':
         return language === 'zh' ? '客戶服務支援專區' : 'Customer Support & Inquiries';
       case 'portal':

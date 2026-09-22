@@ -88,13 +88,7 @@ export default function App() {
           {/* 06: ESG Sustainability Section */}
           <ESGSection
             language={language}
-            onOpenESG={(item) => {
-              if (item.id === 'rep') {
-                setGenericModalType('forms');
-              } else {
-                handleNavigate('esg');
-              }
-            }}
+            onOpenESG={() => handleNavigate('esg')}
           />
 
           {/* 07: Latest News Section */}
