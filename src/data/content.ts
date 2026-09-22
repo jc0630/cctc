@@ -292,7 +292,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     summaryEn: 'Recognized for environmental sustainability and governance excellence, continuing progress toward low-carbon smart port infrastructure.',
     image: '/hero/hero-4.jpg',
     contentZh: [
-      '中國貨櫃股份有限公司於 2024 年度「TCSA 台灣企業永續獎」評選中，以「智慧港埠綠色節能永續專案」榮獲企業永續實踐楷模獎。',
+      '中國貨櫃運輸股份有限公司於 2024 年度「TCSA 台灣企業永續獎」評選中，以「智慧港埠綠色節能永續專案」榮獲企業永續實踐楷模獎。',
       '評審團高度肯定中櫃近年來在各港區全面引進全電能門式起重機、佈建港埠智慧高壓岸電系統，以及於五堵集散站設置屋頂型太陽能發電系統之具體成果。',
       '總經理表示：「中櫃深耕台灣超過半個世紀，將持續以智慧科技賦能碼頭裝卸，攜手航商夥伴推動淨零海運生態鏈。」'
     ],

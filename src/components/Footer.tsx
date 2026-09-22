@@ -185,7 +185,7 @@ export const Footer: React.FC<FooterProps> = ({
             />
             <div className="text-center sm:text-left">
               <p className="text-sm font-bold text-[var(--color-blue-800)]">
-                {language === 'zh' ? '中國貨櫃股份有限公司' : 'China Container Terminal Corporation'}
+                {language === 'zh' ? '中國貨櫃運輸股份有限公司' : 'China Container Terminal Corporation'}
               </p>
               <p className="text-xs text-slate-500">
                 {language === 'zh' ? 'China Container Terminal Corporation' : 'TWSE: 2613'}
@@ -213,7 +213,7 @@ export const Footer: React.FC<FooterProps> = ({
       {/* Tier 3: Copyright */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <span>© 2026 中國貨櫃股份有限公司 China Container Terminal Corp.</span>
+          <span>© 2026 中國貨櫃運輸股份有限公司 China Container Terminal Corp.</span>
           <span className="hidden sm:inline text-slate-300">|</span>
           <button
             onClick={onOpenPrivacy}

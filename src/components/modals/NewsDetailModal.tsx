@@ -66,7 +66,7 @@ export const NewsDetailModal: React.FC<NewsDetailModalProps> = ({
 
         {/* Footer */}
         <div className="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs text-slate-500">
-          <span>中國貨櫃股份有限公司 · 公共事務室發布</span>
+          <span>中國貨櫃運輸股份有限公司 · 公共事務室發布</span>
           <button
             onClick={onClose}
             className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-[#0a2540] font-bold rounded-sm transition-colors cursor-pointer"

@@ -153,7 +153,7 @@ export const GenericInfoModal: React.FC<GenericInfoModalProps> = ({
           <div className="space-y-4">
             <p className="text-xs sm:text-sm text-slate-600">
               {language === 'zh'
-                ? '中國貨櫃股份有限公司 (TWSE: 2613) 投資人專區，提供健全財務與公司治理資訊。'
+                ? '中國貨櫃運輸股份有限公司 (TWSE: 2613) 投資人專區，提供健全財務與公司治理資訊。'
                 : 'China Container Terminal Corp. (TWSE: 2613) Investor Relations disclosure center.'}
             </p>
             <div className="grid grid-cols-2 gap-3 text-xs">
@@ -223,7 +223,7 @@ export const GenericInfoModal: React.FC<GenericInfoModalProps> = ({
         return (
           <div className="space-y-3 text-xs text-slate-600 leading-relaxed max-h-72 overflow-y-auto">
             <p>
-              中國貨櫃股份有限公司（以下簡稱本公司）尊重並保護您的個人隱私權。本政策說明本公司網站如何蒐集、處理、利用及保護您的個人資料。
+              中國貨櫃運輸股份有限公司（以下簡稱本公司）尊重並保護您的個人隱私權。本政策說明本公司網站如何蒐集、處理、利用及保護您的個人資料。
             </p>
             <p>
               本公司依據個人資料保護法及相關法令規定，僅於提供港埠物流服務、櫃動查詢、投資人聯繫或徵才之特定目的範圍內處理個人資料，採取嚴密之資安防護措施防範未經授權之存取。
