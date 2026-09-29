@@ -9,14 +9,14 @@ interface HeroProps {
   onTrackingClick?: () => void;
 }
 
-// Local banner photos — drop hero-1.jpg ... hero-5.jpg into /public/hero to replace.
-// Falls back to the original placeholder photo per slide until those files exist.
+// Client-supplied, pre-cropped carousel banners (named banner-N, distinct from
+// the hero-N.jpg files reused as generic photography elsewhere on the page).
 const LOCAL_HERO_IMAGES = [
-  '/hero/hero-1.jpg',
-  '/hero/hero-2.jpg',
-  '/hero/hero-3.jpg',
-  '/hero/hero-4.jpg',
-  '/hero/hero-5.jpg',
+  '/hero/banner-1.jpg',
+  '/hero/banner-2.jpg',
+  '/hero/banner-3.jpg',
+  '/hero/banner-4.jpg',
+  '/hero/banner-5.jpg',
 ];
 
 export const Hero: React.FC<HeroProps> = ({
@@ -83,6 +83,16 @@ export const Hero: React.FC<HeroProps> = ({
             return title;
           })()}
         </h1>
+
+        {(language === 'zh' ? currentSlide.subtitleZh : currentSlide.subtitleEn) && (
+          <p
+            key={`subtitle-${currentSlide.id}`}
+            className="mt-3 sm:mt-4 text-lg sm:text-xl lg:text-2xl font-medium leading-snug text-white/90 animate-in fade-in slide-in-from-bottom-4 duration-700"
+            style={{ textShadow: '0 2px 12px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.4)' }}
+          >
+            {language === 'zh' ? currentSlide.subtitleZh : currentSlide.subtitleEn}
+          </p>
+        )}
       </div>
 
       {/* Carousel Prev / Next Controls */}
