@@ -67,8 +67,8 @@ const FOOTER_COLUMNS: FooterColumn[] = [
       { labelZh: '據點圖', labelEn: 'Terminal Map', sectionId: 'operations' },
       { labelZh: '五堵集散站', labelEn: 'Wudu Depot', sectionId: 'operations' },
       { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
-      { labelZh: '台中港貨櫃集散站（10-11號碼頭）', labelEn: 'Taichung Berths 10-11', sectionId: 'operations' },
-      { labelZh: '台中港貨櫃集散站（31號碼頭）', labelEn: 'Taichung Berth 31', sectionId: 'operations' }
+      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'operations' },
+      { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' }
     ]
   },
   {

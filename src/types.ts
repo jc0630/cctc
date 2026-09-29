@@ -24,6 +24,7 @@ export interface TerminalLocation {
   descZh: string;
   descEn: string;
   image: string;
+  imagePosition?: string;
   specs: {
     berthsZh: string;
     berthsEn: string;

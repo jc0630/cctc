@@ -19,17 +19,20 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
       key={loc.id}
       id={`location-card-${loc.id}`}
       onClick={() => onSelectLocation(loc)}
-      className="h-full group cursor-pointer card-framed"
+      className="h-full group cursor-pointer"
     >
-      <div className="relative overflow-hidden rounded-[var(--radius-card)] aspect-[4/3] bg-slate-100">
+      {/* Photo fills the card frame edge-to-edge (no inset matting) so the
+          real terminal photo reads as the primary visual, Evergreen-style. */}
+      <div className="relative overflow-hidden rounded-[var(--radius-panel)] aspect-[4/3] bg-slate-100 border border-[var(--color-blue-300)]/50 group-hover:border-[var(--color-blue-500)] transition-colors duration-300 layer-shadow-soft">
         <img
           src={loc.image}
           alt={language === 'zh' ? loc.nameZh : loc.nameEn}
+          style={{ objectPosition: loc.imagePosition || 'center' }}
           className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
-        <div className="absolute inset-0 rounded-[var(--radius-card)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
+        <div className="absolute inset-0 rounded-[var(--radius-panel)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
       </div>
-      <h3 className="mt-4 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug">
+      <h3 className="mt-3 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug">
         {language === 'zh' ? loc.nameZh : loc.nameEn}
       </h3>
     </div>
@@ -45,7 +48,7 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight">
-              {language === 'zh' ? '全台營運據點' : 'Taiwan Operations'}
+              {language === 'zh' ? '營運服務' : 'Operations & Services'}
             </h2>
           </div>
 

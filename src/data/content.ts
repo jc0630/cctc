@@ -157,18 +157,20 @@ export const ONLINE_SERVICES: ServiceItem[] = [
   }
 ];
 
+// Interim short area names — formal full terminal names to be supplied by
+// CCTC later; homepage cards intentionally show just the area name for now.
 export const TERMINAL_LOCATIONS: TerminalLocation[] = [
   {
     id: 'wudu',
-    nameZh: '五堵貨櫃集散站',
-    nameEn: 'Wudu Container Terminal',
+    nameZh: '五堵',
+    nameEn: 'Wudu',
     tagZh: 'HUB · 內陸轉運樞紐',
     tagEn: 'HUB · Inland Transfer Center',
     addressZh: '新北市汐止區大同路三段 193 號',
     addressEn: 'No. 193, Sec. 3, Datong Rd., Xizhi Dist., New Taipei City',
     descZh: '保稅倉庫、重櫃儲放與全功能車隊調度中心。',
     descEn: 'Bonded warehouse, heavy container yard and comprehensive fleet dispatch center.',
-    image: '/hero/hero-3.jpg',
+    image: '/locations/wudu.jpg',
     specs: {
       berthsZh: '內陸轉運集散站',
       berthsEn: 'Inland Container Depot',
@@ -180,15 +182,15 @@ export const TERMINAL_LOCATIONS: TerminalLocation[] = [
   },
   {
     id: 'keelung',
-    nameZh: '基隆港貨櫃碼頭',
-    nameEn: 'Keelung Port Terminal',
+    nameZh: '基隆',
+    nameEn: 'Keelung',
     tagZh: 'TERMINAL · 北台灣港埠',
     tagEn: 'TERMINAL · Northern Port',
     addressZh: '基隆市中山區港埠特區',
     addressEn: 'Port District, Zhongshan Dist., Keelung City',
     descZh: '專用碼頭靠泊、高效率快裝快卸與通關整合。',
     descEn: 'Dedicated berth docking, rapid stevedoring and customs integration.',
-    image: '/hero/hero-1.jpg',
+    image: '/locations/keelung.jpg',
     specs: {
       berthsZh: '專用深水席位 2 席',
       berthsEn: '2 Dedicated Deepwater Berths',
@@ -199,43 +201,44 @@ export const TERMINAL_LOCATIONS: TerminalLocation[] = [
     }
   },
   {
-    id: 'taichung10-11',
-    nameZh: '台中港 10-11 號碼頭',
-    nameEn: 'Taichung Port Berths 10-11',
+    id: 'taichung',
+    nameZh: '台中',
+    nameEn: 'Taichung',
     tagZh: 'BERTH · 散雜與大型貨櫃',
     tagEn: 'BERTH · Bulk & Container Hub',
     addressZh: '台中市梧棲區港區路段',
     addressEn: 'Port Area Rd., Wuqi Dist., Taichung City',
-    descZh: '深水專用泊位、全自動門機作業與寬廣堆置場。',
-    descEn: 'Deep-water specialized berths, automated gantry operations, extensive yard.',
-    image: '/hero/hero-5.jpg',
+    descZh: '深水專用泊位、全自動門機作業與智慧櫃場監控，涵蓋 10-11 號及 31 號碼頭。',
+    descEn: 'Deep-water specialized berths, automated gantry operations and smart yard monitoring, spanning Berths 10-11 and Berth 31.',
+    image: '/locations/taichung.jpg',
+    imagePosition: '25% center',
     specs: {
-      berthsZh: '10號、11號深水專用席',
-      berthsEn: 'Berths No. 10 & 11',
-      areaZh: '總佔地 150,000 平方公尺',
-      areaEn: 'Total Area: 150,000 m²',
-      equipmentZh: '重型門式起重機、智慧岸電插座',
-      equipmentEn: 'Heavy Rail Gantry Cranes, Shore Power Sockets'
+      berthsZh: '10號、11號及31號碼頭',
+      berthsEn: 'Berths No. 10, 11 & 31',
+      areaZh: '總佔地 242,000 平方公尺',
+      areaEn: 'Total Area: 242,000 m²',
+      equipmentZh: '重型門式起重機、全電能門機、智慧岸電插座',
+      equipmentEn: 'Heavy Rail Gantry Cranes, Electric Gantries, Shore Power Sockets'
     }
   },
   {
-    id: 'taichung31',
-    nameZh: '台中港 31 號碼頭',
-    nameEn: 'Taichung Port Berth 31',
-    tagZh: 'SMART · 智慧作業區',
-    tagEn: 'SMART · Intelligent Terminal',
-    addressZh: '台中市龍井區環港南路',
-    addressEn: 'Huan-gang S. Rd., Longjing Dist., Taichung City',
-    descZh: '智慧櫃場監控、低碳綠色門機與冷鏈配套服務。',
-    descEn: 'Smart container surveillance, eco-friendly gantries, cold-chain terminal.',
-    image: '/hero/hero-2.jpg',
+    id: 'kaohsiung',
+    nameZh: '高雄',
+    nameEn: 'Kaohsiung',
+    tagZh: 'TERMINAL · 南台灣港埠',
+    tagEn: 'TERMINAL · Southern Port',
+    addressZh: '高雄市小港區港區路段',
+    addressEn: 'Port Area Rd., Siaogang Dist., Kaohsiung City',
+    descZh: '大型深水碼頭作業、國際航線樞紐與高效率貨櫃裝卸服務。',
+    descEn: 'Large-scale deep-water berth operations, international shipping hub and high-efficiency container handling.',
+    image: '/locations/kaohsiung.jpg',
     specs: {
-      berthsZh: '31號高規格貨櫃碼頭席位',
-      berthsEn: 'Berth No. 31 Smart Quay',
-      areaZh: '總佔地 92,000 平方公尺',
-      areaEn: 'Total Area: 92,000 m²',
-      equipmentZh: '全電能門機、冷凍櫃專屬插座區 400 處',
-      equipmentEn: 'Electric Cranes, 400 Reefer Plugs'
+      berthsZh: '深水專用碼頭席位',
+      berthsEn: 'Deep-water Dedicated Berths',
+      areaZh: '總佔地 110,000 平方公尺',
+      areaEn: 'Total Area: 110,000 m²',
+      equipmentZh: '超大型橋式起重機、自動化查驗系統',
+      equipmentEn: 'Super-large Quay Cranes, Automated Inspection Systems'
     }
   }
 ];
