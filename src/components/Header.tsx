@@ -90,6 +90,18 @@ const NAV_CATEGORIES: NavCategory[] = [
     ]
   },
   {
+    id: 'services',
+    labelZh: '服務專區',
+    labelEn: 'Service Center',
+    sectionId: 'services',
+    items: [
+      { labelZh: '櫃動查詢', labelEn: 'Container Tracking', sectionId: 'services' },
+      { labelZh: '船期查詢', labelEn: 'Berth Schedule', sectionId: 'services' },
+      { labelZh: 'LINE BOT', labelEn: 'LINE BOT', sectionId: 'services' },
+      { labelZh: '表單下載', labelEn: 'Document Downloads', sectionId: 'services' }
+    ]
+  },
+  {
     id: 'careers',
     labelZh: '員工專區',
     labelEn: 'Staff Zone',
@@ -97,18 +109,6 @@ const NAV_CATEGORIES: NavCategory[] = [
     items: [
       { labelZh: '公司福利措施', labelEn: 'Employee Benefits', sectionId: 'careers' },
       { labelZh: '福委會／工會', labelEn: 'Welfare Committee / Union', sectionId: 'careers' }
-    ]
-  },
-  {
-    id: 'services',
-    labelZh: '快速服務',
-    labelEn: 'Quick Services',
-    sectionId: 'services',
-    items: [
-      { labelZh: '櫃動查詢', labelEn: 'Container Tracking', sectionId: 'services' },
-      { labelZh: '船期查詢', labelEn: 'Berth Schedule', sectionId: 'services' },
-      { labelZh: 'LINE BOT', labelEn: 'LINE BOT', sectionId: 'services' },
-      { labelZh: '表單下載', labelEn: 'Document Downloads', sectionId: 'services' }
     ]
   }
 ];
@@ -222,15 +222,6 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          {/* Customer Portal — decorative label only, no link/popup */}
-          <div
-            id="portal-cta-btn"
-            className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap text-white text-xs lg:text-sm font-bold px-3 py-2 rounded-[var(--radius-pill)] bg-[#f97316] shadow-xs"
-          >
-            <User className="w-3.5 h-3.5" />
-            <span>{language === 'zh' ? '服務專區' : 'Service Center'}</span>
-          </div>
-
           {/* Mobile Menu Hamburger */}
           <button
             id="mobile-menu-toggle-btn"
@@ -258,17 +249,8 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div>
-              <div className="flex items-center justify-end px-5 pt-5 pb-3">
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-700 rounded-full border border-slate-200 text-xs transition-colors cursor-pointer"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
               {/* Home — standalone link, not a dropdown category */}
-              <div className="border-t border-slate-100">
+              <div className="border-t border-slate-100 mt-4">
                 <button
                   onClick={() => handleNavClick('home')}
                   className="w-full flex items-center py-4 px-5 text-left border-b border-slate-100 transition-colors cursor-pointer hover:bg-slate-50"
@@ -285,17 +267,23 @@ export const Header: React.FC<HeaderProps> = ({
                     <div key={cat.id} className="border-b border-slate-100">
                       <button
                         onClick={() => toggleMobileCategory(cat.id)}
-                        className="w-full flex items-center justify-between py-4 px-5 text-left transition-colors cursor-pointer hover:bg-slate-50"
+                        className={`w-full flex items-center justify-between py-4 px-5 text-left transition-colors cursor-pointer ${
+                          isOpen ? 'bg-[var(--color-blue-100)]' : 'hover:bg-slate-50'
+                        }`}
                       >
-                        <span className="text-[18px] font-medium text-[var(--color-blue-900)]">
+                        <span
+                          className={`text-[18px] font-medium ${
+                            isOpen ? 'text-[var(--color-blue-700)] font-bold' : 'text-[var(--color-blue-900)]'
+                          }`}
+                        >
                           {language === 'zh' ? cat.labelZh : cat.labelEn}
                         </span>
                         <Plus
-                          className={`w-4 h-4 shrink-0 text-[var(--color-orange)] transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
+                          className={`w-5 h-5 shrink-0 text-[var(--color-orange)] transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
                         />
                       </button>
                       {isOpen && (
-                        <ul className="pb-2 bg-slate-50">
+                        <ul className="pb-2 bg-[var(--color-blue-100)]/50">
                           {cat.items.map((item, i) => (
                             <li key={i}>
                               <button
