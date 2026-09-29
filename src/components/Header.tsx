@@ -49,13 +49,12 @@ const NAV_CATEGORIES: NavCategory[] = [
     labelEn: 'Sustainability',
     sectionId: 'esg',
     items: [
-      { labelZh: '公司簡介與概況', labelEn: 'Company Overview', sectionId: 'esg' },
+      { labelZh: '經營者的話', labelEn: "Management's Message", sectionId: 'about' },
       { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'esg' },
       { labelZh: '利害關係人', labelEn: 'Stakeholders', sectionId: 'esg' },
       { labelZh: '風險管理', labelEn: 'Risk Management', sectionId: 'esg' },
       { labelZh: '供應鏈管理', labelEn: 'Supply Chain Management', sectionId: 'esg' },
-      { labelZh: '職場健康安全', labelEn: 'Workplace Health & Safety', sectionId: 'esg' },
-      { labelZh: '永續報告書', labelEn: 'Sustainability Reports', sectionId: 'esg' }
+      { labelZh: '職場健康安全', labelEn: 'Workplace Health & Safety', sectionId: 'esg' }
     ]
   },
   {
@@ -79,14 +78,7 @@ const NAV_CATEGORIES: NavCategory[] = [
       { labelZh: '五堵集散站', labelEn: 'Wudu Depot', sectionId: 'operations' },
       { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
       { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'operations' },
-      { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' },
-      { labelZh: '總部（含各站）公告', labelEn: 'HQ & Terminal Announcements', sectionId: 'operations' },
-      { labelZh: '簽核系統平台連結', labelEn: 'Approval System Portal', sectionId: 'operations' },
-      { labelZh: '紙本類申請表單', labelEn: 'Paper Application Forms', sectionId: 'operations' },
-      { labelZh: '教育訓練教材', labelEn: 'Training Materials', sectionId: 'operations' },
-      { labelZh: '技術通報', labelEn: 'Technical Bulletins', sectionId: 'operations' },
-      { labelZh: '各站電話分機表', labelEn: 'Terminal Phone Directory', sectionId: 'operations' },
-      { labelZh: '各站組織圖', labelEn: 'Terminal Org Charts', sectionId: 'operations' }
+      { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' }
     ]
   },
   {
