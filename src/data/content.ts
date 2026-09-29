@@ -119,27 +119,30 @@ export const ONLINE_SERVICES: ServiceItem[] = [
     descZh: '即時掌握提領、重櫃堆置與裝卸狀態。',
     descEn: 'Real-time status of pickup, full container yard storage and stevedoring.',
     actionZh: '前往查詢',
-    actionEn: 'Track Now'
+    actionEn: 'Track Now',
+    accentColor: '#0284c7'
   },
   {
     id: 'berth',
     iconName: 'Ship',
-    titleZh: '船席圖',
-    titleEn: 'Berth Schedule',
+    titleZh: '船席動態',
+    titleEn: 'Berth Status',
     descZh: '各港口船舶靠泊時程與動態監控。',
     descEn: 'Vessel berthing schedules, real-time docking monitoring across ports.',
     actionZh: '即時掌握',
-    actionEn: 'View Schedule'
+    actionEn: 'View Status',
+    accentColor: '#0d9488'
   },
   {
     id: 'linebot',
-    iconName: 'MessageCircle',
+    iconName: 'Bot',
     titleZh: 'LINE BOT',
     titleEn: 'LINE BOT',
-    descZh: '加入官方帳號，隨時掌握貨櫃動態與客服訊息。',
-    descEn: 'Add our official account for on-the-go tracking and customer updates.',
+    descZh: '加入官方帳號，隨時掌握貨櫃動態與自動化通知。',
+    descEn: 'Add our official account for on-the-go tracking and automated updates.',
     actionZh: '加入好友',
-    actionEn: 'Add Friend'
+    actionEn: 'Add Friend',
+    accentColor: '#06c755'
   },
   {
     id: 'forms',
@@ -149,7 +152,8 @@ export const ONLINE_SERVICES: ServiceItem[] = [
     descZh: '各式港埠作業申請書表與規章範本。',
     descEn: 'Port operation forms, application templates and regulatory standards.',
     actionZh: '文件中心',
-    actionEn: 'Download Forms'
+    actionEn: 'Download Forms',
+    accentColor: '#f97316'
   }
 ];
 

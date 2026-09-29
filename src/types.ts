@@ -9,6 +9,7 @@ export interface ServiceItem {
   descEn: string;
   actionZh: string;
   actionEn: string;
+  accentColor: string;
   badge?: string;
 }
 

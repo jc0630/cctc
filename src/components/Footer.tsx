@@ -72,11 +72,11 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     ]
   },
   {
-    titleZh: '快速服務',
-    titleEn: 'Quick Services',
+    titleZh: '服務專區',
+    titleEn: 'Service Center',
     links: [
       { labelZh: '櫃動查詢', labelEn: 'Container Tracking', sectionId: 'services' },
-      { labelZh: '船期查詢', labelEn: 'Berth Schedule', sectionId: 'services' },
+      { labelZh: '船席動態', labelEn: 'Berth Status', sectionId: 'services' },
       { labelZh: 'LINE BOT', labelEn: 'LINE BOT', sectionId: 'services' },
       { labelZh: '表單下載', labelEn: 'Document Downloads', sectionId: 'services' }
     ]

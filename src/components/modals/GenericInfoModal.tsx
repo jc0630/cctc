@@ -242,7 +242,7 @@ export const GenericInfoModal: React.FC<GenericInfoModalProps> = ({
   const getTitle = () => {
     switch (modalType) {
       case 'berth':
-        return language === 'zh' ? '船席圖查詢 · 即時靠泊動態' : 'Berth Schedule & Live Tracking';
+        return language === 'zh' ? '船席動態查詢 · 即時靠泊動態' : 'Berth Status & Live Tracking';
       case 'support':
         return language === 'zh' ? '客戶服務支援專區' : 'Customer Support & Inquiries';
       case 'portal':
