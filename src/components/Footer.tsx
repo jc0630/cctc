@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowUp, Phone, Mail, Plus } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ChevronUp, Phone, Mail, Plus } from 'lucide-react';
 import { Language } from '../types';
 
 interface FooterProps {
@@ -89,6 +89,14 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenTerms
 }) => {
   const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 400);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -107,6 +115,7 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
+    <>
     <footer
       id="site-footer"
       className="relative w-full text-[var(--color-blue-800)]"
@@ -207,9 +216,9 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Tier 3: Copyright */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        {/* Tier 3: Copyright — single centered row now that Back to Top
+            has moved to its own viewport-fixed button below. */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
           <span>Copyright © China Container Terminal Corporation. All Rights Reserved.</span>
           <span className="hidden sm:inline text-slate-300">｜</span>
           <button
@@ -226,17 +235,21 @@ export const Footer: React.FC<FooterProps> = ({
             {language === 'zh' ? '資訊安全及免責聲明' : 'Security & Disclaimer'}
           </button>
         </div>
-
-        <button
-          id="scroll-to-top-btn"
-          onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-pill)] border border-slate-200 hover:border-[var(--color-orange)] text-[var(--color-blue-800)] hover:text-[var(--color-orange)] bg-white transition-all cursor-pointer shadow-2xs font-semibold"
-        >
-          <span>{language === 'zh' ? '回到頁首' : 'Back to Top'}</span>
-          <ArrowUp className="w-3.5 h-3.5" />
-        </button>
-        </div>
       </div>
     </footer>
+
+    {/* Back to Top — fixed to the viewport, not the footer, so it stays
+        anchored bottom-right and appears as soon as the page is scrolled. */}
+    <button
+      id="scroll-to-top-btn"
+      onClick={scrollToTop}
+      aria-label={language === 'zh' ? '回到頁首' : 'Back to Top'}
+      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[var(--color-blue-500)] hover:bg-[var(--color-primary)] text-white flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer ${
+        showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-3 pointer-events-none'
+      }`}
+    >
+      <ChevronUp className="w-6 h-6 sm:w-7 sm:h-7" />
+    </button>
+    </>
   );
 };
