@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowUp, Phone, Mail, Plus } from 'lucide-react';
 import { Language } from '../types';
-import { LOGO_URL } from '../data/content';
 
 interface FooterProps {
   language: Language;
@@ -118,7 +117,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6">
           {FOOTER_COLUMNS.map((col, idx) => (
             <div key={idx}>
-              <h4 className="text-sm font-bold text-[var(--color-blue-800)] mb-4 pb-2 border-b-2 border-[var(--color-orange)] inline-block">
+              <h4 className="text-base font-bold text-[var(--color-blue-800)] mb-4 pb-2 border-b-2 border-[var(--color-orange)] inline-block">
                 {language === 'zh' ? col.titleZh : col.titleEn}
               </h4>
               <ul className="space-y-2.5">
@@ -126,7 +125,7 @@ export const Footer: React.FC<FooterProps> = ({
                   <li key={i}>
                     <button
                       onClick={() => onNavigateSection(link.sectionId)}
-                      className="text-left text-xs sm:text-sm text-slate-600 hover:text-[var(--color-orange)] transition-colors cursor-pointer"
+                      className="text-left text-sm sm:text-base text-slate-600 hover:text-[var(--color-orange)] transition-colors cursor-pointer"
                     >
                       {language === 'zh' ? link.labelZh : link.labelEn}
                     </button>
@@ -160,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({
                       <li key={i}>
                         <button
                           onClick={() => onNavigateSection(link.sectionId)}
-                          className="text-left text-sm text-slate-600 hover:text-[var(--color-orange)] transition-colors cursor-pointer"
+                          className="text-left text-base text-slate-600 hover:text-[var(--color-orange)] transition-colors cursor-pointer"
                         >
                           {language === 'zh' ? link.labelZh : link.labelEn}
                         </button>
@@ -174,23 +173,18 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
       </div>
 
-      {/* Tier 2: Company info — logo stacked above the company name, same logo size as the header */}
-      <div className="border-b border-slate-200">
+      {/* Tier 2: Company info — Header already carries the Logo + CCTC mark,
+          so the Footer echoes it with the full company name instead of
+          repeating the logo image. */}
+      <div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-6">
-          <div className="flex flex-col items-center sm:items-start gap-2">
-            <img
-              src={LOGO_URL}
-              alt="中國貨櫃 CCTC"
-              className="h-12 sm:h-[3.25rem] md:h-[3.75rem] w-auto object-contain"
-            />
-            <div className="text-center sm:text-left">
-              <p className="text-sm font-bold text-[var(--color-blue-800)]">
-                {language === 'zh' ? '中國貨櫃運輸股份有限公司' : 'China Container Terminal Corporation'}
-              </p>
-              <p className="text-xs text-slate-500">
-                {language === 'zh' ? 'China Container Terminal Corporation' : 'TWSE: 2613'}
-              </p>
-            </div>
+          <div className="text-center sm:text-left">
+            <p className="text-lg sm:text-xl font-bold text-[var(--color-blue-800)]">
+              {language === 'zh' ? '中國貨櫃運輸股份有限公司' : 'China Container Terminal Corporation'}
+            </p>
+            <p className="text-sm text-slate-500 mt-1">
+              {language === 'zh' ? 'China Container Terminal Corporation' : '中國貨櫃運輸股份有限公司'}
+            </p>
           </div>
 
           <div className="flex items-center gap-5 sm:gap-6">
@@ -213,15 +207,15 @@ export const Footer: React.FC<FooterProps> = ({
       {/* Tier 3: Copyright */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <span>© 2026 中國貨櫃運輸股份有限公司 China Container Terminal Corp.</span>
-          <span className="hidden sm:inline text-slate-300">|</span>
+          <span>Copyright © China Container Terminal Corporation. All Rights Reserved.</span>
+          <span className="hidden sm:inline text-slate-300">｜</span>
           <button
             onClick={onOpenPrivacy}
             className="hover:text-[var(--color-orange)] transition-colors cursor-pointer"
           >
             {language === 'zh' ? '隱私權保護政策' : 'Privacy Policy'}
           </button>
-          <span className="text-slate-300">|</span>
+          <span className="text-slate-300">｜</span>
           <button
             onClick={onOpenTerms}
             className="hover:text-[var(--color-orange)] transition-colors cursor-pointer"
