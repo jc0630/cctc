@@ -35,11 +35,13 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight">
               {language === 'zh' ? '影音專區' : 'Video Hub'}
             </h2>
-            <span className="section-title-rule" />
           </div>
         </div>
 
-        <div className="relative w-full">
+        {/* Capped width + auto margins — mirrors the MSC / DP World video-hub
+            layout, where the player reads as one modest, framed element with
+            breathing room on both sides instead of a full-bleed block. */}
+        <div className="relative w-full max-w-3xl mx-auto">
           {/* Video fills the panel directly — no white frame/border around it */}
           <div
             onClick={() => onPlayVideo(currentVideo)}

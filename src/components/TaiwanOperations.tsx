@@ -47,14 +47,13 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight">
               {language === 'zh' ? '全台營運據點' : 'Taiwan Operations'}
             </h2>
-            <span className="section-title-rule" />
           </div>
 
           <button
             onClick={onViewAllLocations}
             className="inline-flex items-center justify-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-blue-900)] text-white text-sm sm:text-base font-bold px-7 py-3.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group layer-shadow-soft"
           >
-            <span>{language === 'zh' ? '查看所有據點' : 'View All'}</span>
+            <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
         </div>

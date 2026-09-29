@@ -54,7 +54,7 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
                 onClick={onOpenInvestor}
                 className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[var(--color-blue-900)] px-5 py-2 rounded-[var(--radius-pill)] font-bold text-sm transition-colors duration-200 cursor-pointer group/btn"
               >
-                <span>{language === 'zh' ? '進入專區' : 'Learn More'}</span>
+                <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
               </button>
             </div>

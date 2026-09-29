@@ -71,7 +71,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
               onClick={() => onOpenESG(ESG_ITEMS[0])}
               className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-[var(--color-green-700)] px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
             >
-              <span>{language === 'zh' ? '進入 ESG 專區' : 'Visit ESG Hub'}</span>
+              <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </button>
           </div>

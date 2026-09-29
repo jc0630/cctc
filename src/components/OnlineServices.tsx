@@ -67,7 +67,7 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
                 onClick={() => onSelectService(ONLINE_SERVICES[0].id)}
                 className="inline-flex items-center justify-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-blue-900)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
               >
-                <span>{language === 'zh' ? '了解更多' : 'Learn More'}</span>
+                <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </button>
             </div>

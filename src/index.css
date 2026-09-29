@@ -106,19 +106,14 @@ main [id] {
 
 /* Section Title — Level 1 typography: deep brand blue heading + a warm orange
    underline rule. The orange accent recurs site-wide as the secondary brand
-   color so the page doesn't read as a single monochrome blue wash. */
+   color so the page doesn't read as a single monochrome blue wash.
+   inline-block + border-bottom (same mechanism as the Footer column headings)
+   makes the rule exactly as long as the title text itself, at any length. */
 .section-title {
+  display: inline-block;
   color: var(--color-blue-900);
-}
-.section-title-rule {
-  /* Spans the full width of the title's first two characters at heading
-     size, instead of a short generic tick mark. */
-  display: block;
-  width: 84px;
-  height: 3px;
-  border-radius: 2px;
-  margin-top: 10px;
-  background: var(--color-orange);
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--color-orange);
 }
 
 @keyframes swipe-hint {
