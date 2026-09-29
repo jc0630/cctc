@@ -109,10 +109,13 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer
       id="site-footer"
-      className="relative w-full bg-[var(--color-blue-100)] text-[var(--color-blue-800)]"
+      className="relative w-full text-[var(--color-blue-800)]"
     >
-      {/* Tier 1: 5-column sitemap menu — plain grid on desktop, accordion on mobile */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 border-b border-slate-200">
+      {/* Tier 1: 5-column sitemap menu — plain grid on desktop, accordion on
+          mobile. White band; no rule against Tier 2/3 below — the shift to
+          the blue-100 band reads as the section break instead of a line. */}
+      <div className="bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
         {/* Desktop / tablet: always-expanded columns */}
         <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6">
           {FOOTER_COLUMNS.map((col, idx) => (
@@ -172,11 +175,12 @@ export const Footer: React.FC<FooterProps> = ({
           })}
         </div>
       </div>
+      </div>
 
-      {/* Tier 2: Company info — Header already carries the Logo + CCTC mark,
-          so the Footer echoes it with the full company name instead of
-          repeating the logo image. */}
-      <div>
+      {/* Tier 2 + 3: Company info + Copyright share one blue-100 band — the
+          shade change from Tier 1's white is the only section break now
+          that the divider rules are gone. */}
+      <div className="bg-[var(--color-blue-100)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-6">
           <div className="text-center sm:text-left">
             <p className="text-lg sm:text-xl font-bold text-[var(--color-blue-800)]">
@@ -202,10 +206,9 @@ export const Footer: React.FC<FooterProps> = ({
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Tier 3: Copyright */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        {/* Tier 3: Copyright */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
         <div className="flex flex-wrap items-center justify-center gap-3">
           <span>Copyright © China Container Terminal Corporation. All Rights Reserved.</span>
           <span className="hidden sm:inline text-slate-300">｜</span>
@@ -232,6 +235,7 @@ export const Footer: React.FC<FooterProps> = ({
           <span>{language === 'zh' ? '回到頁首' : 'Back to Top'}</span>
           <ArrowUp className="w-3.5 h-3.5" />
         </button>
+        </div>
       </div>
     </footer>
   );
