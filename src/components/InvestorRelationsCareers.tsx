@@ -39,7 +39,7 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = INVESTOR_IMAGE_FALLBACK;
               }}
-              alt={language === 'zh' ? '投資人專區' : 'Investor Relations'}
+              alt={language === 'zh' ? '投資人服務' : 'Investor Relations'}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
             />
             {/* faint edge fade so white text stays legible — not a color wash */}
@@ -47,7 +47,7 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
 
             <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5">
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3" style={TEXT_SHADOW}>
-                {language === 'zh' ? '投資人專區' : 'Investor Relations'}
+                {language === 'zh' ? '投資人服務' : 'Investor Relations'}
               </h3>
               <button
                 id="investor-cta-btn"

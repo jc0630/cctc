@@ -153,7 +153,7 @@ export const GenericInfoModal: React.FC<GenericInfoModalProps> = ({
           <div className="space-y-4">
             <p className="text-xs sm:text-sm text-slate-600">
               {language === 'zh'
-                ? '中國貨櫃運輸股份有限公司 (TWSE: 2613) 投資人專區，提供健全財務與公司治理資訊。'
+                ? '中國貨櫃運輸股份有限公司 (TWSE: 2613) 投資人服務，提供健全財務與公司治理資訊。'
                 : 'China Container Terminal Corp. (TWSE: 2613) Investor Relations disclosure center.'}
             </p>
             <div className="grid grid-cols-2 gap-3 text-xs">
@@ -248,7 +248,7 @@ export const GenericInfoModal: React.FC<GenericInfoModalProps> = ({
       case 'portal':
         return language === 'zh' ? '客戶專區 / 線上申辦系統' : 'Client Portal Login';
       case 'investor':
-        return language === 'zh' ? '投資人專區 (TWSE: 2613)' : 'Investor Relations (TWSE: 2613)';
+        return language === 'zh' ? '投資人服務 (TWSE: 2613)' : 'Investor Relations (TWSE: 2613)';
       case 'careers':
         return language === 'zh' ? '人才招募 · 最新職缺' : 'Careers & Opportunities';
       case 'privacy':

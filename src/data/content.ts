@@ -271,7 +271,7 @@ export const ESG_ITEMS: ESGItem[] = [
     titleEn: 'Governance',
     descZh: '公開透明財務資訊、健全董事會多元專業職能、恪守商業誠信準則。',
     descEn: 'Transparent financial reporting, board diversity, and strict compliance with ethical corporate standards.',
-    accentColor: '#0a2540',
+    accentColor: '#6366f1',
     iconName: 'Scale'
   },
   {

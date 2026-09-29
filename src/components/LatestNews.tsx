@@ -51,7 +51,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
               key={article.id}
               id={`news-card-${article.id}`}
               onClick={() => onSelectArticle(article)}
-              className="h-full group cursor-pointer card-framed"
+              className="h-full flex flex-col group cursor-pointer card-framed"
             >
               <div className="relative overflow-hidden rounded-[var(--radius-card)] aspect-[4/3] bg-slate-100">
                 <img
@@ -61,9 +61,16 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
                 />
                 <div className="absolute inset-0 rounded-[var(--radius-card)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
               </div>
-              <h3 className="mt-4 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug line-clamp-2">
+              {/* Fixed 2-line reservation (min-h in em, so it scales with the
+                  text's own size) keeps every card's Read More link pinned to
+                  the same y-position, whether the title runs 1 line or 2. */}
+              <h3 className="mt-4 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug line-clamp-2 min-h-[2.75em]">
                 {language === 'zh' ? article.titleZh : article.titleEn}
               </h3>
+              <div className="mt-auto pt-3 px-1 flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[var(--color-primary)] group-hover:text-[var(--color-blue-900)] transition-colors duration-300">
+                <span>{language === 'zh' ? '閱讀更多' : 'Read More'}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </div>
             </article>
           ))}
         />

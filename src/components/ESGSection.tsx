@@ -47,29 +47,29 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = ESG_IMAGE_FALLBACK;
               }}
-              alt={language === 'zh' ? 'ESG 永續發展' : 'ESG Sustainability'}
+              alt={language === 'zh' ? '企業永續' : 'ESG Sustainability'}
               className="w-full h-full object-cover"
             />
             <div
               className="absolute inset-0"
-              style={{ backgroundColor: 'rgba(24, 92, 56, 0.8)' }}
+              style={{ backgroundColor: 'rgba(242, 250, 244, 0.92)' }}
             />
           </div>
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
           {/* Left: Intro text + CTA */}
-          <div className="lg:col-span-5 text-white">
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
-              {language === 'zh' ? 'ESG 永續發展' : 'ESG Sustainability'}
+          <div className="lg:col-span-5">
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3 text-[var(--color-green-900)]">
+              {language === 'zh' ? '企業永續' : 'ESG Sustainability'}
             </h2>
-            <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-3 sm:mb-5 max-w-md">
+            <p className="text-sm sm:text-base text-[var(--color-text-body)] leading-relaxed mb-3 sm:mb-5 max-w-md">
               {language === 'zh'
-                ? '環境、社會、治理，攜手共創永續未來。中櫃致力於打造低碳智慧港埠，與所有利害關係人共好成長。'
-                : 'Environment, Social, Governance — building a sustainable future together with smart, low-carbon port operations.'}
+                ? '以環境保護、社會責任及公司治理為核心，持續提升營運韌性，攜手利害關係人共創永續價值。'
+                : 'Centered on environmental protection, social responsibility, and corporate governance, we continuously strengthen operational resilience and create sustainable value together with our stakeholders.'}
             </p>
             <button
               onClick={() => onOpenESG(ESG_ITEMS[0])}
-              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-[var(--color-green-700)] px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
+              className="inline-flex items-center justify-center gap-2 bg-[var(--color-green-700)] hover:bg-[var(--color-green-900)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
             >
               <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -78,20 +78,22 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
 
           {/* Right: 2x2 Icon Button Grid */}
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-5">
+            <div className="grid grid-cols-2 gap-2 sm:gap-5">
               {ESG_ITEMS.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => onOpenESG(item)}
-                  className="flex items-center gap-2.5 sm:gap-4 bg-white/15 hover:bg-white/30 border border-white/20 hover:border-white/50 rounded-[var(--radius-card)] p-3 sm:p-5 transition-all duration-300 group backdrop-blur-sm text-left cursor-pointer"
+                  className="flex items-center gap-2 sm:gap-4 bg-white/70 hover:bg-white border border-slate-200 hover:border-[var(--color-green-600)]/50 rounded-[var(--radius-card)] px-2 py-3 sm:p-5 transition-all duration-300 group text-left cursor-pointer"
                 >
                   <div
-                    className="esg-icon-circle w-9 h-9 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 group-hover:scale-105 transition-all duration-300"
+                    className="esg-icon-circle w-8 h-8 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 ring-1 ring-slate-200 group-hover:ring-0 group-hover:scale-105 transition-all duration-300"
                     style={{ '--icon-accent': item.accentColor } as React.CSSProperties}
                   >
                     {getIcon(item.iconName)}
                   </div>
-                  <span className="text-white font-bold text-xs sm:text-base leading-snug">
+                  <span
+                    className={`min-w-0 text-[var(--color-green-900)] font-bold leading-snug ${language === 'zh' ? 'text-sm sm:text-lg whitespace-nowrap' : 'text-xs sm:text-lg break-words'}`}
+                  >
                     {language === 'zh' ? item.titleZh : item.titleEn}
                   </span>
                 </button>
