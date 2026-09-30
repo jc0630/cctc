@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X, User, ChevronDown, Plus } from 'lucide-react';
 import { Language } from '../types';
 import { LOGO_URL } from '../data/content';
@@ -112,6 +112,23 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  // The logo (and therefore header) height changes across breakpoints
+  // (h-12 / h-[3.25rem] / h-[3.75rem]), so the mobile drawer's top offset is
+  // measured live rather than hardcoded — otherwise the backdrop bleeds up
+  // into the header on viewports where the header is taller than assumed.
+  useEffect(() => {
+    const measure = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
   const handleNavClick = (sectionId: string) => {
     if (sectionId === 'home') {
@@ -129,6 +146,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
     <header
+      ref={headerRef}
       id="site-header"
       className="sticky top-0 w-full z-40 bg-white/95 backdrop-blur-md shadow-xs border-b border-slate-200 py-3"
     >
@@ -233,7 +251,8 @@ export const Header: React.FC<HeaderProps> = ({
       {mobileMenuOpen && (
         <div
           id="mobile-menu-drawer"
-          className="xl:hidden fixed inset-0 top-[60px] z-50 bg-slate-900/40 backdrop-blur-xs flex justify-end"
+          className="xl:hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex justify-end"
+          style={{ top: headerHeight || undefined }}
           onClick={() => setMobileMenuOpen(false)}
         >
           <div
