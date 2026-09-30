@@ -19,25 +19,21 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
       key={loc.id}
       id={`location-card-${loc.id}`}
       onClick={() => onSelectLocation(loc)}
-      className="h-full group cursor-pointer"
+      className="h-full group cursor-pointer rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 hover:border-[var(--color-blue-500)] overflow-hidden bg-white transition-colors duration-300 layer-shadow-soft"
     >
       {/* Photo fills the card frame edge-to-edge (no inset matting) so the
           real terminal photo reads as the primary visual, Evergreen-style. */}
-      <div className="relative overflow-hidden rounded-[var(--radius-panel)] aspect-[4/3] bg-slate-100 border border-[var(--color-blue-300)]/50 group-hover:border-[var(--color-blue-500)] transition-colors duration-300 layer-shadow-soft">
+      <div className="relative overflow-hidden aspect-[4/3] bg-slate-100">
         <img
           src={loc.image}
           alt={language === 'zh' ? loc.nameZh : loc.nameEn}
           style={{ objectPosition: loc.imagePosition || 'center' }}
           className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
-        <div className="absolute inset-0 rounded-[var(--radius-panel)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
       </div>
-      <h3 className="mt-3 px-1 text-lg sm:text-xl font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug">
+      <h3 className="px-4 py-3.5 text-lg sm:text-xl font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug">
         {language === 'zh' ? loc.nameZh : loc.nameEn}
       </h3>
-      <p className="mt-1.5 px-1 text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-3">
-        {language === 'zh' ? loc.descZh : loc.descEn}
-      </p>
     </div>
   );
 
