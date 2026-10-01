@@ -124,9 +124,9 @@ export const Footer: React.FC<FooterProps> = ({
           mobile. Lightest blue band; no rule against Tier 2/3 below — the
           shift to the deeper blue-300/50 band reads as the section break. */}
       <div className="bg-[var(--color-blue-100)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12">
         {/* Desktop / tablet: always-expanded columns */}
-        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6">
+        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6 pb-10 sm:pb-12">
           {FOOTER_COLUMNS.map((col, idx) => (
             <div key={idx}>
               <h4 className="text-base font-bold text-[var(--color-blue-800)] mb-4 pb-2 border-b-2 border-[var(--color-orange)] inline-block">
@@ -149,7 +149,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Mobile: collapsible accordion, one row per category */}
-        <div className="md:hidden -mx-4 sm:-mx-6">
+        <div className="md:hidden -mx-4 sm:-mx-6 pb-2">
           {FOOTER_COLUMNS.map((col, idx) => {
             const isOpen = openIndices.has(idx);
             return (
