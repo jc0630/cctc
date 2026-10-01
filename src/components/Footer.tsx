@@ -121,9 +121,9 @@ export const Footer: React.FC<FooterProps> = ({
       className="relative w-full text-[var(--color-blue-800)]"
     >
       {/* Tier 1: 5-column sitemap menu — plain grid on desktop, accordion on
-          mobile. White band; no rule against Tier 2/3 below — the shift to
-          the blue-100 band reads as the section break instead of a line. */}
-      <div className="bg-white">
+          mobile. Lightest blue band; no rule against Tier 2/3 below — the
+          shift to the deeper blue-300/50 band reads as the section break. */}
+      <div className="bg-[var(--color-blue-100)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
         {/* Desktop / tablet: always-expanded columns */}
         <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6">
@@ -186,10 +186,10 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
       </div>
 
-      {/* Tier 2 + 3: Company info + Copyright share one blue-100 band — the
-          shade change from Tier 1's white is the only section break now
-          that the divider rules are gone. */}
-      <div className="bg-[var(--color-blue-100)]">
+      {/* Tier 2 + 3: Company info + Copyright share one deeper blue band —
+          still light (blue-300 at half opacity), just a visible step down
+          from Tier 1's blue-100, no divider rules needed. */}
+      <div className="bg-[var(--color-blue-300)]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-6">
           <div className="text-center sm:text-left">
             <p className="text-lg sm:text-xl font-bold text-[var(--color-blue-800)]">
