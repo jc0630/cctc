@@ -290,7 +290,8 @@ export const Header: React.FC<HeaderProps> = ({
                           {language === 'zh' ? cat.labelZh : cat.labelEn}
                         </span>
                         <Plus
-                          className={`w-5 h-5 shrink-0 text-[var(--color-orange)] transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
+                          className={`w-6 h-6 sm:w-7 sm:h-7 shrink-0 text-[var(--color-orange)] transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
+                          strokeWidth={2.25}
                         />
                       </button>
                       {isOpen && (

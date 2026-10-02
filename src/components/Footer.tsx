@@ -192,7 +192,7 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="bg-[var(--color-blue-300)]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-6">
           <div className="text-center sm:text-left">
-            <p className="text-lg sm:text-xl font-bold text-[var(--color-blue-800)]">
+            <p className={`font-bold text-[var(--color-blue-800)] ${language === 'zh' ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'}`}>
               {language === 'zh' ? '中國貨櫃運輸股份有限公司' : 'China Container Terminal Corporation'}
             </p>
             <p className="text-sm text-slate-500 mt-1">
