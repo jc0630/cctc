@@ -80,7 +80,7 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
                     key={service.id}
                     id={`service-card-${service.id}`}
                     onClick={() => onSelectService(service.id)}
-                    className="flex items-center gap-2 sm:gap-4 bg-white/70 hover:bg-white border border-slate-200 hover:border-[var(--color-green-600)]/50 rounded-[var(--radius-card)] px-2 py-3 sm:p-5 transition-all duration-300 group text-left cursor-pointer layer-shadow-soft"
+                    className="flex items-center gap-2 sm:gap-4 bg-white/70 hover:bg-white border border-slate-200 hover:border-[var(--color-green-600)]/50 rounded-[var(--radius-card)] px-2 py-3 sm:p-5 transition-all duration-300 group text-left cursor-pointer"
                   >
                     <div
                       className="esg-icon-circle w-8 h-8 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 ring-1 ring-slate-200 group-hover:ring-0 group-hover:scale-105 transition-all duration-300"
