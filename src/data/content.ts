@@ -314,7 +314,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     categoryZh: '營運資訊',
     categoryEn: 'Operations',
     categoryType: 'operations',
-    date: '2024/05/15',
+    date: '2024/05/25',
     titleZh: '本公司榮獲「113年度航港產業數位轉型獎勵方案」獎勵肯定',
     titleEn: 'CCTC Recognized in the 2024 Maritime & Port Industry Digital Transformation Incentive Program',
     summaryZh: '全數門機導入精準定位與自動化通報系統，全面提升提領車流效率逾百分之二十。',
