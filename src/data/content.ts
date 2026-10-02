@@ -297,7 +297,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     titleEn: 'CCTC Awarded TCSA Taiwan Corporate Sustainability Award for Green Port Achievements',
     summaryZh: '落實環境永續與誠信治理，於本年度全國性評選中榮獲優良永續實踐獎項，持續朝低碳智慧碼頭前進。',
     summaryEn: 'Recognized for environmental sustainability and governance excellence, continuing progress toward low-carbon smart port infrastructure.',
-    image: '/hero/hero-4.jpg',
+    image: '/news/tcsa-award.jpg',
     contentZh: [
       '中國貨櫃運輸股份有限公司於 2024 年度「TCSA 台灣企業永續獎」評選中，以「智慧港埠綠色節能永續專案」榮獲企業永續實踐楷模獎。',
       '評審團高度肯定中櫃近年來在各港區全面引進全電能門式起重機、佈建港埠智慧高壓岸電系統，以及於五堵集散站設置屋頂型太陽能發電系統之具體成果。',
@@ -319,7 +319,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     titleEn: 'Wudu Container Depot Completes Intelligent Gantry & Facility Upgrades',
     summaryZh: '全數門機導入精準定位與自動化通報系統，全面提升提領車流效率逾百分之二十。',
     summaryEn: 'All gantry units upgraded with precise GPS positioning and automated dispatch, boosting truck turnaround efficiency by 20%.',
-    image: '/hero/hero-1.jpg',
+    image: '/news/yard-upgrade.png',
     contentZh: [
       '為因應日益增長的貨櫃吞吐量與嚴格的交期需求，中櫃五堵貨櫃集散站歷時六個月的場域自動化全面升級工程於本月正式竣工投產。',
       '本次升級包含光纖通訊網路全面覆蓋、門機配備 3D 鐳射防撞感測與自動集裝箱辨識 (OCR)，並將拖車叫號系統直接串接海關通關即時資料庫。',
@@ -341,7 +341,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     titleEn: 'Active Participation in Keelung Coastal Cleanup, Protecting Marine Ecosystems',
     summaryZh: '同仁與在地志工共同清除廢棄物逾 500 公斤，以具體行動實踐企業社會責任並守護蔚藍海岸。',
     summaryEn: 'Over 500 kg of marine debris removed alongside local volunteers, demonstrating our environmental commitment to pristine shores.',
-    image: '/hero/hero-3.jpg',
+    image: '/news/beach-cleanup.jpg',
     contentZh: [
       '中櫃志工社攜手基隆港務分公司及在地環保組織，於基隆外木山沿岸共同舉辦「蔚藍守護·中櫃同行」春季公益淨灘活動。',
       '共有超過 120 位同仁及其眷屬主動參與，共計清理海岸垃圾 528 公斤，包含廢棄漁網、塑膠微粒與廢棄輪胎，均落實分類回收與環境登錄。',
