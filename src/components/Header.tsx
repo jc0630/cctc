@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Menu, X, User, ChevronDown, Plus } from 'lucide-react';
+import { Menu, X, ChevronDown, Plus } from 'lucide-react';
 import { Language } from '../types';
 import { LOGO_URL } from '../data/content';
 
@@ -79,18 +79,6 @@ const NAV_CATEGORIES: NavCategory[] = [
       { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
       { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'operations' },
       { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' }
-    ]
-  },
-  {
-    id: 'services',
-    labelZh: '服務專區',
-    labelEn: 'Service Center',
-    sectionId: 'services',
-    items: [
-      { labelZh: '櫃動查詢', labelEn: 'Container Tracking', sectionId: 'services' },
-      { labelZh: '船席動態', labelEn: 'Berth Status', sectionId: 'services' },
-      { labelZh: 'LINE BOT', labelEn: 'LINE BOT', sectionId: 'services' },
-      { labelZh: '表單下載', labelEn: 'Document Downloads', sectionId: 'services' }
     ]
   },
   {
@@ -311,14 +299,6 @@ export const Header: React.FC<HeaderProps> = ({
                     </div>
                   );
                 })}
-              </div>
-            </div>
-
-            {/* Bottom Utilities in Mobile Drawer — decorative label only, no link/popup */}
-            <div className="p-5 pt-4 border-t border-slate-100 space-y-3">
-              <div className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-[var(--radius-pill)] bg-[#f97316] text-white text-xs font-bold shadow-xs">
-                <User className="w-4 h-4" />
-                <span>{language === 'zh' ? '服務專區' : 'Service Center'}</span>
               </div>
             </div>
           </div>

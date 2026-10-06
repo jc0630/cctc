@@ -71,13 +71,11 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     ]
   },
   {
-    titleZh: '服務專區',
-    titleEn: 'Service Center',
+    titleZh: '員工專區',
+    titleEn: 'Staff Zone',
     links: [
-      { labelZh: '櫃動查詢', labelEn: 'Container Tracking', sectionId: 'services' },
-      { labelZh: '船席動態', labelEn: 'Berth Status', sectionId: 'services' },
-      { labelZh: 'LINE BOT', labelEn: 'LINE BOT', sectionId: 'services' },
-      { labelZh: '表單下載', labelEn: 'Document Downloads', sectionId: 'services' }
+      { labelZh: '公司福利措施', labelEn: 'Employee Benefits', sectionId: 'careers' },
+      { labelZh: '福委會／工會', labelEn: 'Welfare Committee / Union', sectionId: 'careers' }
     ]
   }
 ];

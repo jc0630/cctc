@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { OnlineServices } from './components/OnlineServices';
 import { VideoSection } from './components/VideoSection';
 import { AboutSection } from './components/AboutSection';
 import { TaiwanOperations } from './components/TaiwanOperations';
@@ -34,10 +33,6 @@ export default function App() {
     }
   };
 
-  const handleServiceClick = (_serviceId: string) => {
-    // Quick-nav cards are link-style only for now — no popups.
-  };
-
   return (
     <div className="min-h-screen w-full bg-white">
         {/* Site Header */}
@@ -58,12 +53,6 @@ export default function App() {
           <Hero
             language={language}
             onExploreClick={() => handleNavigate('about')}
-          />
-
-          {/* 02: Online Services Section (4 items) */}
-          <OnlineServices
-            language={language}
-            onSelectService={handleServiceClick}
           />
 
           {/* 03: Corporate Video Section */}
