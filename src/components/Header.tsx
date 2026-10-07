@@ -82,6 +82,18 @@ const NAV_CATEGORIES: NavCategory[] = [
     ]
   },
   {
+    id: 'services',
+    labelZh: '服務專區',
+    labelEn: 'Service Center',
+    sectionId: 'services',
+    items: [
+      { labelZh: '櫃動查詢', labelEn: 'Container Tracking', sectionId: 'services' },
+      { labelZh: '船席動態', labelEn: 'Berth Status', sectionId: 'services' },
+      { labelZh: 'LINE BOT', labelEn: 'LINE BOT', sectionId: 'services' },
+      { labelZh: '表單下載', labelEn: 'Document Downloads', sectionId: 'services' }
+    ]
+  },
+  {
     id: 'careers',
     labelZh: '員工專區',
     labelEn: 'Staff Zone',
