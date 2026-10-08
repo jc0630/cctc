@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Language, VideoItem } from '../types';
+import { Language } from '../types';
 import { VIDEO_ITEMS } from '../data/content';
 
 interface VideoSectionProps {
   language: Language;
-  onPlayVideo: (video: VideoItem) => void;
 }
 
 export const VideoSection: React.FC<VideoSectionProps> = ({
-  language,
-  onPlayVideo
+  language
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const currentVideo = VIDEO_ITEMS[currentIndex];
   const hasMultiple = VIDEO_ITEMS.length > 1;
 
   const handlePrev = () => {
+    setIsPlaying(false);
     setCurrentIndex((prev) => (prev - 1 + VIDEO_ITEMS.length) % VIDEO_ITEMS.length);
   };
 
   const handleNext = () => {
+    setIsPlaying(false);
     setCurrentIndex((prev) => (prev + 1) % VIDEO_ITEMS.length);
+  };
+
+  // Plays inline, in place, instead of opening a lightbox popup.
+  const togglePlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (isPlaying) {
+      el.pause();
+    } else {
+      el.muted = false;
+      el.play();
+    }
   };
 
   return (
@@ -44,36 +58,47 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
         <div className="relative w-full max-w-3xl mx-auto">
           {/* Video fills the panel directly — no white frame/border around it */}
           <div
-            onClick={() => onPlayVideo(currentVideo)}
+            onClick={togglePlay}
             className="relative w-full aspect-video rounded-[var(--radius-panel)] overflow-hidden bg-slate-900 cursor-pointer group"
           >
             <video
               key={currentVideo.id}
+              ref={videoRef}
               src={`${currentVideo.src}#t=0.1`}
               muted
+              controls={isPlaying}
               preload="metadata"
               playsInline
-              className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 ease-out"
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => setIsPlaying(false)}
+              className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
+                isPlaying ? '' : 'opacity-90 group-hover:scale-105'
+              }`}
             />
 
-            {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:bg-[var(--color-orange)]/80 group-hover:border-[var(--color-orange)] transition-all duration-300">
-                <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white fill-white ml-2" />
-              </div>
-            </div>
-
-            {/* Video Meta Data Bar */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-              <div className="flex items-center justify-between text-white">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold">
-                    {language === 'zh' ? currentVideo.titleZh : currentVideo.titleEn}
-                  </h3>
-                  <p className="text-sm text-white/70 mt-1">{currentVideo.durationLabel}</p>
+            {/* Play Button Overlay — hidden once playing; native controls take over */}
+            {!isPlaying && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:bg-[var(--color-orange)]/80 group-hover:border-[var(--color-orange)] transition-all duration-300">
+                  <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white fill-white ml-2" />
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Video Meta Data Bar */}
+            {!isPlaying && (
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none">
+                <div className="flex items-center justify-between text-white">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold">
+                      {language === 'zh' ? currentVideo.titleZh : currentVideo.titleEn}
+                    </h3>
+                    <p className="text-sm text-white/70 mt-1">{currentVideo.durationLabel}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Prev / Next Controls */}
             {hasMultiple && (

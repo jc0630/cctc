@@ -5,25 +5,51 @@
     /* Surface tones — reserved for backgrounds/overlays (hero, dark panels), never for text */
     --color-navy: #0a2540;
     --color-navy-deep: #061a30;
-    --color-ocean: #0369a1;
-    --color-primary: #0284c7;
+    --color-ocean: #0b3b66;
+    --color-primary: #0e4c82;
     --color-sky: #38bdf8;
     --color-sky-pale: #e0f2fe;
     --color-orange: #f97316;
     --color-orange-deep: #ea580c;
 
-    /* Typography blue hierarchy — one brand blue, six depths. Extended from the
-       existing brand primary (#0284c7); nothing here is an unrelated new hue. */
-    --color-blue-900: #0b3b66; /* Level 1 — Section Title (deep, but clearly blue, never near-black) */
-    --color-blue-800: #0e4c82; /* Level 3 — H3 / Card Title / important UI */
-    --color-blue-700: #0284c7; /* Brand primary — Button / CTA / main interactive UI */
-    --color-blue-500: #3aa0e0; /* Level 2 — H2 / secondary heading / card accent / link */
-    --color-blue-300: #a8dcf7; /* Light — border / highlight / hover surfaces */
-    --color-blue-100: #eef8ff; /* Very light — section backgrounds / subtle fills */
+    /* Typography blue hierarchy — one brand blue, five depths. Re-anchored to
+       the client's own printed brand material (annual report covers, logo
+       mark) rather than a generic bright "UI blue": the brand blue itself is
+       a muted, deeper navy, not the sky-cyan #0284c7 this used to be built
+       around. CTA / primary interactive UI now sits at the depth that used
+       to be reserved for H3s — nothing here reaches for a brighter blue than
+       this on rest *or* hover; hover/press only ever goes deeper. */
+    --color-blue-900: #0b3b66; /* Darkest — Section Title / hover-press state for Primary */
+    --color-blue-800: #0e4c82; /* = --color-primary — Button / CTA / H3 / main interactive UI */
+    --color-blue-700: #0e4c82; /* alias of Primary, kept for existing call sites */
+    --color-blue-500: #4a7fa8; /* Muted mid blue — secondary accents, lighter hover surfaces */
+    --color-blue-300: #b7d3e6; /* Light — border / highlight / hover surfaces */
+    --color-blue-100: #eef4f9; /* Very light — section backgrounds / subtle fills */
 
-    /* Body copy — blue-gray, never pure black */
-    --color-text-body: #5b6b7b;  /* Level 4 — supporting/body text */
-    --color-text-label: #94a3b8; /* Level 5 — small labels/meta text */
+    /* Body copy — blue-gray, never pure black. Deepened from the original
+       #5b6b7b/#94a3b8 pair, which read as faded/dated at small sizes. */
+    --color-text-body: #48586b;  /* Level 4 — supporting/body text */
+    --color-text-label: #7c8aa0; /* Level 5 — small labels/meta text */
+
+    /* Neutral ink — for bold/emphasis text that isn't an actual heading
+       (stat numbers, modal data values/icons, the footer's company name,
+       inactive nav items). Routing every bold text element through the
+       brand navy made headings disappear into the same wash as everything
+       around them; ink gives emphasis without adding more blue. */
+    --color-ink: #1e293b;
+
+    /* Button blue — sampled directly from the logo mark itself (its actual
+       pixels are a bright, saturated sky blue, not the deep navy of the
+       printed annual-report covers). Kept deliberately distinct from
+       --color-primary: the deep navy carries headings/surfaces/body accents
+       site-wide, so routing every button through that same navy reads as
+       "one blue everywhere" and causes exactly the fatigue the client
+       flagged twice. Buttons get their own, lighter, more energetic blue;
+       hover only deepens within this same family, never jumps to navy. */
+    --color-cta: #1890d0;
+    --color-cta-hover: #0e6da3;
+    --color-hover: var(--color-blue-900);
+    --color-link: var(--color-primary);
 
     /* ESG-only soft green system — differentiates the section while staying inside
        the same design language (radius, spacing, hover language stay identical). */
@@ -119,6 +145,38 @@ main [id] {
 @keyframes swipe-hint {
   0%, 100% { transform: translateX(0); opacity: 0.5; }
   50% { transform: translateX(6px); opacity: 1; }
+}
+
+/* Hero carousel Ken Burns — slow, understated zoom/drift. Remounted per
+   slide (via React key), so one "forwards" pass per ~6s slide interval is
+   enough; no loop needed and nothing snaps back visibly between slides. */
+@keyframes hero-kenburns {
+  0% { transform: scale(1) translate3d(0, 0, 0); }
+  100% { transform: scale(1.08) translate3d(-1.2%, -1%, 0); }
+}
+.animate-kenburns {
+  animation: hero-kenburns 7s ease-in-out forwards;
+  will-change: transform;
+}
+
+/* Shared card hover language — used anywhere a bordered card needs a clear
+   but restrained "interactive" affordance: a steady 2px border (no width
+   jump on hover, only color) plus a gentle lift + deeper shadow. Replaces
+   plain border-color-only hovers that leaned on bright sky blue. */
+.interactive-card {
+  border-width: 2px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.interactive-card:hover {
+  border-color: var(--color-cta);
+  transform: translateY(-3px);
+  box-shadow: 0 2px 4px rgba(10, 37, 64, 0.08), 0 20px 44px -14px rgba(10, 37, 64, 0.24);
+}
+/* Accent variant — gives a section its own color identity (e.g. Operations
+   uses the secondary brand orange) instead of every card site-wide
+   converging on the same blue hover. */
+.interactive-card--accent:hover {
+  border-color: var(--color-orange);
 }
 .animate-swipe-hint {
   animation: swipe-hint 1.6s ease-in-out infinite;

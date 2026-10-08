@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronUp, Phone, Mail, Plus } from 'lucide-react';
+import { ChevronUp, Phone, Mail, MapPin, Plus } from 'lucide-react';
 import { Language } from '../types';
 
 interface FooterProps {
   language: Language;
   onNavigateSection: (sectionId: string) => void;
-  onOpenPrivacy: () => void;
-  onOpenTerms: () => void;
 }
 
 interface FooterLink {
@@ -84,9 +82,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
 
 export const Footer: React.FC<FooterProps> = ({
   language,
-  onNavigateSection,
-  onOpenPrivacy,
-  onOpenTerms
+  onNavigateSection
 }) => {
   const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -198,6 +194,14 @@ export const Footer: React.FC<FooterProps> = ({
             <p className="text-sm text-slate-500 mt-1">
               {language === 'zh' ? 'China Container Terminal Corporation' : '中國貨櫃運輸股份有限公司'}
             </p>
+            <p className="text-sm text-slate-500 mt-2 flex items-center justify-center sm:justify-start gap-1.5">
+              <MapPin className="w-3.5 h-3.5 shrink-0" />
+              <span>
+                {language === 'zh'
+                  ? '221041 新北市汐止區大同路三段275號'
+                  : 'No. 275, Sec. 3, Datong Rd., Xizhi Dist., New Taipei City 221041'}
+              </span>
+            </p>
           </div>
 
           <div className="flex items-center gap-5 sm:gap-6">
@@ -207,12 +211,15 @@ export const Footer: React.FC<FooterProps> = ({
               </span>
               <span className="text-sm font-mono">(02) 8648-2111</span>
             </a>
-            <a href="mailto:service@cctcorp.com.tw" className="flex items-center gap-2.5 group">
+            <button
+              onClick={() => onNavigateSection('investor-relations')}
+              className="flex items-center gap-2.5 group cursor-pointer"
+            >
               <span className="w-9 h-9 rounded-full border border-slate-300 flex items-center justify-center shrink-0 group-hover:border-[var(--color-orange)] group-hover:text-[var(--color-orange)] transition-colors">
                 <Mail className="w-4 h-4" />
               </span>
               <span className="text-sm font-bold">{language === 'zh' ? '聯絡我們' : 'Contact Us'}</span>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -221,19 +228,9 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500">
           <span>Copyright © China Container Terminal Corporation. All Rights Reserved.</span>
           <span className="hidden sm:inline text-slate-300">｜</span>
-          <button
-            onClick={onOpenPrivacy}
-            className="hover:text-[var(--color-orange)] transition-colors cursor-pointer"
-          >
-            {language === 'zh' ? '隱私權保護政策' : 'Privacy Policy'}
-          </button>
+          <span>{language === 'zh' ? '隱私權保護政策' : 'Privacy Policy'}</span>
           <span className="text-slate-300">｜</span>
-          <button
-            onClick={onOpenTerms}
-            className="hover:text-[var(--color-orange)] transition-colors cursor-pointer"
-          >
-            {language === 'zh' ? '資訊安全及免責聲明' : 'Security & Disclaimer'}
-          </button>
+          <span>{language === 'zh' ? '資訊安全及免責聲明' : 'Security & Disclaimer'}</span>
         </div>
       </div>
     </footer>
@@ -244,7 +241,7 @@ export const Footer: React.FC<FooterProps> = ({
       id="scroll-to-top-btn"
       onClick={scrollToTop}
       aria-label={language === 'zh' ? '回到頁首' : 'Back to Top'}
-      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[var(--color-blue-500)] hover:bg-[var(--color-primary)] text-white flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer ${
+      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[var(--color-blue-500)] hover:bg-[var(--color-cta-hover)] text-white flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer ${
         showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-3 pointer-events-none'
       }`}
     >

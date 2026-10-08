@@ -1,11 +1,8 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 
 interface InvestorRelationsCareersProps {
   language: Language;
-  onOpenInvestor: () => void;
-  onOpenCareers: () => void;
 }
 
 // Drop /public/images/投資人.jpg and /public/images/人才招募.jpg to replace —
@@ -20,9 +17,7 @@ const CAREERS_IMAGE_FALLBACK =
 const TEXT_SHADOW = { textShadow: '0 2px 10px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.5)' };
 
 export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> = ({
-  language,
-  onOpenInvestor,
-  onOpenCareers
+  language
 }) => {
   return (
     <section className="w-full py-[1.1rem] sm:py-[1.375rem] bg-white">
@@ -46,17 +41,9 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
             <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent pointer-events-none" />
 
             <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3" style={TEXT_SHADOW}>
+              <h3 className="text-xl sm:text-2xl font-bold text-white" style={TEXT_SHADOW}>
                 {language === 'zh' ? '投資人服務' : 'Investor Relations'}
               </h3>
-              <button
-                id="investor-cta-btn"
-                onClick={onOpenInvestor}
-                className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[var(--color-blue-900)] px-5 py-2 rounded-[var(--radius-pill)] font-bold text-sm transition-colors duration-200 cursor-pointer group/btn"
-              >
-                <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
-              </button>
             </div>
           </div>
 
@@ -77,17 +64,9 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
             <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent pointer-events-none" />
 
             <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3" style={TEXT_SHADOW}>
+              <h3 className="text-xl sm:text-2xl font-bold text-white" style={TEXT_SHADOW}>
                 {language === 'zh' ? '人才招募' : 'Careers'}
               </h3>
-              <button
-                id="careers-cta-btn"
-                onClick={onOpenCareers}
-                className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-[var(--color-blue-900)] px-5 py-2 rounded-[var(--radius-pill)] font-bold text-sm transition-colors duration-200 cursor-pointer group/btn"
-              >
-                <span>{language === 'zh' ? '加入我們' : 'Join Us'}</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
-              </button>
             </div>
           </div>
         </div>

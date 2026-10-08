@@ -9,22 +9,10 @@ import { LatestNews } from './components/LatestNews';
 import { InvestorRelationsCareers } from './components/InvestorRelationsCareers';
 import { Footer } from './components/Footer';
 
-// Modals
-import { VideoLightboxModal } from './components/modals/VideoLightboxModal';
-import { LocationDetailModal } from './components/modals/LocationDetailModal';
-import { NewsDetailModal } from './components/modals/NewsDetailModal';
-import { GenericInfoModal, ModalType } from './components/modals/GenericInfoModal';
-
-import { Language, TerminalLocation, NewsArticle, ESGItem, VideoItem } from './types';
+import { Language } from './types';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('zh');
-
-  // Modal States
-  const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
-  const [selectedLocation, setSelectedLocation] = useState<TerminalLocation | null>(null);
-  const [selectedNews, setSelectedNews] = useState<NewsArticle | null>(null);
-  const [genericModalType, setGenericModalType] = useState<ModalType>(null);
 
   const handleNavigate = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -58,7 +46,6 @@ export default function App() {
           {/* 03: Corporate Video Section */}
           <VideoSection
             language={language}
-            onPlayVideo={(video) => setSelectedVideo(video)}
           />
 
           {/* 04: About China Container Section */}
@@ -70,7 +57,6 @@ export default function App() {
           {/* 05: Taiwan Operations Section (4 locations, mobile carousel) */}
           <TaiwanOperations
             language={language}
-            onSelectLocation={(loc) => setSelectedLocation(loc)}
             onViewAllLocations={() => handleNavigate('operations')}
           />
 
@@ -83,15 +69,12 @@ export default function App() {
           {/* 07: Latest News Section */}
           <LatestNews
             language={language}
-            onSelectArticle={(article) => setSelectedNews(article)}
             onViewAllNews={() => handleNavigate('news')}
           />
 
           {/* 08 & 09: Investor Relations & Careers Section */}
           <InvestorRelationsCareers
             language={language}
-            onOpenInvestor={() => setGenericModalType('investor')}
-            onOpenCareers={() => setGenericModalType('careers')}
           />
         </main>
 
@@ -99,35 +82,8 @@ export default function App() {
         <Footer
           language={language}
           onNavigateSection={handleNavigate}
-          onOpenPrivacy={() => setGenericModalType('privacy')}
-          onOpenTerms={() => setGenericModalType('terms')}
         />
         </div>
-
-      {/* Interactive Modals */}
-      <VideoLightboxModal
-        video={selectedVideo}
-        onClose={() => setSelectedVideo(null)}
-        language={language}
-      />
-
-      <LocationDetailModal
-        location={selectedLocation}
-        onClose={() => setSelectedLocation(null)}
-        language={language}
-      />
-
-      <NewsDetailModal
-        article={selectedNews}
-        onClose={() => setSelectedNews(null)}
-        language={language}
-      />
-
-      <GenericInfoModal
-        modalType={genericModalType}
-        onClose={() => setGenericModalType(null)}
-        language={language}
-      />
     </div>
   );
 }

@@ -1,18 +1,16 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Language, NewsArticle } from '../types';
+import { Language } from '../types';
 import { NEWS_ARTICLES } from '../data/content';
 import { HorizontalCarousel } from './HorizontalCarousel';
 
 interface LatestNewsProps {
   language: Language;
-  onSelectArticle: (article: NewsArticle) => void;
   onViewAllNews: () => void;
 }
 
 export const LatestNews: React.FC<LatestNewsProps> = ({
   language,
-  onSelectArticle,
   onViewAllNews
 }) => {
   // Homepage shows only the 3 most recent articles, sorted by date, no filtering
@@ -36,7 +34,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
 
           <button
             onClick={onViewAllNews}
-            className="inline-flex items-center justify-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-blue-900)] text-white text-sm sm:text-base font-bold px-7 py-3.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group layer-shadow-soft"
+            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[var(--color-cta)] hover:bg-[var(--color-cta)] text-[var(--color-cta)] hover:text-white text-sm sm:text-base font-bold px-7 py-3 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group"
           >
             <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -50,8 +48,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
             <article
               key={article.id}
               id={`news-card-${article.id}`}
-              onClick={() => onSelectArticle(article)}
-              className="h-full flex flex-col group cursor-pointer card-framed"
+              className="h-full flex flex-col group card-framed"
             >
               <div className="relative overflow-hidden rounded-[var(--radius-card)] aspect-[4/3] bg-slate-100">
                 <img
@@ -61,16 +58,12 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
                 />
                 <div className="absolute inset-0 rounded-[var(--radius-card)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
               </div>
-              {/* Fixed 2-line reservation (min-h in em, so it scales with the
-                  text's own size) keeps every card's Read More link pinned to
-                  the same y-position, whether the title runs 1 line or 2. */}
-              <h3 className="mt-4 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug line-clamp-2 min-h-[2.75em]">
+              <time className="mt-3 px-1 text-xs sm:text-sm font-bold text-[var(--color-text-label)] tracking-wide">
+                {article.date}
+              </time>
+              <h3 className="mt-1.5 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-hover)] transition-colors duration-300 leading-snug line-clamp-2">
                 {language === 'zh' ? article.titleZh : article.titleEn}
               </h3>
-              <div className="mt-auto pt-3 px-1 flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[var(--color-primary)] group-hover:text-[var(--color-blue-900)] transition-colors duration-300">
-                <span>{language === 'zh' ? '閱讀更多' : 'Read More'}</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </div>
             </article>
           ))}
         />

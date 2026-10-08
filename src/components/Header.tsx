@@ -177,7 +177,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 id={`nav-${cat.id}`}
                 onClick={() => handleNavClick(cat.sectionId)}
-                className="shrink-0 whitespace-nowrap flex items-center gap-1 text-[20px] font-semibold px-1.5 py-1.5 rounded-sm transition-colors cursor-pointer text-[#0a2540]/80 hover:text-[#0284c7] hover:bg-[#f0f7ff]"
+                className="shrink-0 whitespace-nowrap flex items-center gap-1 text-[20px] font-semibold px-1.5 py-1.5 rounded-sm transition-colors cursor-pointer text-[#0a2540]/80 hover:text-[var(--color-hover)] hover:bg-[var(--color-blue-100)]"
               >
                 <span>{language === 'zh' ? cat.labelZh : cat.labelEn}</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
@@ -190,7 +190,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <button
                       key={i}
                       onClick={() => handleNavClick(item.sectionId)}
-                      className="block w-full text-left whitespace-nowrap text-sm font-medium px-4 py-2 text-[#0a2540]/80 hover:text-[#0284c7] hover:bg-[#f0f7ff] transition-colors cursor-pointer"
+                      className="block w-full text-left whitespace-nowrap text-sm font-medium px-4 py-2 text-[#0a2540]/80 hover:text-[var(--color-hover)] hover:bg-[var(--color-blue-100)] transition-colors cursor-pointer"
                     >
                       {language === 'zh' ? item.labelZh : item.labelEn}
                     </button>
@@ -213,7 +213,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onToggleLanguage('zh')}
               className={`px-2.5 py-1 rounded-[var(--radius-pill)] text-xs font-bold transition-all cursor-pointer ${
                 language === 'zh'
-                  ? 'bg-white text-[#0369a1] shadow-xs border border-slate-200/80'
+                  ? 'bg-white text-[var(--color-cta)] shadow-xs border border-slate-200/80'
                   : 'text-slate-500 hover:text-[#0a2540]'
               }`}
             >
@@ -224,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onToggleLanguage('en')}
               className={`px-2.5 py-1 rounded-[var(--radius-pill)] text-xs font-bold transition-all cursor-pointer ${
                 language === 'en'
-                  ? 'bg-white text-[#0369a1] shadow-xs border border-slate-200/80'
+                  ? 'bg-white text-[var(--color-cta)] shadow-xs border border-slate-200/80'
                   : 'text-slate-500 hover:text-[#0a2540]'
               }`}
             >
@@ -237,7 +237,7 @@ export const Header: React.FC<HeaderProps> = ({
             id="mobile-menu-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? '關閉選單' : '開啟選單'}
-            className="xl:hidden w-9 h-9 flex items-center justify-center rounded-full border transition-colors cursor-pointer bg-white text-[#0a2540] hover:text-[#0284c7] border-slate-200 hover:border-[#0284c7]"
+            className="xl:hidden w-9 h-9 flex items-center justify-center rounded-full border transition-colors cursor-pointer bg-white text-[#0a2540] hover:text-[var(--color-cta)] border-slate-200 hover:border-[var(--color-cta)]"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -266,7 +266,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => handleNavClick('home')}
                   className="w-full flex items-center py-4 px-5 text-left border-b border-slate-100 transition-colors cursor-pointer hover:bg-slate-50"
                 >
-                  <span className="text-[18px] font-medium text-[var(--color-blue-900)]">
+                  <span className="text-[18px] font-medium text-[var(--color-ink)]">
                     {language === 'zh' ? '首頁' : 'Home'}
                   </span>
                 </button>
@@ -284,7 +284,7 @@ export const Header: React.FC<HeaderProps> = ({
                       >
                         <span
                           className={`text-[18px] font-medium ${
-                            isOpen ? 'text-[var(--color-blue-700)] font-bold' : 'text-[var(--color-blue-900)]'
+                            isOpen ? 'text-[var(--color-cta)] font-bold' : 'text-[var(--color-ink)]'
                           }`}
                         >
                           {language === 'zh' ? cat.labelZh : cat.labelEn}

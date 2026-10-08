@@ -261,7 +261,7 @@ export const ESG_ITEMS: ESGItem[] = [
     titleEn: 'Social',
     descZh: '培育專業港埠人才、嚴密落實職安零災害、熱心在地海洋淨灘公益。',
     descEn: 'Talent cultivation, zero-hazard occupational safety culture, and coastal preservation initiatives.',
-    accentColor: '#0284c7',
+    accentColor: '#0e4c82',
     iconName: 'Users'
   },
   {
@@ -288,25 +288,49 @@ export const ESG_ITEMS: ESGItem[] = [
 
 export const NEWS_ARTICLES: NewsArticle[] = [
   {
-    id: 'tcsa-award',
+    id: 'gym-opening',
     categoryZh: '公司公告',
     categoryEn: 'Announcement',
     categoryType: 'announcement',
-    date: '2024/05/20',
-    titleZh: '台中福智企業淨灘',
-    titleEn: 'Taichung Fuzhi Enterprise Beach Cleanup',
-    summaryZh: '落實環境永續與誠信治理，於本年度全國性評選中榮獲優良永續實踐獎項，持續朝低碳智慧碼頭前進。',
-    summaryEn: 'Recognized for environmental sustainability and governance excellence, continuing progress toward low-carbon smart port infrastructure.',
-    image: '/news/tcsa-award.jpg',
+    date: '2025/09/10',
+    titleZh: '健身房啟用',
+    titleEn: 'Employee Gym Now Open',
+    summaryZh: '全新健身空間啟用，提供同仁多元運動器材與課程，落實健康職場理念。',
+    summaryEn: 'A new on-site gym opens at headquarters, offering staff a range of equipment and classes as part of our workplace wellness initiative.',
+    // Placeholder photo — swap for an actual gym interior photo when available.
+    image: '/news/beach-cleanup.jpg',
     contentZh: [
-      '中國貨櫃運輸股份有限公司於 2024 年度「TCSA 台灣企業永續獎」評選中，以「智慧港埠綠色節能永續專案」榮獲企業永續實踐楷模獎。',
-      '評審團高度肯定中櫃近年來在各港區全面引進全電能門式起重機、佈建港埠智慧高壓岸電系統，以及於五堵集散站設置屋頂型太陽能發電系統之具體成果。',
-      '總經理表示：「中櫃深耕台灣超過半個世紀，將持續以智慧科技賦能碼頭裝卸，攜手航商夥伴推動淨零海運生態鏈。」'
+      '為照顧同仁身心健康，本公司於汐止總部設置全新員工健身房，即日起正式啟用。',
+      '健身房配置有氧器材、重訓設備及多功能運動空間，並規劃定期教學課程，鼓勵同仁於忙碌工作之餘維持規律運動習慣。',
+      '公司將持續完善職場福利措施，打造兼顧效率與健康的工作環境。'
     ],
     contentEn: [
-      'China Container Terminal Corp. was awarded the Corporate Sustainability Exemplary Award at the 2024 TCSA Taiwan Corporate Sustainability Awards for its Smart Green Port Energy Conservation Project.',
-      'The evaluation committee praised CCTC for its deployment of electric rail gantry cranes, high-voltage shore power systems, and rooftop solar arrays at the Wudu depot.',
-      'General Manager noted: "CCTC has been dedicated to Taiwan maritime for over 56 years. We will continue empowering terminal operations with smart technology to foster net-zero shipping ecosystems."'
+      'To support employee wellbeing, the company has opened a brand-new gym at its Xizhi headquarters, now available to all staff.',
+      'The facility includes cardio equipment, strength training gear, and a multi-purpose exercise space, with regular scheduled classes to encourage consistent exercise habits.',
+      'The company remains committed to enhancing workplace benefits and building an environment that supports both productivity and health.'
+    ]
+  },
+  {
+    id: 'sustainability-report-2025',
+    categoryZh: 'ESG 活動',
+    categoryEn: 'ESG Events',
+    categoryType: 'esg',
+    date: '2025/08/01',
+    titleZh: '2025永續報告書發布',
+    titleEn: '2025 Sustainability Report Released',
+    summaryZh: '完整揭露年度環境、社會與治理績效，展現中櫃邁向低碳智慧港埠的具體行動。',
+    summaryEn: 'Full disclosure of annual environmental, social, and governance performance, reflecting CCTC\'s continued progress toward a low-carbon, smart port.',
+    // Placeholder photo — swap for actual report cover art when available.
+    image: '/news/tcsa-award.jpg',
+    contentZh: [
+      '本公司「2025年度永續報告書」正式發布，完整揭露年度環境保護、社會責任與公司治理三大面向之具體成果。',
+      '報告書內容涵蓋智慧港埠節能措施、職場安全與人才培育投入，以及公司治理透明度提升等重點進展，並依循國際永續報告框架編製。',
+      '歡迎至本公司網站永續發展專區下載完整報告書，共同關注中櫃的永續發展歷程。'
+    ],
+    contentEn: [
+      'The company has officially released its 2025 Sustainability Report, fully disclosing annual achievements across environmental protection, social responsibility, and corporate governance.',
+      'The report covers smart port energy-saving initiatives, workplace safety and talent development investments, and improvements in governance transparency, prepared in line with international sustainability reporting frameworks.',
+      'The full report is available for download in the Sustainability section of our website.'
     ]
   },
   {
@@ -314,9 +338,9 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     categoryZh: '營運資訊',
     categoryEn: 'Operations',
     categoryType: 'operations',
-    date: '2024/05/25',
-    titleZh: '本公司榮獲「113年度航港產業數位轉型獎勵方案」獎勵肯定',
-    titleEn: 'CCTC Recognized in the 2024 Maritime & Port Industry Digital Transformation Incentive Program',
+    date: '2025/08/20',
+    titleZh: '榮獲航港局數位轉型獎勵',
+    titleEn: 'Recognized for Port Digital Transformation',
     summaryZh: '全數門機導入精準定位與自動化通報系統，全面提升提領車流效率逾百分之二十。',
     summaryEn: 'All gantry units upgraded with precise GPS positioning and automated dispatch, boosting truck turnaround efficiency by 20%.',
     image: '/news/yard-upgrade.png',
@@ -329,28 +353,6 @@ export const NEWS_ARTICLES: NewsArticle[] = [
       'In response to growing container throughput and strict delivery schedules, the 6-month automated facility upgrade at Wudu Depot has been officially commissioned.',
       'The project features full-yard optical fiber networking, 3D laser anti-collision sensors, automated container OCR recognition, and real-time customs database synchronization.',
       'Field testing demonstrates truck turnaround time reduced from 32 minutes to under 24 minutes, substantially reducing idling vehicle emissions.'
-    ]
-  },
-  {
-    id: 'beach-cleanup',
-    categoryZh: 'ESG 活動',
-    categoryEn: 'ESG Events',
-    categoryType: 'esg',
-    date: '2024/05/08',
-    titleZh: '清淨河堤、守護自然',
-    titleEn: 'Clearing the Riverbank, Protecting Nature',
-    summaryZh: '同仁與在地志工共同清除廢棄物逾 500 公斤，以具體行動實踐企業社會責任並守護蔚藍海岸。',
-    summaryEn: 'Over 500 kg of marine debris removed alongside local volunteers, demonstrating our environmental commitment to pristine shores.',
-    image: '/news/beach-cleanup.jpg',
-    contentZh: [
-      '中櫃志工社攜手基隆港務分公司及在地環保組織，於基隆外木山沿岸共同舉辦「蔚藍守護·中櫃同行」春季公益淨灘活動。',
-      '共有超過 120 位同仁及其眷屬主動參與，共計清理海岸垃圾 528 公斤，包含廢棄漁網、塑膠微粒與廢棄輪胎，均落實分類回收與環境登錄。',
-      '中櫃長期關注海洋永續教育，持續推展「港區減塑、綠色採購、在地共生」三大行動方針。'
-    ],
-    contentEn: [
-      'The CCTC Volunteer Club teamed up with Taiwan International Ports Corp. and local environmental groups to host the Spring Coastal Cleanup at Keelung Waimushan.',
-      'Over 120 employees and family members gathered 528 kg of coastal debris including discarded fishing nets, plastics, and tires, properly sorting all materials.',
-      'CCTC is devoted to marine education, continuously advancing port plastic reduction, green procurement, and community symbiosis.'
     ]
   }
 ];

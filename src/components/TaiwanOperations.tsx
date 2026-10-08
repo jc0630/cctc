@@ -5,21 +5,18 @@ import { TERMINAL_LOCATIONS } from '../data/content';
 
 interface TaiwanOperationsProps {
   language: Language;
-  onSelectLocation: (loc: TerminalLocation) => void;
   onViewAllLocations: () => void;
 }
 
 export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
   language,
-  onSelectLocation,
   onViewAllLocations
 }) => {
   const renderCard = (loc: TerminalLocation) => (
     <div
       key={loc.id}
       id={`location-card-${loc.id}`}
-      onClick={() => onSelectLocation(loc)}
-      className="h-full group cursor-pointer rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 hover:border-[var(--color-blue-500)] overflow-hidden bg-white transition-colors duration-300 layer-shadow-soft"
+      className="interactive-card interactive-card--accent h-full group rounded-[var(--radius-panel)] border-[var(--color-blue-300)]/60 overflow-hidden bg-white layer-shadow-soft"
     >
       {/* Photo fills the card frame edge-to-edge (no inset matting) so the
           real terminal photo reads as the primary visual, Evergreen-style. */}
@@ -31,7 +28,7 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
           className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
       </div>
-      <h3 className="px-4 py-3.5 text-lg sm:text-xl font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-primary)] transition-colors duration-300 leading-snug">
+      <h3 className="px-4 py-3.5 text-lg sm:text-xl font-bold text-center text-[var(--color-blue-800)] group-hover:text-[var(--color-orange-deep)] transition-colors duration-300 leading-snug">
         {language === 'zh' ? loc.nameZh : loc.nameEn}
       </h3>
     </div>
@@ -53,7 +50,7 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
 
           <button
             onClick={onViewAllLocations}
-            className="inline-flex items-center justify-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-blue-900)] text-white text-sm sm:text-base font-bold px-7 py-3.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group layer-shadow-soft"
+            className="inline-flex items-center justify-center gap-2 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white text-sm sm:text-base font-bold px-7 py-3.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group layer-shadow-soft"
           >
             <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
