@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Language } from '../types';
 import { HERO_SLIDES } from '../data/content';
 
 interface HeroProps {
   language: Language;
-  onExploreClick?: () => void;
-  onTrackingClick?: () => void;
 }
 
 // Client-supplied, pre-cropped carousel banners (named banner-N, distinct from
@@ -19,9 +17,19 @@ const LOCAL_HERO_IMAGES = [
   '/hero/banner-5.jpg',
 ];
 
+// Mobile-only carousel photos — shot portrait (800x1280ish), so they're
+// swapped in below the sm breakpoint instead of cropping the landscape
+// banners above into an awkward sliver on phones.
+const MOBILE_HERO_IMAGES = [
+  '/hero/mobile-banner-1.jpg',
+  '/hero/mobile-banner-2.jpg',
+  '/hero/mobile-banner-3.jpg',
+  '/hero/mobile-banner-4.jpg',
+  '/hero/mobile-banner-5.jpg',
+];
+
 export const Hero: React.FC<HeroProps> = ({
   language,
-  onExploreClick,
 }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const currentSlide = HERO_SLIDES[currentSlideIndex];
@@ -47,27 +55,32 @@ export const Hero: React.FC<HeroProps> = ({
       id="hero-section"
       className="relative w-full h-[70vh] min-h-[520px] max-h-[880px] bg-[var(--color-navy-deep)] overflow-hidden"
     >
-      {/* Full-bleed Background Photo Carousel — same full-bleed object-cover
-          at every breakpoint, subject kept centered via object-center. */}
+      {/* Full-bleed Background Photo Carousel — mobile gets its own portrait
+          photo set below the sm breakpoint; tablet/desktop keeps the
+          landscape banners, object-cover + object-center at every size. */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          key={currentSlide.id}
-          src={LOCAL_HERO_IMAGES[currentSlideIndex] ?? currentSlide.image}
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = currentSlide.image;
-          }}
-          alt={language === 'zh' ? currentSlide.titleZh : currentSlide.titleEn}
-          className="w-full h-full object-cover object-center animate-kenburns"
-        />
+        <picture key={currentSlide.id}>
+          <source
+            media="(max-width: 639px)"
+            srcSet={MOBILE_HERO_IMAGES[currentSlideIndex]}
+          />
+          <img
+            src={LOCAL_HERO_IMAGES[currentSlideIndex] ?? currentSlide.image}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = currentSlide.image;
+            }}
+            alt={language === 'zh' ? currentSlide.titleZh : currentSlide.titleEn}
+            className="w-full h-full object-cover object-center animate-kenburns"
+          />
+        </picture>
       </div>
 
-      {/* Title + CTA — stacked as one centered block, weighted toward the
-          upper half vertically. The CTA reads as the headline's own call to
-          action (standard hero pattern) instead of an orphaned corner
-          button, and stays well clear of the lower third of the frame
-          where the photo's subject usually sits. */}
-      <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-12 sm:px-16 lg:px-8 flex flex-col items-center justify-center text-center -translate-y-[125px] sm:-translate-y-[143px] lg:-translate-y-[160px]">
+      {/* Title only — no CTA button on the banner (client asked for it to be
+          removed so it doesn't block the photo). Sits a little below true
+          center rather than dead-center, clearing the cargo/container focal
+          area most banner photos have in the middle of the frame. */}
+      <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-12 sm:px-16 lg:px-8 flex flex-col items-center justify-center text-center translate-y-[8px] sm:translate-y-[12px] lg:translate-y-[16px]">
         <h1
           id="hero-title"
           key={`title-${currentSlide.id}`}
@@ -89,16 +102,6 @@ export const Hero: React.FC<HeroProps> = ({
             return title;
           })()}
         </h1>
-
-        <button
-          id="hero-cta-btn"
-          key={`cta-${currentSlide.id}`}
-          onClick={onExploreClick}
-          className="mt-7 sm:mt-9 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border-2 border-white/80 hover:border-white text-white text-sm sm:text-base font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-[var(--radius-pill)] transition-all duration-200 cursor-pointer group layer-shadow-raised animate-in fade-in slide-in-from-bottom-4 duration-700"
-        >
-          <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
-          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </button>
       </div>
 
       {/* Carousel Prev / Next Controls */}

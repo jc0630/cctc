@@ -1,8 +1,10 @@
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 
 interface InvestorRelationsCareersProps {
   language: Language;
+  onNavigateSection: (sectionId: string) => void;
 }
 
 // Drop /public/images/投資人.jpg and /public/images/人才招募.jpg to replace —
@@ -17,10 +19,11 @@ const CAREERS_IMAGE_FALLBACK =
 const TEXT_SHADOW = { textShadow: '0 2px 10px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.5)' };
 
 export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> = ({
-  language
+  language,
+  onNavigateSection
 }) => {
   return (
-    <section className="w-full py-[1.1rem] sm:py-[1.375rem] bg-white">
+    <section className="w-full py-10 sm:py-16 lg:pt-[25px] lg:pb-[80px] bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Block 1: Investor Relations — full-width photo, no panel, white text + shadow */}
@@ -38,12 +41,19 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
             />
             {/* faint edge fade so white text stays legible — not a color wash */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent pointer-events-none" />
 
-            <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5">
+            <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5 flex items-end justify-between gap-4">
               <h3 className="text-xl sm:text-2xl font-bold text-white" style={TEXT_SHADOW}>
                 {language === 'zh' ? '投資人服務' : 'Investor Relations'}
               </h3>
+              <button
+                onClick={() => onNavigateSection('site-footer')}
+                className="shrink-0 inline-flex items-center justify-center gap-1.5 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group/btn"
+              >
+                <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
+              </button>
             </div>
           </div>
 
@@ -61,12 +71,19 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
               alt={language === 'zh' ? '人才招募' : 'Careers'}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent pointer-events-none" />
 
-            <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5">
+            <div className="absolute left-5 right-5 bottom-4 sm:left-6 sm:bottom-5 flex items-end justify-between gap-4">
               <h3 className="text-xl sm:text-2xl font-bold text-white" style={TEXT_SHADOW}>
                 {language === 'zh' ? '人才招募' : 'Careers'}
               </h3>
+              <button
+                onClick={() => onNavigateSection('site-footer')}
+                className="shrink-0 inline-flex items-center justify-center gap-1.5 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group/btn"
+              >
+                <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
+              </button>
             </div>
           </div>
         </div>

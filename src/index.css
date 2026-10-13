@@ -6,50 +6,51 @@
     --color-navy: #0a2540;
     --color-navy-deep: #061a30;
     --color-ocean: #0b3b66;
-    --color-primary: #0e4c82;
+    --color-primary: #105e87;
     --color-sky: #38bdf8;
     --color-sky-pale: #e0f2fe;
     --color-orange: #f97316;
     --color-orange-deep: #ea580c;
 
-    /* Typography blue hierarchy — one brand blue, five depths. Re-anchored to
-       the client's own printed brand material (annual report covers, logo
-       mark) rather than a generic bright "UI blue": the brand blue itself is
-       a muted, deeper navy, not the sky-cyan #0284c7 this used to be built
-       around. CTA / primary interactive UI now sits at the depth that used
-       to be reserved for H3s — nothing here reaches for a brighter blue than
-       this on rest *or* hover; hover/press only ever goes deeper. */
-    --color-blue-900: #0b3b66; /* Darkest — Section Title / hover-press state for Primary */
-    --color-blue-800: #0e4c82; /* = --color-primary — Button / CTA / H3 / main interactive UI */
-    --color-blue-700: #0e4c82; /* alias of Primary, kept for existing call sites */
-    --color-blue-500: #4a7fa8; /* Muted mid blue — secondary accents, lighter hover surfaces */
-    --color-blue-300: #b7d3e6; /* Light — border / highlight / hover surfaces */
-    --color-blue-100: #eef4f9; /* Very light — section backgrounds / subtle fills */
+    /* Typography blue hierarchy — every depth below is a mathematical
+       tint/shade of the one logo blue (#1890D0, --color-cta), not an
+       independently-picked color. Tints mix the logo blue toward white
+       (lighter/lower numbers); shades mix it toward black (darker/higher
+       numbers) — so light backgrounds and dark hover states all read as
+       the same blue at different brightness, never a different hue. */
+    --color-blue-900: #0e6da3; /* Shade ~42% black — hover-press depth, same family as --color-cta-hover */
+    --color-blue-800: #105e87; /* Shade ~35% black — deep variant, legacy call sites */
+    --color-blue-700: #105e87; /* alias of blue-800 */
+    --color-blue-500: #52acdc; /* Tint ~75% logo blue — muted mid blue for secondary accents */
+    --color-blue-300: #b5dbf0; /* Tint ~32% logo blue — idle card border / icon-chip tint */
+    --color-blue-100: #e8f4fa; /* Tint ~10% logo blue — small interactive-hover washes / icon-chip fills */
 
-    /* Body copy — blue-gray, never pure black. Deepened from the original
-       #5b6b7b/#94a3b8 pair, which read as faded/dated at small sizes. */
-    --color-text-body: #48586b;  /* Level 4 — supporting/body text */
-    --color-text-label: #7c8aa0; /* Level 5 — small labels/meta text */
+    /* Site-wide UI Style Guide — 60/30/10 system.
+       60% base: white/very-light-gray surfaces + 2 neutral text colors.
+       30% brand: one CCTC blue, for logo/decorative lines/secondary CTA/
+       key data figures/icon outlines — never for body copy.
+       10% accent: vibrant orange, for Primary CTA / hover-arrows / alerts
+       only — not decorative lines, not hover washes on nav/footer links. */
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #595959;
 
-    /* Neutral ink — for bold/emphasis text that isn't an actual heading
-       (stat numbers, modal data values/icons, the footer's company name,
-       inactive nav items). Routing every bold text element through the
-       brand navy made headings disappear into the same wash as everything
-       around them; ink gives emphasis without adding more blue. */
-    --color-ink: #1e293b;
+    /* Body copy — now one of the two neutrals above (secondary gray). */
+    --color-text-body: #595959;
+    --color-text-label: #595959;
 
-    /* Button blue — sampled directly from the logo mark itself (its actual
-       pixels are a bright, saturated sky blue, not the deep navy of the
-       printed annual-report covers). Kept deliberately distinct from
-       --color-primary: the deep navy carries headings/surfaces/body accents
-       site-wide, so routing every button through that same navy reads as
-       "one blue everywhere" and causes exactly the fatigue the client
-       flagged twice. Buttons get their own, lighter, more energetic blue;
-       hover only deepens within this same family, never jumps to navy. */
+    /* Neutral ink — primary text color (#1A1A1A). Used for section titles,
+       card titles, stat labels, and any bold/emphasis text that isn't a
+       brand-blue "key data figure" or CTA. */
+    --color-ink: #1a1a1a;
+
+    /* Brand blue ("中櫃藍") — sampled directly from the logo mark. The one
+       brand blue used site-wide: logo, decorative underlines, secondary
+       CTA, key data figures, icon outlines. Hover only deepens within this
+       same family, never shifts hue. */
     --color-cta: #1890d0;
     --color-cta-hover: #0e6da3;
-    --color-hover: var(--color-blue-900);
-    --color-link: var(--color-primary);
+    --color-hover: var(--color-cta-hover);
+    --color-link: var(--color-cta);
 
     /* ESG-only soft green system — differentiates the section while staying inside
        the same design language (radius, spacing, hover language stay identical). */
@@ -60,12 +61,14 @@
     --color-green-700: #22834f;
     --color-green-900: #0f3d24;
 
-    /* Unified corner-radius scale — every card/image/panel in the homepage picks one of these two */
-    --radius-card: 10px;
-    --radius-panel: 14px;
-    /* Button-only radius — bumped back up ~50% from the previous pass per
-       client feedback, while cards/panels stay at the reduced values above. */
-    --radius-pill: 15px;
+    /* Unified corner-radius scale — Style Guide calls for one consistent
+       6-8px micro-radius across every button, image frame, card and the
+       Header menu outline, so no two rounded elements on the site read as
+       a different "shape language." True circles (icon badges, FABs,
+       carousel dots) are unaffected — they use rounded-full directly. */
+    --radius-card: 8px;
+    --radius-panel: 8px;
+    --radius-pill: 8px;
   }
 
   html {
@@ -130,16 +133,16 @@ main [id] {
     radial-gradient(circle at 50% 100%, rgba(3, 105, 161, 0.25), transparent 55%);
 }
 
-/* Section Title — Level 1 typography: deep brand blue heading + a warm orange
-   underline rule. The orange accent recurs site-wide as the secondary brand
-   color so the page doesn't read as a single monochrome blue wash.
+/* Section Title — Level 1 typography: neutral dark-gray heading (#1A1A1A)
+   + brand-blue underline rule. Orange is reserved for Primary CTAs, hover
+   arrows and alerts only, so it never appears as a decorative line.
    inline-block + border-bottom (same mechanism as the Footer column headings)
    makes the rule exactly as long as the title text itself, at any length. */
 .section-title {
   display: inline-block;
-  color: var(--color-blue-900);
+  color: var(--color-ink);
   padding-bottom: 10px;
-  border-bottom: 3px solid var(--color-orange);
+  border-bottom: 3px solid var(--color-cta);
 }
 
 @keyframes swipe-hint {
@@ -172,11 +175,10 @@ main [id] {
   transform: translateY(-3px);
   box-shadow: 0 2px 4px rgba(10, 37, 64, 0.08), 0 20px 44px -14px rgba(10, 37, 64, 0.24);
 }
-/* Accent variant — gives a section its own color identity (e.g. Operations
-   uses the secondary brand orange) instead of every card site-wide
-   converging on the same blue hover. */
+/* Accent variant — orange is reserved for Primary CTAs/alerts only, so card
+   hover borders unify on the same brand blue as the base variant. */
 .interactive-card--accent:hover {
-  border-color: var(--color-orange);
+  border-color: var(--color-cta);
 }
 .animate-swipe-hint {
   animation: swipe-hint 1.6s ease-in-out infinite;

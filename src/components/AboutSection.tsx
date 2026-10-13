@@ -42,7 +42,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   return (
     <section
       id="about"
-      className="relative w-full bg-white py-[1.1rem] sm:py-[1.375rem]"
+      className="relative w-full bg-white py-10 sm:py-16 lg:py-[80px]"
     >
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -64,7 +64,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               <button
                 id="about-cta-link"
                 onClick={onExploreMore}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[var(--color-cta)] hover:bg-[var(--color-cta)] text-[var(--color-cta)] hover:text-white text-sm sm:text-base font-bold px-7 py-3 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[var(--color-cta)] hover:bg-[var(--color-cta)] text-[var(--color-cta)] hover:text-white text-sm sm:text-base font-bold px-7 py-3 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group"
               >
                 <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -83,8 +83,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-blue-100)] text-[var(--color-cta)] flex items-center justify-center mb-1.5 sm:mb-2 group-hover:bg-[var(--color-cta)] group-hover:text-white transition-colors duration-300">
                   <Calendar className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                 </div>
-                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-ink)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-hover)] transition-colors duration-300">
-                  57<span className="text-[var(--color-orange)] font-bold">+</span>
+                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-cta)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-cta-hover)] transition-colors duration-300">
+                  57<span className="text-[var(--color-cta)] font-bold">+</span>
                 </span>
                 <span className="text-xs sm:text-sm text-[var(--color-text-body)] font-bold leading-tight">
                   {language === 'zh' ? '公司成立年數' : 'Years in Operation'}
@@ -96,7 +96,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-blue-100)] text-[var(--color-cta)] flex items-center justify-center mb-1.5 sm:mb-2 group-hover:bg-[var(--color-cta)] group-hover:text-white transition-colors duration-300">
                   <CornerCastingIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                 </div>
-                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-ink)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-hover)] transition-colors duration-300">
+                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-cta)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-cta-hover)] transition-colors duration-300">
                   2613
                 </span>
                 <span className="text-xs sm:text-sm text-[var(--color-text-body)] font-bold leading-tight">
@@ -109,11 +109,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-blue-100)] text-[var(--color-cta)] flex items-center justify-center mb-1.5 sm:mb-2 group-hover:bg-[var(--color-cta)] group-hover:text-white transition-colors duration-300">
                   <StackYardIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                 </div>
-                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-ink)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-hover)] transition-colors duration-300">
+                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-cta)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-cta-hover)] transition-colors duration-300">
                   {language === 'zh' ? (
-                    <>150<span className="text-[var(--color-orange)] font-bold">萬</span></>
+                    <>150<span className="text-[var(--color-cta)] font-bold">萬</span></>
                   ) : (
-                    <>1.5<span className="text-[var(--color-orange)] font-bold">M</span></>
+                    <>1.5<span className="text-[var(--color-cta)] font-bold">M</span></>
                   )}
                 </span>
                 <span className="text-xs sm:text-sm text-[var(--color-text-body)] font-bold leading-tight">
@@ -126,8 +126,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-blue-100)] text-[var(--color-cta)] flex items-center justify-center mb-1.5 sm:mb-2 group-hover:bg-[var(--color-cta)] group-hover:text-white transition-colors duration-300">
                   <Leaf className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                 </div>
-                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-ink)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-hover)] transition-colors duration-300">
-                  3<span className="text-[var(--color-orange)] font-bold">%</span>
+                <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-cta)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-cta-hover)] transition-colors duration-300">
+                  3<span className="text-[var(--color-cta)] font-bold">%</span>
                 </span>
                 <span className="text-xs sm:text-sm text-[var(--color-text-body)] font-bold leading-tight">
                   {language === 'zh' ? '預估碳排放年減目標' : 'Est. Annual Carbon Reduction Target'}

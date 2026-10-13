@@ -35,7 +35,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
   return (
     <section
       id="esg"
-      className="w-full py-[0.825rem] sm:py-[1.375rem] bg-white"
+      className="w-full py-8 sm:py-14 lg:py-[80px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-3 sm:py-5 px-5 sm:px-10 lg:px-14">
@@ -59,17 +59,17 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
           {/* Left: Intro text + CTA */}
           <div className="lg:col-span-5">
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3 text-[var(--color-green-900)]">
+            <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
               {language === 'zh' ? '企業永續' : 'ESG Sustainability'}
             </h2>
-            <p className="text-sm sm:text-base text-[var(--color-text-body)] leading-relaxed mb-3 sm:mb-5 max-w-md">
+            <p className="mt-3 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed mb-3 sm:mb-5 max-w-md">
               {language === 'zh'
                 ? '以環境保護、社會責任及公司治理為核心，持續提升營運韌性，攜手利害關係人共創永續價值。'
                 : 'Centered on environmental protection, social responsibility, and corporate governance, we continuously strengthen operational resilience and create sustainable value together with our stakeholders.'}
             </p>
             <button
               onClick={() => onOpenESG(ESG_ITEMS[0])}
-              className="inline-flex items-center justify-center gap-2 bg-[var(--color-green-700)] hover:bg-[var(--color-green-900)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
+              className="self-start inline-flex items-center justify-center gap-2 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
             >
               <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -92,7 +92,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
                     {getIcon(item.iconName)}
                   </div>
                   <span
-                    className={`min-w-0 text-[var(--color-green-900)] font-bold leading-snug ${language === 'zh' ? 'text-sm sm:text-lg whitespace-nowrap' : 'text-xs sm:text-lg break-words'}`}
+                    className={`min-w-0 text-[var(--color-ink)] font-bold leading-snug ${language === 'zh' ? 'text-sm sm:text-lg whitespace-nowrap' : 'text-xs sm:text-lg break-words'}`}
                   >
                     {language === 'zh' ? item.titleZh : item.titleEn}
                   </span>

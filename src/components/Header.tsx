@@ -203,29 +203,32 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Header Actions: Language Switcher + Search + Portal CTA */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Language Switcher */}
+          {/* Language Switcher — single-click "繁中 ｜ EN" toggle, not a pill
+              background: current language reads bold dark gray, the other
+              stays neutral gray, separated by a hairline divider. */}
           <div
             id="language-switcher"
-            className="flex items-center border rounded-[var(--radius-pill)] p-0.5 text-xs font-semibold shadow-xs bg-slate-100/90 border-slate-200"
+            className="flex items-center gap-2 text-sm"
           >
             <button
               id="lang-zh-btn"
               onClick={() => onToggleLanguage('zh')}
-              className={`px-2.5 py-1 rounded-[var(--radius-pill)] text-xs font-bold transition-all cursor-pointer ${
+              className={`cursor-pointer transition-colors ${
                 language === 'zh'
-                  ? 'bg-white text-[var(--color-cta)] shadow-xs border border-slate-200/80'
-                  : 'text-slate-500 hover:text-[#0a2540]'
+                  ? 'font-bold text-[var(--color-ink)]'
+                  : 'font-medium text-slate-400 hover:text-[var(--color-text-secondary)]'
               }`}
             >
               繁中
             </button>
+            <span className="text-slate-300">｜</span>
             <button
               id="lang-en-btn"
               onClick={() => onToggleLanguage('en')}
-              className={`px-2.5 py-1 rounded-[var(--radius-pill)] text-xs font-bold transition-all cursor-pointer ${
+              className={`cursor-pointer transition-colors ${
                 language === 'en'
-                  ? 'bg-white text-[var(--color-cta)] shadow-xs border border-slate-200/80'
-                  : 'text-slate-500 hover:text-[#0a2540]'
+                  ? 'font-bold text-[var(--color-ink)]'
+                  : 'font-medium text-slate-400 hover:text-[var(--color-text-secondary)]'
               }`}
             >
               EN
@@ -237,7 +240,7 @@ export const Header: React.FC<HeaderProps> = ({
             id="mobile-menu-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? '關閉選單' : '開啟選單'}
-            className="xl:hidden w-9 h-9 flex items-center justify-center rounded-full border transition-colors cursor-pointer bg-white text-[#0a2540] hover:text-[var(--color-cta)] border-slate-200 hover:border-[var(--color-cta)]"
+            className="xl:hidden w-9 h-9 flex items-center justify-center rounded-[var(--radius-pill)] border transition-colors cursor-pointer bg-white text-[#0a2540] hover:text-[var(--color-cta)] border-slate-200 hover:border-[var(--color-cta)]"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -290,7 +293,7 @@ export const Header: React.FC<HeaderProps> = ({
                           {language === 'zh' ? cat.labelZh : cat.labelEn}
                         </span>
                         <Plus
-                          className={`w-6 h-6 sm:w-7 sm:h-7 shrink-0 text-[var(--color-orange)] transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
+                          className={`w-6 h-6 sm:w-7 sm:h-7 shrink-0 text-[var(--color-cta)] transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
                           strokeWidth={2.25}
                         />
                       </button>
@@ -300,7 +303,7 @@ export const Header: React.FC<HeaderProps> = ({
                             <li key={i}>
                               <button
                                 onClick={() => handleNavClick(item.sectionId)}
-                                className="w-full text-left py-3 pl-9 pr-5 text-sm text-[var(--color-text-body)] hover:text-[var(--color-orange)] transition-colors cursor-pointer"
+                                className="w-full text-left py-3 pl-9 pr-5 text-sm text-[var(--color-text-body)] hover:text-[var(--color-cta)] transition-colors cursor-pointer"
                               >
                                 {language === 'zh' ? item.labelZh : item.labelEn}
                               </button>

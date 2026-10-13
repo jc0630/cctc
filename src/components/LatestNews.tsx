@@ -21,7 +21,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
   return (
     <section
       id="news"
-      className="w-full py-[1.1rem] sm:py-[1.375rem] bg-white"
+      className="w-full py-10 sm:py-16 lg:pt-[80px] lg:pb-[25px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -34,7 +34,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
 
           <button
             onClick={onViewAllNews}
-            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[var(--color-cta)] hover:bg-[var(--color-cta)] text-[var(--color-cta)] hover:text-white text-sm sm:text-base font-bold px-7 py-3 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group"
+            className="self-start sm:self-auto inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[var(--color-cta)] hover:bg-[var(--color-cta)] text-[var(--color-cta)] hover:text-white text-sm sm:text-base font-bold px-7 py-3 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group"
           >
             <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -48,22 +48,23 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
             <article
               key={article.id}
               id={`news-card-${article.id}`}
-              className="h-full flex flex-col group card-framed"
+              className="interactive-card interactive-card--accent h-full flex flex-col group rounded-[var(--radius-panel)] border-[var(--color-blue-300)]/60 overflow-hidden bg-white layer-shadow-soft"
             >
-              <div className="relative overflow-hidden rounded-[var(--radius-card)] aspect-[4/3] bg-slate-100">
+              <div className="relative overflow-hidden aspect-[4/3] bg-slate-100">
                 <img
                   src={article.image}
                   alt={language === 'zh' ? article.titleZh : article.titleEn}
                   className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 rounded-[var(--radius-card)] ring-1 ring-inset ring-black/5 group-hover:ring-2 group-hover:ring-[var(--color-blue-300)] transition-all duration-300" />
               </div>
-              <time className="mt-3 px-1 text-xs sm:text-sm font-bold text-[var(--color-text-label)] tracking-wide">
-                {article.date}
-              </time>
-              <h3 className="mt-1.5 px-1 text-base sm:text-lg font-bold text-[var(--color-blue-800)] group-hover:text-[var(--color-hover)] transition-colors duration-300 leading-snug line-clamp-2">
-                {language === 'zh' ? article.titleZh : article.titleEn}
-              </h3>
+              <div className="px-4 py-3.5">
+                <time className="block text-xs sm:text-sm font-bold text-[var(--color-text-secondary)] tracking-wide">
+                  {article.date}
+                </time>
+                <h3 className="mt-1 text-base sm:text-lg font-bold text-[var(--color-ink)] leading-snug line-clamp-2">
+                  {language === 'zh' ? article.titleZh : article.titleEn}
+                </h3>
+              </div>
             </article>
           ))}
         />

@@ -38,10 +38,7 @@ export default function App() {
         {/* Main Content Sections (Strictly in prescribed order) */}
         <main>
           {/* 01: Hero Section */}
-          <Hero
-            language={language}
-            onExploreClick={() => handleNavigate('about')}
-          />
+          <Hero language={language} />
 
           {/* 03: Corporate Video Section */}
           <VideoSection
@@ -75,6 +72,7 @@ export default function App() {
           {/* 08 & 09: Investor Relations & Careers Section */}
           <InvestorRelationsCareers
             language={language}
+            onNavigateSection={handleNavigate}
           />
         </main>
 

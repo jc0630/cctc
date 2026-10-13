@@ -35,7 +35,7 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
   return (
     <section
       id="services"
-      className="w-full py-[0.825rem] sm:py-[1.375rem] bg-white"
+      className="w-full py-8 sm:py-14 lg:py-[80px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-3 sm:py-5 px-5 sm:px-10 lg:px-14">
@@ -55,17 +55,17 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
             {/* Intro text + CTA: top block on mobile, left column on desktop */}
             <div className="lg:col-span-5">
-              <h2 className="text-2xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3 text-[var(--color-green-900)]">
+              <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
                 {language === 'zh' ? '服務專區' : 'Service Center'}
               </h2>
-              <p className="text-sm sm:text-base text-[var(--color-text-body)] leading-relaxed mb-3 sm:mb-5 max-w-md">
+              <p className="mt-3 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed mb-3 sm:mb-5 max-w-md">
                 {language === 'zh'
                   ? '櫃動查詢、船席動態、LINE BOT 與表單下載，一站掌握中櫃營運動態。'
                   : 'Container tracking, berth status, LINE Bot and document downloads — all in one place.'}
               </p>
               <button
                 onClick={() => onSelectService(ONLINE_SERVICES[0].id)}
-                className="inline-flex items-center justify-center gap-2 bg-[var(--color-green-700)] hover:bg-[var(--color-green-900)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
+                className="self-start inline-flex items-center justify-center gap-2 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
               >
                 <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -88,7 +88,7 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
                     >
                       {getIcon(service.iconName)}
                     </div>
-                    <span className="text-[var(--color-green-900)] font-bold text-sm sm:text-lg leading-snug">
+                    <span className="text-[var(--color-ink)] font-bold text-sm sm:text-lg leading-snug">
                       {language === 'zh' ? service.titleZh : service.titleEn}
                     </span>
                   </button>
