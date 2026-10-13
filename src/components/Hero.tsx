@@ -77,10 +77,11 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* Title only — no CTA button on the banner (client asked for it to be
-          removed so it doesn't block the photo). Sits a little below true
-          center rather than dead-center, clearing the cargo/container focal
-          area most banner photos have in the middle of the frame. */}
-      <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-12 sm:px-16 lg:px-8 flex flex-col items-center justify-center text-center translate-y-[8px] sm:translate-y-[12px] lg:translate-y-[16px]">
+          removed so it doesn't block the photo). Positioned with its center
+          at the upper third of the banner (top-[33%] is a percentage of the
+          section's own height since the section has an explicit height),
+          shifted up an extra 50px, same on mobile and desktop. */}
+      <div className="absolute inset-x-0 top-[33%] translate-y-[calc(-50%-50px)] z-10 max-w-5xl mx-auto px-12 sm:px-16 lg:px-8 flex flex-col items-center text-center">
         <h1
           id="hero-title"
           key={`title-${currentSlide.id}`}
