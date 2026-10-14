@@ -40,9 +40,12 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
       className="w-full py-10 sm:py-16 lg:py-[80px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
-          <div>
+        {/* Section Header + cards: mobile reads title → cards → CTA (CTA
+            always last); desktop keeps title+CTA on one row via flex-wrap,
+            with the cards div's own w-full forcing it to wrap onto its own
+            full-width row underneath — same row2 position as before. */}
+        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-end justify-between gap-4 mb-8">
+          <div className="order-1">
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight">
               {language === 'zh' ? '營運服務' : 'Operations & Services'}
             </h2>
@@ -50,16 +53,16 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
 
           <button
             onClick={onViewAllLocations}
-            className="self-start sm:self-auto btn-explore group"
+            className="order-3 sm:order-2 self-end sm:self-auto btn-explore group"
           >
             <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </button>
-        </div>
 
-        {/* All 4 locations always shown — 2x2 on mobile/tablet, 4-across on desktop */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {TERMINAL_LOCATIONS.map(renderCard)}
+          {/* All 4 locations always shown — 2x2 on mobile/tablet, 4-across on desktop */}
+          <div className="order-2 sm:order-3 w-full grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {TERMINAL_LOCATIONS.map(renderCard)}
+          </div>
         </div>
       </div>
     </section>

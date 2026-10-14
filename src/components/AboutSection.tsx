@@ -130,7 +130,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
           {/* CTA — see note above: this grid item's own col-span-5 is what
               makes it land directly under the text column on desktop. */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 justify-self-end lg:justify-self-auto">
             <button
               id="about-cta-link"
               onClick={onExploreMore}

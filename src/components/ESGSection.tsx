@@ -99,7 +99,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
 
           {/* CTA — this grid item's own col-span-5 is what lands it directly
               under the text column on desktop (see note above). */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 justify-self-end lg:justify-self-auto">
             <button
               onClick={() => onOpenESG(ESG_ITEMS[0])}
               className="btn-explore group"

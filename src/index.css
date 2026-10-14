@@ -167,7 +167,7 @@ main [id] {
   color: var(--color-cta);
   font-weight: 700;
   font-size: 0.75rem;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 1rem;
   border-radius: var(--radius-pill);
   transition: background-color 0.2s ease, color 0.2s ease;
   cursor: pointer;

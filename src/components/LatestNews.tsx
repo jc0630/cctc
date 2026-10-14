@@ -24,9 +24,13 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
       className="w-full py-10 sm:py-16 lg:pt-[80px] lg:pb-[25px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
-          <div>
+        {/* Section Header + carousel: mobile reads title → carousel → CTA
+            (CTA always last); desktop keeps title+CTA on one row via
+            flex-wrap, with the carousel wrapper's own w-full forcing it to
+            wrap onto its own full-width row underneath — same row2 position
+            as before. */}
+        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-end justify-between gap-4 mb-8">
+          <div className="order-1">
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight">
               {language === 'zh' ? '最新消息' : 'Latest News'}
             </h2>
@@ -34,40 +38,42 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
 
           <button
             onClick={onViewAllNews}
-            className="self-start sm:self-auto btn-explore group"
+            className="order-3 sm:order-2 self-end sm:self-auto btn-explore group"
           >
             <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </button>
-        </div>
 
-        {/* Horizontal carousel: 3 per view on desktop, 1 on mobile — Image + Title only */}
-        <HorizontalCarousel
-          ariaLabelPrefix={language === 'zh' ? '消息' : 'News'}
-          items={articles.map((article) => (
-            <article
-              key={article.id}
-              id={`news-card-${article.id}`}
-              className="interactive-card interactive-card--accent h-full flex flex-col group rounded-[var(--radius-panel)] border-[var(--color-blue-300)]/60 overflow-hidden bg-white layer-shadow-soft"
-            >
-              <div className="relative overflow-hidden aspect-[4/3] bg-slate-100">
-                <img
-                  src={article.image}
-                  alt={language === 'zh' ? article.titleZh : article.titleEn}
-                  className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-                />
-              </div>
-              <div className="px-4 py-3.5">
-                <time className="block text-xs sm:text-sm font-bold text-[var(--color-text-secondary)] tracking-wide">
-                  {article.date}
-                </time>
-                <h3 className="mt-1 text-base sm:text-lg font-bold text-[var(--color-ink)] leading-snug line-clamp-2">
-                  {language === 'zh' ? article.titleZh : article.titleEn}
-                </h3>
-              </div>
-            </article>
-          ))}
-        />
+          {/* Horizontal carousel: 3 per view on desktop, 1 on mobile — Image + Title only */}
+          <div className="order-2 sm:order-3 w-full">
+            <HorizontalCarousel
+              ariaLabelPrefix={language === 'zh' ? '消息' : 'News'}
+              items={articles.map((article) => (
+                <article
+                  key={article.id}
+                  id={`news-card-${article.id}`}
+                  className="interactive-card interactive-card--accent h-full flex flex-col group rounded-[var(--radius-panel)] border-[var(--color-blue-300)]/60 overflow-hidden bg-white layer-shadow-soft"
+                >
+                  <div className="relative overflow-hidden aspect-[4/3] bg-slate-100">
+                    <img
+                      src={article.image}
+                      alt={language === 'zh' ? article.titleZh : article.titleEn}
+                      className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="px-4 py-3.5">
+                    <time className="block text-xs sm:text-sm font-bold text-[var(--color-text-secondary)] tracking-wide">
+                      {article.date}
+                    </time>
+                    <h3 className="mt-1 text-base sm:text-lg font-bold text-[var(--color-ink)] leading-snug line-clamp-2">
+                      {language === 'zh' ? article.titleZh : article.titleEn}
+                    </h3>
+                  </div>
+                </article>
+              ))}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
