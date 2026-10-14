@@ -37,7 +37,7 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
   return (
     <section
       id="operations"
-      className="w-full py-10 sm:py-16 lg:py-[80px] bg-white"
+      className="w-full py-[25px] sm:py-[40px] lg:py-[50px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header + cards: mobile reads title → cards → CTA (CTA

@@ -23,7 +23,7 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
   onNavigateSection
 }) => {
   return (
-    <section className="w-full py-10 sm:py-16 lg:pt-[25px] lg:pb-[80px] bg-white">
+    <section className="w-full py-[25px] sm:py-[40px] lg:pt-[25px] lg:pb-[50px] bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Block 1: Investor Relations — full-width photo, no panel, white text + shadow */}

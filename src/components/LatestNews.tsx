@@ -21,7 +21,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({
   return (
     <section
       id="news"
-      className="w-full py-10 sm:py-16 lg:pt-[80px] lg:pb-[25px] bg-white"
+      className="w-full py-[25px] sm:py-[40px] lg:pt-[50px] lg:pb-[25px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header + carousel: mobile reads title → carousel → CTA

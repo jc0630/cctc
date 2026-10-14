@@ -215,7 +215,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onToggleLanguage('zh')}
               className={`cursor-pointer transition-colors ${
                 language === 'zh'
-                  ? 'font-bold text-[var(--color-ink)]'
+                  ? 'font-bold text-[#0a2540]/80'
                   : 'font-medium text-slate-400 hover:text-[var(--color-text-secondary)]'
               }`}
             >
@@ -227,7 +227,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onToggleLanguage('en')}
               className={`cursor-pointer transition-colors ${
                 language === 'en'
-                  ? 'font-bold text-[var(--color-ink)]'
+                  ? 'font-bold text-[#0a2540]/80'
                   : 'font-medium text-slate-400 hover:text-[var(--color-text-secondary)]'
               }`}
             >

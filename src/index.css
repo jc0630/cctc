@@ -175,7 +175,10 @@ main [id] {
 @media (min-width: 640px) {
   .btn-explore {
     font-size: 0.875rem;
-    padding: 0.625rem 1.25rem;
+    /* Vertical padding scaled down by the same ratio (0.75x) the mobile
+       pill was shortened by, so desktop keeps the same flatter proportions
+       as mobile instead of reading as a noticeably taller button. */
+    padding: 0.469rem 1.25rem;
   }
 }
 .btn-explore:hover {

@@ -35,7 +35,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
   return (
     <section
       id="esg"
-      className="w-full py-8 sm:py-14 lg:py-[80px] bg-white"
+      className="w-full py-[20px] sm:py-[35px] lg:py-[50px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-6 sm:py-8 lg:py-10 px-5 sm:px-10 lg:px-14">
