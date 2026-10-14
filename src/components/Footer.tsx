@@ -114,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({
     <>
     <footer
       id="site-footer"
-      className="relative w-full text-[var(--color-ink)]"
+      className="relative w-full text-[#0a2540]/80"
     >
       {/* Tier 1: 5-column sitemap menu — plain grid on desktop, accordion on
           mobile. Lightest blue band; the shift to the deeper blue-300/50
@@ -125,7 +125,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-6 pt-10 pb-10 sm:pt-12 sm:pb-12">
           {FOOTER_COLUMNS.map((col, idx) => (
             <div key={idx}>
-              <h4 className="text-base font-bold text-[var(--color-ink)] mb-4 pb-2 border-b-2 border-[var(--color-cta)] inline-block">
+              <h4 className="text-base font-bold text-[#0a2540]/80 mb-4 pb-2 border-b-2 border-[var(--color-orange)] inline-block">
                 {language === 'zh' ? col.titleZh : col.titleEn}
               </h4>
               <ul className="space-y-2.5">
@@ -133,7 +133,7 @@ export const Footer: React.FC<FooterProps> = ({
                   <li key={i}>
                     <button
                       onClick={() => onNavigateSection(link.sectionId)}
-                      className="text-left text-sm sm:text-base text-[var(--color-text-secondary)] hover:text-[var(--color-cta)] transition-colors cursor-pointer"
+                      className="text-left text-sm sm:text-base text-[#0a2540]/80 hover:text-[var(--color-hover)] transition-colors cursor-pointer"
                     >
                       {language === 'zh' ? link.labelZh : link.labelEn}
                     </button>
@@ -154,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => toggleColumn(idx)}
                   className="w-full flex items-center justify-between px-4 sm:px-6 py-4 text-left cursor-pointer"
                 >
-                  <span className="text-base font-bold text-[var(--color-ink)]">
+                  <span className={`text-base font-bold ${isOpen ? 'text-[var(--color-hover)]' : 'text-[#0a2540]/80'}`}>
                     {language === 'zh' ? col.titleZh : col.titleEn}
                   </span>
                   <Plus
@@ -167,7 +167,7 @@ export const Footer: React.FC<FooterProps> = ({
                       <li key={i}>
                         <button
                           onClick={() => onNavigateSection(link.sectionId)}
-                          className="text-left text-base text-[var(--color-text-secondary)] hover:text-[var(--color-cta)] transition-colors cursor-pointer"
+                          className="text-left text-base text-[#0a2540]/80 hover:text-[var(--color-hover)] transition-colors cursor-pointer"
                         >
                           {language === 'zh' ? link.labelZh : link.labelEn}
                         </button>
@@ -188,7 +188,7 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="bg-[var(--color-blue-300)]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-6">
           <div className="text-center sm:text-left">
-            <p className={`font-bold text-[var(--color-ink)] ${language === 'zh' ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'}`}>
+            <p className={`font-bold text-[var(--color-company-name)] ${language === 'zh' ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'}`}>
               {language === 'zh' ? '中國貨櫃運輸股份有限公司' : 'China Container Terminal Corporation'}
             </p>
             <p className="text-sm text-[var(--color-text-secondary)] mt-1">

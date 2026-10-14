@@ -38,15 +38,23 @@
     --color-text-body: #595959;
     --color-text-label: #595959;
 
-    /* Neutral ink — primary text color (#1A1A1A). Used for section titles,
-       card titles, stat labels, and any bold/emphasis text that isn't a
-       brand-blue "key data figure" or CTA. */
-    --color-ink: #1a1a1a;
+    /* Heading ink (#333333) — the one color for every homepage/section
+       title and card title (影音專區／關於中櫃／營運服務／地點卡片／
+       企業永續＋四大項目／最新消息＋新聞標題). Nav-style text (Header,
+       mobile menu, Footer menu) intentionally does NOT use this token —
+       see the literal `text-[#0a2540]/80` + `--color-hover` pairing below. */
+    --color-ink: #333333;
+
+    /* Footer company-name text — matches the logo wordmark color exactly,
+       deliberately lighter than --color-ink so the name doesn't read as
+       heavier/darker than the logo beside it. */
+    --color-company-name: #555555;
 
     /* Brand blue ("中櫃藍") — sampled directly from the logo mark. The one
-       brand blue used site-wide: logo, decorative underlines, secondary
-       CTA, key data figures, icon outlines. Hover only deepens within this
-       same family, never shifts hue. */
+       brand blue used site-wide: logo, secondary CTA, key data figures,
+       icon outlines. Hover only deepens within this same family, never
+       shifts hue. Nav links (Header desktop/mobile, Footer) hover to
+       --color-hover specifically, so every menu highlights identically. */
     --color-cta: #1890d0;
     --color-cta-hover: #0e6da3;
     --color-hover: var(--color-cta-hover);
@@ -133,16 +141,46 @@ main [id] {
     radial-gradient(circle at 50% 100%, rgba(3, 105, 161, 0.25), transparent 55%);
 }
 
-/* Section Title — Level 1 typography: neutral dark-gray heading (#1A1A1A)
-   + brand-blue underline rule. Orange is reserved for Primary CTAs, hover
-   arrows and alerts only, so it never appears as a decorative line.
-   inline-block + border-bottom (same mechanism as the Footer column headings)
-   makes the rule exactly as long as the title text itself, at any length. */
+/* Section Title — Level 1 typography: neutral dark-gray heading (#333333)
+   + orange underline rule, the site's one decorative-line color. inline-block
+   + border-bottom (same mechanism as the Footer column headings) makes the
+   rule exactly as long as the title text itself, at any length. */
 .section-title {
   display: inline-block;
   color: var(--color-ink);
   padding-bottom: 10px;
-  border-bottom: 3px solid var(--color-cta);
+  border-bottom: 3px solid var(--color-orange);
+}
+
+/* Shared "了解更多 / Explore More" CTA pill — the one button style for every
+   homepage section (About/Operations/ESG/Services/News/Investor/Careers).
+   White fill + blue outline at rest, inverts to solid blue on hover; sized
+   to match the Investor/Careers tile buttons (the smallest existing variant),
+   not the larger About/Operations pill it replaces. */
+.btn-explore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  background: #fff;
+  border: 2px solid var(--color-cta);
+  color: var(--color-cta);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+@media (min-width: 640px) {
+  .btn-explore {
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem;
+  }
+}
+.btn-explore:hover {
+  background: var(--color-cta);
+  color: #fff;
 }
 
 @keyframes swipe-hint {

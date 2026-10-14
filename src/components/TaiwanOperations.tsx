@@ -50,10 +50,10 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
 
           <button
             onClick={onViewAllLocations}
-            className="self-start sm:self-auto inline-flex items-center justify-center gap-2 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white text-sm sm:text-base font-bold px-7 py-3.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group layer-shadow-soft"
+            className="self-start sm:self-auto btn-explore group"
           >
             <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
 

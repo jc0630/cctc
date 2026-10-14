@@ -38,7 +38,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
       className="w-full py-8 sm:py-14 lg:py-[80px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-3 sm:py-5 px-5 sm:px-10 lg:px-14">
+        <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-6 sm:py-8 lg:py-10 px-5 sm:px-10 lg:px-14">
           {/* Background photo + soft green tint, contained within the rounded frame */}
           <div className="absolute inset-0 z-0">
             <img
@@ -56,8 +56,11 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
             />
           </div>
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
-          {/* Left: Intro text + CTA */}
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+          {/* Intro text only — CTA becomes its own grid item below so mobile
+              reads title → body → data (icon grid) → CTA; on desktop the
+              12-col grid (5 + 7) wraps the CTA to row 2 col 1-5, same spot
+              as before. */}
           <div className="lg:col-span-5">
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
               {language === 'zh' ? '企業永續' : 'ESG Sustainability'}
@@ -67,18 +70,11 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
                 ? '以環境保護、社會責任及公司治理為核心，持續提升營運韌性，攜手利害關係人共創永續價值。'
                 : 'Centered on environmental protection, social responsibility, and corporate governance, we continuously strengthen operational resilience and create sustainable value together with our stakeholders.'}
             </p>
-            <button
-              onClick={() => onOpenESG(ESG_ITEMS[0])}
-              className="self-start inline-flex items-center justify-center gap-2 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
-            >
-              <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </button>
           </div>
 
-          {/* Right: 2x2 Icon Button Grid */}
-          <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 gap-2 sm:gap-5">
+          {/* 2x2 Icon Button Grid ("data" step) */}
+          <div className="lg:col-span-7 lg:row-span-2 lg:self-stretch">
+            <div className="grid grid-cols-2 gap-2 sm:gap-5 lg:h-full lg:auto-rows-fr">
               {ESG_ITEMS.map((item) => (
                 <button
                   key={item.id}
@@ -99,6 +95,18 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* CTA — this grid item's own col-span-5 is what lands it directly
+              under the text column on desktop (see note above). */}
+          <div className="lg:col-span-5">
+            <button
+              onClick={() => onOpenESG(ESG_ITEMS[0])}
+              className="btn-explore group"
+            >
+              <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+            </button>
           </div>
         </div>
       </div>

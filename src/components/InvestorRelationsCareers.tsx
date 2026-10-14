@@ -49,7 +49,7 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
               </h3>
               <button
                 onClick={() => onNavigateSection('site-footer')}
-                className="shrink-0 inline-flex items-center justify-center gap-1.5 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group/btn"
+                className="shrink-0 btn-explore group/btn"
               >
                 <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
@@ -79,7 +79,7 @@ export const InvestorRelationsCareers: React.FC<InvestorRelationsCareersProps> =
               </h3>
               <button
                 onClick={() => onNavigateSection('site-footer')}
-                className="shrink-0 inline-flex items-center justify-center gap-1.5 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-[var(--radius-pill)] transition-colors duration-200 cursor-pointer group/btn"
+                className="shrink-0 btn-explore group/btn"
               >
                 <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />

@@ -38,7 +38,7 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
       className="w-full py-8 sm:py-14 lg:py-[80px] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-3 sm:py-5 px-5 sm:px-10 lg:px-14">
+        <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised py-6 sm:py-8 lg:py-10 px-5 sm:px-10 lg:px-14">
           {/* Background photo + light frosted wash, contained within the rounded frame */}
           <div className="absolute inset-0 z-0">
             <img
@@ -52,8 +52,11 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
             />
           </div>
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
-            {/* Intro text + CTA: top block on mobile, left column on desktop */}
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+            {/* Intro text only — CTA becomes its own grid item below so
+                mobile reads title → body → data (service buttons) → CTA; on
+                desktop the 12-col grid (5 + 7) wraps the CTA to row 2
+                col 1-5, same spot as before. */}
             <div className="lg:col-span-5">
               <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
                 {language === 'zh' ? '服務專區' : 'Service Center'}
@@ -63,18 +66,11 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
                   ? '櫃動查詢、船席動態、LINE BOT 與表單下載，一站掌握中櫃營運動態。'
                   : 'Container tracking, berth status, LINE Bot and document downloads — all in one place.'}
               </p>
-              <button
-                onClick={() => onSelectService(ONLINE_SERVICES[0].id)}
-                className="self-start inline-flex items-center justify-center gap-2 bg-[var(--color-orange)] hover:bg-[var(--color-orange-deep)] text-white px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-[var(--radius-pill)] text-sm sm:text-base font-bold transition-colors duration-200 cursor-pointer group"
-              >
-                <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </button>
             </div>
 
-            {/* Buttons: bottom block on mobile, right column on desktop */}
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-2 gap-2 sm:gap-5">
+            {/* Service buttons ("data" step): bottom block on mobile, right column on desktop */}
+            <div className="lg:col-span-7 lg:row-span-2 lg:self-stretch">
+              <div className="grid grid-cols-2 gap-2 sm:gap-5 lg:h-full lg:auto-rows-fr">
                 {ONLINE_SERVICES.map((service) => (
                   <button
                     key={service.id}
@@ -94,6 +90,18 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* CTA — this grid item's own col-span-5 is what lands it
+                directly under the text column on desktop (see note above). */}
+            <div className="lg:col-span-5">
+              <button
+                onClick={() => onSelectService(ONLINE_SERVICES[0].id)}
+                className="btn-explore group"
+              >
+                <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+              </button>
             </div>
           </div>
         </div>

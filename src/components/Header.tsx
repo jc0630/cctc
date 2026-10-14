@@ -263,31 +263,40 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div>
-              {/* Home — standalone link, not a dropdown category */}
+              {/* Home — standalone link, not a dropdown category. Text color
+                  matches the desktop nav exactly (text-[#0a2540]/80, hover
+                  --color-hover) rather than the heading-ink token, since this
+                  is nav chrome, not a page title. */}
               <div className="border-t border-slate-100 mt-4">
                 <button
                   onClick={() => handleNavClick('home')}
-                  className="w-full flex items-center py-4 px-5 text-left border-b border-slate-100 transition-colors cursor-pointer hover:bg-slate-50"
+                  className="group w-full flex items-center py-3 px-5 text-left border-b border-slate-100 transition-colors cursor-pointer hover:bg-slate-50"
                 >
-                  <span className="text-[18px] font-medium text-[var(--color-ink)]">
+                  <span className="text-[18px] font-medium text-[#0a2540]/80 group-hover:text-[var(--color-hover)] transition-colors">
                     {language === 'zh' ? '首頁' : 'Home'}
                   </span>
                 </button>
 
-                {/* 6 main categories — tap to expand first-level items, tap again to collapse */}
+                {/* 6 main categories — tap to expand first-level items, tap again to collapse.
+                    Colors/hover mirror the desktop dropdown exactly: default
+                    text-[#0a2540]/80, active/open state uses --color-hover
+                    (the same shade desktop hovers to) instead of --color-cta,
+                    so mobile's "open" reads as the same highlight as desktop's
+                    "hover." Tighter py-3 (was py-4) + larger sub-item text
+                    follow the reference mobile menu's denser spacing. */}
                 {NAV_CATEGORIES.map((cat) => {
                   const isOpen = openMobileCategory === cat.id;
                   return (
                     <div key={cat.id} className="border-b border-slate-100">
                       <button
                         onClick={() => toggleMobileCategory(cat.id)}
-                        className={`w-full flex items-center justify-between py-4 px-5 text-left transition-colors cursor-pointer ${
+                        className={`w-full flex items-center justify-between py-3 px-5 text-left transition-colors cursor-pointer ${
                           isOpen ? 'bg-[var(--color-blue-100)]' : 'hover:bg-slate-50'
                         }`}
                       >
                         <span
                           className={`text-[18px] font-medium ${
-                            isOpen ? 'text-[var(--color-cta)] font-bold' : 'text-[var(--color-ink)]'
+                            isOpen ? 'text-[var(--color-hover)] font-bold' : 'text-[#0a2540]/80'
                           }`}
                         >
                           {language === 'zh' ? cat.labelZh : cat.labelEn}
@@ -303,7 +312,7 @@ export const Header: React.FC<HeaderProps> = ({
                             <li key={i}>
                               <button
                                 onClick={() => handleNavClick(item.sectionId)}
-                                className="w-full text-left py-3 pl-9 pr-5 text-sm text-[var(--color-text-body)] hover:text-[var(--color-cta)] transition-colors cursor-pointer"
+                                className="w-full text-left py-2.5 pl-9 pr-5 text-base text-[#0a2540]/80 hover:text-[var(--color-hover)] transition-colors cursor-pointer"
                               >
                                 {language === 'zh' ? item.labelZh : item.labelEn}
                               </button>
