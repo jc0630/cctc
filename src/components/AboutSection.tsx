@@ -103,9 +103,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 </div>
                 <span className="text-2xl sm:text-3xl lg:text-4xl text-[var(--color-cta)] font-extrabold mb-1 sm:mb-2 tracking-tight group-hover:text-[var(--color-cta-hover)] transition-colors duration-300">
                   {language === 'zh' ? (
-                    <>150<span className="text-[var(--color-cta)] font-bold">萬</span></>
+                    <>129<span className="text-[var(--color-cta)] font-bold">萬</span></>
                   ) : (
-                    <>1.5<span className="text-[var(--color-cta)] font-bold">M</span></>
+                    <>1.29<span className="text-[var(--color-cta)] font-bold">M</span></>
                   )}
                 </span>
                 <span className="text-xs sm:text-sm text-[var(--color-text-body)] font-bold leading-tight">
