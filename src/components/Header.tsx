@@ -254,12 +254,12 @@ export const Header: React.FC<HeaderProps> = ({
       {mobileMenuOpen && (
         <div
           id="mobile-menu-drawer"
-          className="xl:hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex justify-end"
-          style={{ top: headerHeight || undefined }}
+          className="xl:hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex justify-end"
+          style={{ top: headerHeight || undefined, WebkitBackdropFilter: 'blur(4px)' }}
           onClick={() => setMobileMenuOpen(false)}
         >
           <div
-            className="w-full sm:max-w-[340px] bg-white h-full shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-slate-200 animate-in slide-in-from-right duration-200"
+            className="w-1/2 sm:max-w-[340px] bg-white h-full shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-slate-200 animate-in slide-in-from-right duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <div>
