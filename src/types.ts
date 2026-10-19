@@ -61,6 +61,84 @@ export interface NewsArticle {
   image: string;
 }
 
+// ---- Company Profile page (「公司簡介」單元) ----
+
+export interface CompanyInfoRow {
+  labelZh: string;
+  labelEn: string;
+  valueZh: string;
+  valueEn: string;
+}
+
+export interface MilestoneItem {
+  year: number;
+  labelZh: string;
+  labelEn: string;
+}
+
+// ---- Sustainability Strategy page (「永續發展策略」單元) ----
+
+export interface SdgIcon {
+  num: number;
+  image: string;
+}
+
+export interface HighlightTab {
+  id: string;
+  labelZh: string;
+  labelEn: string;
+  itemsZh: string[];
+  itemsEn: string[];
+}
+
+export interface DashboardYearMetric {
+  year: number;
+  value: number;
+}
+
+export interface DashboardGenderRow {
+  labelZh: string;
+  labelEn: string;
+  male: number;
+  female: number;
+}
+
+export interface DashboardAgeRow {
+  labelZh: string;
+  labelEn: string;
+  male: number;
+  female: number;
+}
+
+export interface DashboardEmissionBreakdown {
+  labelZh: string;
+  labelEn: string;
+  percent: number;
+}
+
+export interface StrategyGoalTab {
+  id: string;
+  labelZh: string;
+  labelEn: string;
+  descZh: string;
+  descEn: string;
+  sdgNums: number[];
+  shortTermZh: string[];
+  shortTermEn: string[];
+  midTermZh: string[];
+  midTermEn: string[];
+  longTermZh: string[];
+  longTermEn: string[];
+}
+
+export interface SustainabilityReportItem {
+  year: number;
+  titleZh: string;
+  titleEn: string;
+  coverImage: string;
+  pdfUrl: string;
+}
+
 export interface VideoItem {
   id: string;
   titleZh: string;

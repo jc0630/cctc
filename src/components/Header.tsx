@@ -34,7 +34,7 @@ const NAV_CATEGORIES: NavCategory[] = [
     labelEn: 'About Us',
     sectionId: 'about',
     items: [
-      { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about' },
+      { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about-page' },
       { labelZh: '中櫃大事記', labelEn: 'Milestones', sectionId: 'about' },
       { labelZh: '獲獎及認證', labelEn: 'Awards & Certifications', sectionId: 'about' },
       { labelZh: '人才招募', labelEn: 'Careers', sectionId: 'careers' },
@@ -50,7 +50,7 @@ const NAV_CATEGORIES: NavCategory[] = [
     sectionId: 'esg',
     items: [
       { labelZh: '經營者的話', labelEn: "Management's Message", sectionId: 'about' },
-      { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'esg' },
+      { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'sustainability-strategy-page' },
       { labelZh: '利害關係人', labelEn: 'Stakeholders', sectionId: 'esg' },
       { labelZh: '風險管理', labelEn: 'Risk Management', sectionId: 'esg' },
       { labelZh: '供應鏈管理', labelEn: 'Supply Chain Management', sectionId: 'esg' },
@@ -131,11 +131,11 @@ export const Header: React.FC<HeaderProps> = ({
   }, []);
 
   const handleNavClick = (sectionId: string) => {
-    if (sectionId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      onNavigateSection(sectionId);
-    }
+    // 'home-top' is a sentinel App.tsx's handleNavigate special-cases to both
+    // switch back to the homepage view (if currently on another page) and
+    // scroll to the top — needed now that navigation isn't just anchor
+    // scrolling within a single always-mounted homepage.
+    onNavigateSection(sectionId === 'home' ? 'home-top' : sectionId);
     setMobileMenuOpen(false);
   };
 
@@ -159,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-2.5 group shrink-0"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              onNavigateSection('home-top');
             }}
           >
             <img
