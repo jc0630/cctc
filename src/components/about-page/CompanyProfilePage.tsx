@@ -45,8 +45,6 @@ import {
   KEELUNG_OVERVIEW_IMAGE,
   KEELUNG_OVERVIEW_CAPTION_ZH,
   KEELUNG_OVERVIEW_CAPTION_EN,
-  DUAL_TRANSFORMATION_INTRO_ZH,
-  DUAL_TRANSFORMATION_INTRO_EN,
   SMART_OPERATIONS_ZH,
   SMART_OPERATIONS_EN,
   LOW_CARBON_TRANSFORMATION_ZH,
@@ -136,7 +134,7 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
               {language === 'zh' ? '快速認識中櫃' : 'Company Overview'}
             </h2>
 
-            <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
+            <div className="max-w-5xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
               {COMPANY_INFO_ROWS.map((row, i) => (
                 <CompanyInfoCard key={i} row={row} icon={COMPANY_INFO_ICONS[i]} accent={COMPANY_INFO_ACCENTS[i]} language={language} />
               ))}
@@ -145,40 +143,43 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
         </div>
       </section>
 
-      {/* 區塊 2.5：產業定位 — the positioning write-up + industry structure
-          diagram, split out as its own section per the brief's own content
-          split (文字說明 vs. 全寬圖表 were always a different kind of content
-          from the quick-facts panel above). */}
+      {/* 區塊 2.5：產業定位 — left-text/right-diagram split (the diagram was
+          previously full-width below the text, which rendered far larger
+          than the content needs; halving it into a two-column split keeps
+          it legible without dominating the section). */}
       <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
-            <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-6 sm:mb-8">
-              {language === 'zh' ? '產業定位' : 'Industry Positioning'}
-            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+              <div>
+                <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-5 sm:mb-6">
+                  {language === 'zh' ? '產業定位' : 'Industry Positioning'}
+                </h2>
+                <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
+                  {language === 'zh' ? COMPANY_POSITIONING_ZH : COMPANY_POSITIONING_EN}
+                </p>
+              </div>
 
-            <p className="max-w-3xl text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose mb-8 sm:mb-10">
-              {language === 'zh' ? COMPANY_POSITIONING_ZH : COMPANY_POSITIONING_EN}
-            </p>
-
-            <div>
-              <button
-                type="button"
-                onClick={() => setLightboxOpen(true)}
-                className="group relative block w-full cursor-zoom-in"
-              >
-                <img
-                  src={INDUSTRY_STRUCTURE_IMAGE}
-                  alt={language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
-                  className="w-full rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
-                />
-                <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-[var(--radius-pill)]">
-                  <ZoomIn className="w-3.5 h-3.5" />
-                  {language === 'zh' ? '點擊放大' : 'Click to zoom'}
-                </span>
-              </button>
-              <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
-                {language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
-              </p>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setLightboxOpen(true)}
+                  className="group relative block w-full cursor-zoom-in"
+                >
+                  <img
+                    src={INDUSTRY_STRUCTURE_IMAGE}
+                    alt={language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
+                    className="w-full rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
+                  />
+                  <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-[var(--radius-pill)]">
+                    <ZoomIn className="w-3.5 h-3.5" />
+                    {language === 'zh' ? '點擊放大' : 'Click to zoom'}
+                  </span>
+                </button>
+                <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
+                  {language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
+                </p>
+              </div>
             </div>
           </FadeInSection>
         </div>
@@ -265,10 +266,6 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
               {language === 'zh' ? '雙軸轉型：智慧營運與永續低碳實踐' : 'Dual Transformation: Smart Operations & Low-Carbon Sustainability'}
             </h2>
 
-            <p className="max-w-3xl text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose mb-6 sm:mb-8">
-              {language === 'zh' ? DUAL_TRANSFORMATION_INTRO_ZH : DUAL_TRANSFORMATION_INTRO_EN}
-            </p>
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 mb-10 sm:mb-14">
               {/* Smart Operations — brand-blue accent */}
               <div className="group relative bg-white border border-slate-200 rounded-[var(--radius-card)] p-6 sm:p-8 layer-shadow-soft hover:layer-shadow-raised hover:-translate-y-1 transition-all duration-300 overflow-hidden">
@@ -330,6 +327,7 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
         titleZh={language === 'zh' ? '共創永續未來' : 'Building a Sustainable Future Together'}
         image={CONTAINER_VISUAL_IMAGE}
         imageAlt={language === 'zh' ? CONTAINER_VISUAL_ALT_ZH : CONTAINER_VISUAL_ALT_EN}
+        align="start"
       >
         {/* Core values as a 2x2 icon-card grid rather than one inline text
             row — gives this column more visual weight so it doesn't read as

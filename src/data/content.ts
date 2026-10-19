@@ -456,9 +456,6 @@ export const KEELUNG_OVERVIEW_CAPTION_EN =
 
 // ---- 區塊 5：雙軸轉型：智慧營運與永續低碳實踐 ----
 
-export const DUAL_TRANSFORMATION_INTRO_ZH = '近年來，中櫃積極推動數位化升級與永續發展。';
-export const DUAL_TRANSFORMATION_INTRO_EN = 'In recent years, CCTC has actively advanced digital upgrades and sustainable development.';
-
 export const SMART_OPERATIONS_ZH =
   '在智慧營運方面，自主開發並導入新一代 TOS 2.0（Terminal Operating System 2.0）智慧物流作業系統，透過數位管理、即時監控與風險預警機制，提升碼頭營運效率與作業安全，並多次獲得臺灣港務公司頒發「金舫獎」。';
 export const SMART_OPERATIONS_EN =

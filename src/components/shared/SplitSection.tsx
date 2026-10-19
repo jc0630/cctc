@@ -7,6 +7,9 @@ interface SplitSectionProps {
   /** true = image on the left at desktop widths (text stays first in DOM so
    * mobile always reads text → image, per the brief). */
   reverse?: boolean;
+  /** Vertical alignment of the two columns at desktop widths. Defaults to
+   * 'center'; 'start' top-aligns the text block with the image instead. */
+  align?: 'center' | 'start';
   image: string;
   imageAlt: string;
   imageCaption?: string;
@@ -19,12 +22,12 @@ interface SplitSectionProps {
 // reorders columns at the lg breakpoint). Image framing (blue-300 border +
 // layer-shadow-raised) matches the homepage's featured-panel treatment
 // (see ESGSection.tsx / OnlineServices.tsx) rather than a plain gray border.
-export const SplitSection: React.FC<SplitSectionProps> = ({ id, titleZh, reverse, image, imageAlt, imageCaption, children }) => {
+export const SplitSection: React.FC<SplitSectionProps> = ({ id, titleZh, reverse, align = 'center', image, imageAlt, imageCaption, children }) => {
   return (
     <section id={id} className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeInSection>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 ${align === 'start' ? 'lg:items-start' : 'items-center'}`}>
             <div className={reverse ? 'lg:order-2' : ''}>
               <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-5 sm:mb-6">{titleZh}</h2>
               <div className="flex flex-col gap-4 text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">

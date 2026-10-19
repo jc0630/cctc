@@ -137,14 +137,15 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({ language }) => {
               {DASHBOARD_GENDER_ROWS.map((row, i) => {
                 const total = row.male + row.female;
                 const malePct = total > 0 ? ((row.male / total) * 100).toFixed(1) : '0';
+                const femalePct = total > 0 ? ((row.female / total) * 100).toFixed(1) : '0';
                 return (
                   <div key={i} className="flex flex-col gap-1.5">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 text-sm sm:text-base">
                       <span className="font-bold text-[var(--color-ink)]">{language === 'zh' ? row.labelZh : row.labelEn}</span>
                       <span className="text-[var(--color-text-secondary)]">
                         {language === 'zh'
-                          ? `男 ${row.male} ／ 女 ${row.female}（男性占比 ${malePct}%）`
-                          : `M ${row.male} / F ${row.female} (${malePct}% male)`}
+                          ? `男 ${row.male} ／ 女 ${row.female}（男性占比 ${malePct}%／女性占比 ${femalePct}%）`
+                          : `M ${row.male} / F ${row.female} (${malePct}% male / ${femalePct}% female)`}
                       </span>
                     </div>
                     <GenderBar male={row.male} female={row.female} />

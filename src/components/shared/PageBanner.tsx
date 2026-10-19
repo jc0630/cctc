@@ -2,6 +2,7 @@ import React from 'react';
 
 interface PageBannerProps {
   image: string;
+  mobileImage?: string;
   fallbackImage?: string;
   titleZh: string;
   subtitleEn: string;
@@ -13,20 +14,26 @@ interface PageBannerProps {
 // static (non-carousel) variant. Per the design brief, the banner always
 // pairs a Chinese title with an English subtitle regardless of site language
 // — it's a fixed bilingual banner convention, not tied to the language toggle.
-export const PageBanner: React.FC<PageBannerProps> = ({ image, fallbackImage, titleZh, subtitleEn }) => {
+export const PageBanner: React.FC<PageBannerProps> = ({ image, mobileImage, fallbackImage, titleZh, subtitleEn }) => {
   return (
     <section className="relative w-full h-[220px] sm:h-[300px] lg:h-[360px] bg-[var(--color-navy-deep)] overflow-hidden">
-      <img
-        src={image}
-        onError={(e) => {
-          if (fallbackImage) {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = fallbackImage;
-          }
-        }}
-        alt={titleZh}
-        className="absolute inset-0 w-full h-full object-cover object-center"
-      />
+      {/* Same desktop/mobile crop swap as Hero.tsx's carousel — mobile gets
+          its own crop below the sm breakpoint instead of the wide desktop
+          photo squeezed into a narrow aspect ratio. */}
+      <picture>
+        {mobileImage && <source media="(max-width: 639px)" srcSet={mobileImage} />}
+        <img
+          src={image}
+          onError={(e) => {
+            if (fallbackImage) {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = fallbackImage;
+            }
+          }}
+          alt={titleZh}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55" />
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <h1
