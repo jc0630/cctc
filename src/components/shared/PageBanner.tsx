@@ -5,18 +5,16 @@ interface PageBannerProps {
   mobileImage?: string;
   fallbackImage?: string;
   titleZh: string;
-  subtitleEn: string;
 }
 
 // Dedicated inner-page banner — the homepage has no existing "sub-page banner"
 // pattern to reuse (it's a single-page site), so this extends the Hero's own
 // photo + dark-overlay + white-title treatment (see Hero.tsx) into a shorter,
-// static (non-carousel) variant. Per the design brief, the banner always
-// pairs a Chinese title with an English subtitle regardless of site language
-// — it's a fixed bilingual banner convention, not tied to the language toggle.
-export const PageBanner: React.FC<PageBannerProps> = ({ image, mobileImage, fallbackImage, titleZh, subtitleEn }) => {
+// static (non-carousel) variant. Fixed 550px height at every breakpoint to
+// match the supplied banner photos' native crop height.
+export const PageBanner: React.FC<PageBannerProps> = ({ image, mobileImage, fallbackImage, titleZh }) => {
   return (
-    <section className="relative w-full h-[220px] sm:h-[300px] lg:h-[360px] bg-[var(--color-navy-deep)] overflow-hidden">
+    <section className="relative w-full h-[550px] bg-[var(--color-navy-deep)] overflow-hidden">
       {/* Same desktop/mobile crop swap as Hero.tsx's carousel — mobile gets
           its own crop below the sm breakpoint instead of the wide desktop
           photo squeezed into a narrow aspect ratio. */}
@@ -42,9 +40,6 @@ export const PageBanner: React.FC<PageBannerProps> = ({ image, mobileImage, fall
         >
           {titleZh}
         </h1>
-        <p className="mt-2 sm:mt-3 text-xs sm:text-sm tracking-[0.25em] text-white/80 uppercase">
-          {subtitleEn}
-        </p>
       </div>
     </section>
   );

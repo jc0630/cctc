@@ -25,7 +25,6 @@ export const SustainabilityStrategyPage: React.FC<SustainabilityStrategyPageProp
           image="/hero/banner-sustainability-strategy.jpg"
           mobileImage="/hero/mobile-banner-sustainability-strategy.jpg"
           titleZh="永續發展策略"
-          subtitleEn="SUSTAINABLE DEVELOPMENT STRATEGY"
         />
         {/* All 9 SDGs CCTC maps to, pressed directly onto the banner photo
             rather than sitting in their own strip below it. */}

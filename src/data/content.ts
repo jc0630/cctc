@@ -381,7 +381,6 @@ export const NEWS_ARTICLES: NewsArticle[] = [
 // reusing an existing homepage hero photo as a placeholder (see brief §四, 編號1).
 export const COMPANY_PROFILE_BANNER_IMAGE = '/hero/hero-1.jpg';
 export const COMPANY_PROFILE_BANNER_TITLE_ZH = '中櫃｜臺灣貨櫃集散站產業的開拓者';
-export const COMPANY_PROFILE_BANNER_SUBTITLE_EN = 'PIONEER OF TAIWAN CONTAINER FREIGHT STATIONS';
 
 // ---- 區塊 2：快速認識中櫃 ----
 

@@ -24,7 +24,6 @@ import { MilestoneTimeline } from './MilestoneTimeline';
 import {
   COMPANY_PROFILE_BANNER_IMAGE,
   COMPANY_PROFILE_BANNER_TITLE_ZH,
-  COMPANY_PROFILE_BANNER_SUBTITLE_EN,
   COMPANY_INFO_ROWS,
   COMPANY_POSITIONING_ZH,
   COMPANY_POSITIONING_EN,
@@ -117,7 +116,6 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
       <PageBanner
         image={COMPANY_PROFILE_BANNER_IMAGE}
         titleZh={COMPANY_PROFILE_BANNER_TITLE_ZH}
-        subtitleEn={COMPANY_PROFILE_BANNER_SUBTITLE_EN}
       />
 
       {/* 區塊 2：快速認識中櫃 — 7 facts as individual cards in ONE 4-col
