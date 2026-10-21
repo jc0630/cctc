@@ -61,21 +61,6 @@ export interface NewsArticle {
   image: string;
 }
 
-// ---- Company Profile page (「公司簡介」單元) ----
-
-export interface CompanyInfoRow {
-  labelZh: string;
-  labelEn: string;
-  valueZh: string;
-  valueEn: string;
-}
-
-export interface MilestoneItem {
-  year: number;
-  labelZh: string;
-  labelEn: string;
-}
-
 // ---- Sustainability Strategy page (「永續發展策略」單元) ----
 
 export interface SdgIcon {

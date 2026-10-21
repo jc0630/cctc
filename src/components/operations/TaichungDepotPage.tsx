@@ -9,6 +9,7 @@ import { TabPills } from '../sustainability/TabPills';
 import {
   TAICHUNG_DEPOT_BANNER_IMAGE,
   TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE,
+  TAICHUNG_DEPOT_BANNER_EYEBROW_ZH,
   TAICHUNG_DEPOT_BANNER_TITLE_ZH,
   TAICHUNG_DEPOT_TERMINALS
 } from '../../data/content';
@@ -99,7 +100,9 @@ export const TaichungDepotPage: React.FC<TaichungDepotPageProps> = ({ language }
       <PageBanner
         image={TAICHUNG_DEPOT_BANNER_IMAGE}
         mobileImage={TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE}
+        eyebrowZh={TAICHUNG_DEPOT_BANNER_EYEBROW_ZH}
         titleZh={TAICHUNG_DEPOT_BANNER_TITLE_ZH}
+        overlay={false}
       />
 
       <PageSection>

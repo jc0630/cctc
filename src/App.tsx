@@ -78,7 +78,7 @@ export default function App() {
           {currentView === 'sustainability-strategy' ? (
             <SustainabilityStrategyPage language={language} />
           ) : currentView === 'about-page' ? (
-            <CompanyProfilePage language={language} />
+            <CompanyProfilePage language={language} onNavigateSection={handleNavigate} />
           ) : currentView === 'taichung-depot' ? (
             <TaichungDepotPage language={language} />
           ) : (
