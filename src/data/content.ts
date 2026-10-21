@@ -915,12 +915,9 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
       titleEn: 'Facilities & Area',
       items: [
         { iconKey: 'yard', labelZh: '貨櫃堆積場面積', labelEn: 'Container Yard Area', valueZh: '340,000', unitZh: '平方公尺', unitEn: 'm²' },
-        { iconKey: 'warehouse', labelZh: '倉庫數量', labelEn: 'Warehouses', valueZh: '2', unitZh: '座', unitEn: 'units' },
-        { iconKey: 'warehouse', labelZh: '倉庫面積', labelEn: 'Warehouse Area', valueZh: '14,960', unitZh: '平方公尺', unitEn: 'm²' },
-        { iconKey: 'building', labelZh: '管制室大樓', labelEn: 'Control Buildings', valueZh: '2', unitZh: '座', unitEn: 'units' },
-        { iconKey: 'building', labelZh: '管制室大樓面積', labelEn: 'Control Building Area', valueZh: '2,910', unitZh: '平方公尺', unitEn: 'm²' },
-        { iconKey: 'workshop', labelZh: '維修廠與機棚', labelEn: 'Maintenance Workshop & Hangar', valueZh: '1', unitZh: '座', unitEn: 'units' },
-        { iconKey: 'workshop', labelZh: '維修廠與機棚面積', labelEn: 'Workshop Area', valueZh: '1,510', unitZh: '平方公尺', unitEn: 'm²' }
+        { iconKey: 'warehouse', labelZh: '倉庫面積（2座）', labelEn: 'Warehouse Area (2 units)', valueZh: '14,960', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'building', labelZh: '管制室大樓面積（2座）', labelEn: 'Control Building Area (2 units)', valueZh: '2,910', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'workshop', labelZh: '維修廠與機棚面積（1座）', labelEn: 'Workshop Area (1 unit)', valueZh: '1,510', unitZh: '平方公尺', unitEn: 'm²' }
       ]
     },
     equipmentStats: {
@@ -968,10 +965,8 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
       items: [
         { iconKey: 'yard', labelZh: '貨櫃堆積場面積', labelEn: 'Container Yard Area', valueZh: '138,173', unitZh: '平方公尺', unitEn: 'm²' },
         { iconKey: 'building', labelZh: '辦公室大樓', labelEn: 'Office Building', valueZh: '1', unitZh: '座', unitEn: 'unit' },
-        { iconKey: 'warehouse', labelZh: '倉庫數量', labelEn: 'Warehouses', valueZh: '1', unitZh: '座', unitEn: 'unit' },
-        { iconKey: 'warehouse', labelZh: '倉庫面積', labelEn: 'Warehouse Area', valueZh: '4,255', unitZh: '平方公尺', unitEn: 'm²' },
-        { iconKey: 'workshop', labelZh: '維修廠與機棚', labelEn: 'Maintenance Workshop & Hangar', valueZh: '1', unitZh: '座', unitEn: 'unit' },
-        { iconKey: 'workshop', labelZh: '維修廠與機棚面積', labelEn: 'Workshop Area', valueZh: '1,168', unitZh: '平方公尺', unitEn: 'm²' }
+        { iconKey: 'warehouse', labelZh: '倉庫面積（1座）', labelEn: 'Warehouse Area (1 unit)', valueZh: '4,255', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'workshop', labelZh: '維修廠與機棚面積（1座）', labelEn: 'Workshop Area (1 unit)', valueZh: '1,168', unitZh: '平方公尺', unitEn: 'm²' }
       ]
     },
     equipmentStats: {

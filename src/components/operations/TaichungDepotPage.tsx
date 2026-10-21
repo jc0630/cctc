@@ -33,10 +33,10 @@ const STAT_ICONS: Record<string, React.ComponentType<{ className?: string }>> = 
   capacity: Boxes
 };
 
-const StatSectionBlock: React.FC<{ section: TaichungStatSection; language: Language }> = ({ section, language }) => (
+const StatSectionBlock: React.FC<{ section: TaichungStatSection; language: Language; lgCols?: 4 | 5 }> = ({ section, language, lgCols = 4 }) => (
   <div className="flex flex-col gap-4 sm:gap-5">
     <SectionTitle size="lg">{language === 'zh' ? section.titleZh : section.titleEn}</SectionTitle>
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+    <div className={`grid grid-cols-2 sm:grid-cols-3 ${lgCols === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-3 sm:gap-4`}>
       {section.items.map((item, i) => (
         <StatTile
           key={i}
@@ -112,7 +112,7 @@ export const TaichungDepotPage: React.FC<TaichungDepotPageProps> = ({ language }
 
           <div key={active.id} className="flex flex-col gap-10 sm:gap-14 animate-in fade-in duration-300">
             <StatSectionBlock section={active.facilityStats} language={language} />
-            <StatSectionBlock section={active.equipmentStats} language={language} />
+            <StatSectionBlock section={active.equipmentStats} language={language} lgCols={5} />
             {active.specTable && <BerthSpecTableBlock table={active.specTable} language={language} />}
             {active.extraStats && <StatSectionBlock section={active.extraStats} language={language} />}
 
