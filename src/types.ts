@@ -147,6 +147,55 @@ export interface VideoItem {
   src: string;
 }
 
+// ---- Taichung Container Depot page (「台中貨櫃集散站」單元) ----
+
+export interface TaichungStatItem {
+  iconKey: string;
+  labelZh: string;
+  labelEn: string;
+  valueZh: string;
+  unitZh: string;
+  unitEn: string;
+}
+
+export interface TaichungStatSection {
+  titleZh: string;
+  titleEn: string;
+  items: TaichungStatItem[];
+}
+
+export interface TaichungBerthSpecColumn {
+  labelZh: string;
+  labelEn: string;
+}
+
+export interface TaichungBerthSpecRow {
+  name: string;
+  values: string[];
+}
+
+export interface TaichungBerthSpecTable {
+  titleZh: string;
+  titleEn: string;
+  rowHeaderZh: string;
+  rowHeaderEn: string;
+  columns: TaichungBerthSpecColumn[];
+  rows: TaichungBerthSpecRow[];
+}
+
+export interface TaichungDepotTerminal {
+  id: string;
+  labelZh: string;
+  labelEn: string;
+  facilityStats: TaichungStatSection;
+  equipmentStats: TaichungStatSection;
+  specTable?: TaichungBerthSpecTable;
+  extraStats?: TaichungStatSection;
+  layoutImage: string;
+  layoutImageCaptionZh: string;
+  layoutImageCaptionEn: string;
+}
+
 export interface HeroSlide {
   id: number;
   badgeZh: string;

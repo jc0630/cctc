@@ -77,7 +77,7 @@ const NAV_CATEGORIES: NavCategory[] = [
       { labelZh: '據點圖', labelEn: 'Terminal Map', sectionId: 'operations' },
       { labelZh: '五堵集散站', labelEn: 'Wudu Depot', sectionId: 'operations' },
       { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
-      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'operations' },
+      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'taichung-depot-page' },
       { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' }
     ]
   },

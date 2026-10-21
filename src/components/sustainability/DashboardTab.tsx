@@ -77,19 +77,6 @@ const DonutWithTotal: React.FC<{ data: { label: string; value: number; color: st
   </div>
 );
 
-// Simple two-color proportional bar — used for gender ratio rows. Not a
-// reusable chart component since it's only ever a male/female split.
-const GenderBar: React.FC<{ male: number; female: number }> = ({ male, female }) => {
-  const total = male + female;
-  const malePct = total > 0 ? (male / total) * 100 : 0;
-  return (
-    <div className="flex h-4 sm:h-5 w-full rounded-full overflow-hidden bg-slate-100">
-      <div className="h-full bg-[var(--color-cta)] transition-[width] duration-700" style={{ width: `${malePct}%` }} />
-      <div className="h-full bg-[var(--color-orange)] transition-[width] duration-700" style={{ width: `${100 - malePct}%` }} />
-    </div>
-  );
-};
-
 export const DashboardTab: React.FC<DashboardTabProps> = ({ language }) => {
   const [activeTab, setActiveTab] = useState(DASHBOARD_TABS[0].id);
 
@@ -134,25 +121,29 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({ language }) => {
         <div key="social" className="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-start lg:gap-5 animate-in fade-in duration-300">
           <MetricRow icon={<Users className="w-5 h-5" />} titleZh="人力類別（男女比例）" titleEn="Workforce by Category" language={language}>
             <div className="flex flex-col gap-4">
-              {DASHBOARD_GENDER_ROWS.map((row, i) => {
-                const total = row.male + row.female;
-                const malePct = total > 0 ? ((row.male / total) * 100).toFixed(1) : '0';
-                const femalePct = total > 0 ? ((row.female / total) * 100).toFixed(1) : '0';
-                return (
-                  <div key={i} className="flex flex-col gap-1.5">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 text-sm sm:text-base">
-                      <span className="font-bold text-[var(--color-ink)]">{language === 'zh' ? row.labelZh : row.labelEn}</span>
-                      <span className="text-[var(--color-text-secondary)]">
-                        {language === 'zh'
-                          ? `男 ${row.male} ／ 女 ${row.female}（男性占比 ${malePct}%／女性占比 ${femalePct}%）`
-                          : `M ${row.male} / F ${row.female} (${malePct}% male / ${femalePct}% female)`}
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                {DASHBOARD_GENDER_ROWS.map((row, i) => {
+                  const total = row.male + row.female;
+                  const malePct = total > 0 ? ((row.male / total) * 100).toFixed(1) : '0';
+                  const femalePct = total > 0 ? ((row.female / total) * 100).toFixed(1) : '0';
+                  const genderDonutData = [
+                    { label: language === 'zh' ? '男' : 'Male', value: row.male, color: 'var(--color-cta)' },
+                    { label: language === 'zh' ? '女' : 'Female', value: row.female, color: 'var(--color-orange)' }
+                  ];
+                  return (
+                    <div key={i} className="flex flex-col items-center gap-2 text-center">
+                      <DonutChart data={genderDonutData} size="sm" />
+                      <span className="text-sm sm:text-base font-bold text-[var(--color-ink)]">
+                        {language === 'zh' ? row.labelZh : row.labelEn}
+                      </span>
+                      <span className="text-[10px] sm:text-xs text-[var(--color-text-secondary)] leading-tight">
+                        {language === 'zh' ? `男 ${malePct}% ／ 女 ${femalePct}%` : `M ${malePct}% / F ${femalePct}%`}
                       </span>
                     </div>
-                    <GenderBar male={row.male} female={row.female} />
-                  </div>
-                );
-              })}
-              <div className="flex items-center gap-4 mt-1 text-xs sm:text-sm text-[var(--color-text-secondary)]">
+                  );
+                })}
+              </div>
+              <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-[var(--color-text-secondary)]">
                 <span className="flex items-center gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-[var(--color-cta)]" />
                   {language === 'zh' ? '男' : 'Male'}

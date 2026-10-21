@@ -14,7 +14,8 @@ import {
   StrategyGoalTab,
   SustainabilityReportItem,
   CompanyInfoRow,
-  MilestoneItem
+  MilestoneItem,
+  TaichungDepotTerminal
 } from '../types';
 
 export const LOGO_URL = '/images/cctc-logo.png';
@@ -461,9 +462,9 @@ export const SMART_OPERATIONS_EN =
   'In smart operations, CCTC independently developed and deployed the next-generation TOS 2.0 (Terminal Operating System 2.0) smart logistics platform — using digital management, real-time monitoring, and risk-alert mechanisms to improve terminal efficiency and operational safety, earning the Taiwan International Ports Corporation\'s "Golden Junk Award" multiple times.';
 
 export const LOW_CARBON_TRANSFORMATION_ZH =
-  '在低碳轉型方面，配合全球淨零排放趨勢，引進儲能櫃系統，於臺中港 31 號碼頭倉庫導入電動堆高機及採購綠電憑證完成碳中和，並於2025年12月導入電動拖車。此外，中櫃更與國立臺北科技大學合作建立貨櫃裝卸碳足跡計算標準，於2026年4月完成第三方查證與規則審核，為臺灣港口物流產業建立具公信力的碳管理機制。';
+  '在低碳轉型方面，配合全球淨零排放趨勢，引進儲能櫃系統，於臺中港 31 號碼頭倉庫導入電動堆高機及採購綠電憑證完成碳中和，並於2025年12月導入電動拖車。此外，中櫃更與國立臺北科技大學合作建立貨櫃裝卸碳足跡計算標準，於2026年6月完成第三方查證與規則審核，為臺灣港口物流產業建立具公信力的碳管理機制。';
 export const LOW_CARBON_TRANSFORMATION_EN =
-  'In low-carbon transformation, aligned with the global net-zero trend, CCTC introduced energy storage container systems, deployed electric forklifts at the Taichung Port Berth 31 warehouse, achieved carbon neutrality through renewable energy certificates, and introduced electric yard tractors in December 2025. CCTC also partnered with National Taipei University of Technology to establish a container handling carbon footprint calculation standard, completing third-party verification in April 2026 — building a credible carbon management framework for Taiwan\'s port logistics industry.';
+  'In low-carbon transformation, aligned with the global net-zero trend, CCTC introduced energy storage container systems, deployed electric forklifts at the Taichung Port Berth 31 warehouse, achieved carbon neutrality through renewable energy certificates, and introduced electric yard tractors in December 2025. CCTC also partnered with National Taipei University of Technology to establish a container handling carbon footprint calculation standard, completing third-party verification in June 2026 — building a credible carbon management framework for Taiwan\'s port logistics industry.';
 
 export const ELECTRIC_TRACTOR_IMAGE = '/images/about/img_5.jpg';
 export const ENERGY_STORAGE_IMAGE = '/images/about/img_6.jpg';
@@ -893,3 +894,117 @@ export const MOCK_CONTAINER_RESULTS: Record<string, {
     customsRelease: '已放行 (Cleared)'
   }
 };
+
+// ---- 台中貨櫃集散站 (Taichung Container Depot page) ----
+// Two tabs, one per terminal (10-11號碼頭／31號碼頭), each a fully
+// self-contained TaichungDepotTerminal — facility/equipment counts and berth
+// specs are sourced from CCTC's own terminal fact sheets; the two site-layout
+// map images are the company's real yard maps (not the slide deck's AI demo
+// mockup, which was style reference only).
+export const TAICHUNG_DEPOT_BANNER_IMAGE = '/hero/banner-taichung-depot.jpg';
+export const TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE = '/hero/mobile-banner-taichung-depot.jpg';
+export const TAICHUNG_DEPOT_BANNER_TITLE_ZH = '台中貨櫃集散站';
+
+export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
+  {
+    id: 'berth-10-11',
+    labelZh: '10-11號碼頭',
+    labelEn: 'Terminal 10-11',
+    facilityStats: {
+      titleZh: '場地及建築物規模',
+      titleEn: 'Facilities & Area',
+      items: [
+        { iconKey: 'yard', labelZh: '貨櫃堆積場面積', labelEn: 'Container Yard Area', valueZh: '340,000', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'warehouse', labelZh: '倉庫數量', labelEn: 'Warehouses', valueZh: '2', unitZh: '座', unitEn: 'units' },
+        { iconKey: 'warehouse', labelZh: '倉庫面積', labelEn: 'Warehouse Area', valueZh: '14,960', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'building', labelZh: '管制室大樓', labelEn: 'Control Buildings', valueZh: '2', unitZh: '座', unitEn: 'units' },
+        { iconKey: 'building', labelZh: '管制室大樓面積', labelEn: 'Control Building Area', valueZh: '2,910', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'workshop', labelZh: '維修廠與機棚', labelEn: 'Maintenance Workshop & Hangar', valueZh: '1', unitZh: '座', unitEn: 'units' },
+        { iconKey: 'workshop', labelZh: '維修廠與機棚面積', labelEn: 'Workshop Area', valueZh: '1,510', unitZh: '平方公尺', unitEn: 'm²' }
+      ]
+    },
+    equipmentStats: {
+      titleZh: '機具設備',
+      titleEn: 'Handling Equipment',
+      items: [
+        { iconKey: 'crane', labelZh: '橋式起重機', labelEn: 'Gantry Cranes', valueZh: '5', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'crane', labelZh: '軌道式起重機', labelEn: 'Rail-Mounted Gantry Cranes', valueZh: '15', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'crane', labelZh: '輪胎式起重機', labelEn: 'Rubber-Tyred Gantry Cranes', valueZh: '11', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'stacker', labelZh: '堆積機', labelEn: 'Reach Stackers', valueZh: '3', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'handler', labelZh: '空櫃機', labelEn: 'Empty Container Handlers', valueZh: '4', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'forklift', labelZh: '堆高機', labelEn: 'Forklifts', valueZh: '40', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'chassis', labelZh: '車架', labelEn: 'Chassis', valueZh: '103', unitZh: '台', unitEn: 'units' },
+        { iconKey: 'reefer', labelZh: '冷凍櫃插座（440伏特）', labelEn: 'Reefer Sockets (440V)', valueZh: '146', unitZh: '座', unitEn: 'units' },
+        { iconKey: 'generator', labelZh: '冷凍櫃場供電用發電機', labelEn: 'Reefer Yard Generator', valueZh: '1', unitZh: '台', unitEn: 'unit' },
+        { iconKey: 'tractor', labelZh: '電動解櫃車', labelEn: 'Electric Container Tractors', valueZh: '4', unitZh: '部', unitEn: 'units' }
+      ]
+    },
+    specTable: {
+      titleZh: '貨櫃碼頭條件',
+      titleEn: 'Berth Specifications',
+      rowHeaderZh: '碼頭名稱',
+      rowHeaderEn: 'Berth',
+      columns: [
+        { labelZh: '碼頭長度（公尺）', labelEn: 'Length (m)' },
+        { labelZh: '限制水深（公尺）', labelEn: 'Depth (m)' },
+        { labelZh: '繫樁數目', labelEn: 'Bollards' }
+      ],
+      rows: [
+        { name: 'W10', values: ['320', '13', '14'] },
+        { name: 'W11', values: ['320', '13', '15'] }
+      ]
+    },
+    layoutImage: '/images/operations/taichung-berth-10-11-layout.jpg',
+    layoutImageCaptionZh: '中國貨櫃公司台中港集散站場地圖',
+    layoutImageCaptionEn: 'CCTC Taichung Port Depot Site Layout Map'
+  },
+  {
+    id: 'berth-31',
+    labelZh: '31號碼頭',
+    labelEn: 'Terminal 31',
+    facilityStats: {
+      titleZh: '場地及建築物規模',
+      titleEn: 'Facilities & Area',
+      items: [
+        { iconKey: 'yard', labelZh: '貨櫃堆積場面積', labelEn: 'Container Yard Area', valueZh: '138,173', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'building', labelZh: '辦公室大樓', labelEn: 'Office Building', valueZh: '1', unitZh: '座', unitEn: 'unit' },
+        { iconKey: 'warehouse', labelZh: '倉庫數量', labelEn: 'Warehouses', valueZh: '1', unitZh: '座', unitEn: 'unit' },
+        { iconKey: 'warehouse', labelZh: '倉庫面積', labelEn: 'Warehouse Area', valueZh: '4,255', unitZh: '平方公尺', unitEn: 'm²' },
+        { iconKey: 'workshop', labelZh: '維修廠與機棚', labelEn: 'Maintenance Workshop & Hangar', valueZh: '1', unitZh: '座', unitEn: 'unit' },
+        { iconKey: 'workshop', labelZh: '維修廠與機棚面積', labelEn: 'Workshop Area', valueZh: '1,168', unitZh: '平方公尺', unitEn: 'm²' }
+      ]
+    },
+    equipmentStats: {
+      titleZh: '機具設備',
+      titleEn: 'Handling Equipment',
+      items: [
+        { iconKey: 'crane', labelZh: '軌道式起重機', labelEn: 'Rail-Mounted Gantry Cranes', valueZh: '2', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'crane', labelZh: '輪胎式起重機', labelEn: 'Rubber-Tyred Gantry Cranes', valueZh: '5', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'stacker', labelZh: '堆積機', labelEn: 'Reach Stackers', valueZh: '2', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'handler', labelZh: '空櫃機', labelEn: 'Empty Container Handlers', valueZh: '3', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'forklift', labelZh: '堆高機', labelEn: 'Forklifts', valueZh: '15', unitZh: '部', unitEn: 'units' },
+        { iconKey: 'forklift', labelZh: '電動堆高機', labelEn: 'Electric Forklifts', valueZh: '9', unitZh: '台', unitEn: 'units' },
+        { iconKey: 'tractor', labelZh: '解櫃車', labelEn: 'Container Tractor', valueZh: '1', unitZh: '部', unitEn: 'unit' },
+        { iconKey: 'chassis', labelZh: '車架', labelEn: 'Chassis', valueZh: '21', unitZh: '台', unitEn: 'units' },
+        { iconKey: 'reefer', labelZh: '冷凍櫃插座（440伏特）', labelEn: 'Reefer Sockets (440V)', valueZh: '70', unitZh: '座', unitEn: 'units' }
+      ]
+    },
+    extraStats: {
+      titleZh: '主要作業區容量',
+      titleEn: 'Yard Capacity by Zone',
+      items: [
+        { iconKey: 'capacity', labelZh: 'TL作業區', labelEn: 'Zone TL', valueZh: '1,872', unitZh: 'TEU', unitEn: 'TEU' },
+        { iconKey: 'capacity', labelZh: 'TF作業區', labelEn: 'Zone TF', valueZh: '510', unitZh: 'TEU', unitEn: 'TEU' },
+        { iconKey: 'capacity', labelZh: 'RTG作業區', labelEn: 'Zone RTG', valueZh: '1,360', unitZh: 'TEU', unitEn: 'TEU' },
+        { iconKey: 'capacity', labelZh: 'RT作業區', labelEn: 'Zone RT', valueZh: '1,772', unitZh: 'TEU', unitEn: 'TEU' },
+        { iconKey: 'capacity', labelZh: 'A3空櫃區（雙區）', labelEn: 'Zone A3 Empty (×2)', valueZh: '578×2', unitZh: 'TEU', unitEn: 'TEU' },
+        { iconKey: 'capacity', labelZh: 'A2空櫃區', labelEn: 'Zone A2 Empty', valueZh: '900', unitZh: 'TEU', unitEn: 'TEU' },
+        { iconKey: 'capacity', labelZh: 'A1空櫃區', labelEn: 'Zone A1 Empty', valueZh: '306', unitZh: 'TEU', unitEn: 'TEU' },
+        { iconKey: 'reefer', labelZh: '冷凍櫃區', labelEn: 'Reefer Zone', valueZh: '70', unitZh: 'BOX', unitEn: 'BOX' }
+      ]
+    },
+    layoutImage: '/images/operations/taichung-berth-31-layout.jpg',
+    layoutImageCaptionZh: '中櫃台中港W31號碼頭後線場地平面圖',
+    layoutImageCaptionEn: 'CCTC Taichung Port Terminal 31 Yard Layout Map'
+  }
+];

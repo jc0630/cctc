@@ -10,6 +10,7 @@ import { InvestorRelationsCareers } from './components/InvestorRelationsCareers'
 import { Footer } from './components/Footer';
 import { SustainabilityStrategyPage } from './components/sustainability/SustainabilityStrategyPage';
 import { CompanyProfilePage } from './components/about-page/CompanyProfilePage';
+import { TaichungDepotPage } from './components/operations/TaichungDepotPage';
 
 import { Language } from './types';
 
@@ -17,11 +18,12 @@ import { Language } from './types';
 // inner-page view instead of scrolling to a homepage anchor — this is a
 // single-page app with no router, so "pages" beyond the homepage are modeled
 // as a `currentView` toggle rather than real routes.
-type View = 'home' | 'sustainability-strategy' | 'about-page';
+type View = 'home' | 'sustainability-strategy' | 'about-page' | 'taichung-depot';
 
 const VIEW_SENTINELS: Record<string, View> = {
   'sustainability-strategy-page': 'sustainability-strategy',
-  'about-page': 'about-page'
+  'about-page': 'about-page',
+  'taichung-depot-page': 'taichung-depot'
 };
 
 export default function App() {
@@ -77,6 +79,8 @@ export default function App() {
             <SustainabilityStrategyPage language={language} />
           ) : currentView === 'about-page' ? (
             <CompanyProfilePage language={language} />
+          ) : currentView === 'taichung-depot' ? (
+            <TaichungDepotPage language={language} />
           ) : (
             <>
               {/* 01: Hero Section */}
