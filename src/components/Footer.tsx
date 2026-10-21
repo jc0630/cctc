@@ -19,9 +19,12 @@ interface FooterColumn {
   links: FooterLink[];
 }
 
-// Every link routes to the closest matching real section on this one-page
-// site (there are no separate sub-pages yet) — a sitemap footer still needs
-// each item to go somewhere real rather than dead-end.
+// Every link routes to the closest matching real homepage section. Three
+// dedicated inner pages already exist (see Header.tsx's NAV_CATEGORIES
+// comment for the full explanation) but are intentionally not linked here
+// yet pending client sign-off — a sitemap footer still needs each item to
+// go somewhere real rather than dead-end, so these three fall back to their
+// old homepage anchors just like every other not-yet-built item.
 const FOOTER_COLUMNS: FooterColumn[] = [
   {
     titleZh: '關於中櫃',
