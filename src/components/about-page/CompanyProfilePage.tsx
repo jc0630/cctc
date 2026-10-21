@@ -18,7 +18,8 @@ import {
 } from 'lucide-react';
 import { Language, CompanyInfoRow } from '../../types';
 import { PageBanner } from '../shared/PageBanner';
-import { FadeInSection } from '../shared/FadeInSection';
+import { PageSection } from '../shared/PageSection';
+import { SectionTitle } from '../shared/SectionTitle';
 import { SplitSection } from '../shared/SplitSection';
 import { MilestoneTimeline } from './MilestoneTimeline';
 import {
@@ -125,63 +126,55 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
           color cycling through the site's full color family, echoing the
           multi-colored shipping containers themselves rather than repeating
           one flat brand-blue seven times. */}
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-6 sm:mb-8">
-              {language === 'zh' ? '快速認識中櫃' : 'Company Overview'}
-            </h2>
+      <PageSection>
+        <SectionTitle className="mb-6 sm:mb-8">
+          {language === 'zh' ? '快速認識中櫃' : 'Company Overview'}
+        </SectionTitle>
 
-            <div className="max-w-5xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
-              {COMPANY_INFO_ROWS.map((row, i) => (
-                <CompanyInfoCard key={i} row={row} icon={COMPANY_INFO_ICONS[i]} accent={COMPANY_INFO_ACCENTS[i]} language={language} />
-              ))}
-            </div>
-          </FadeInSection>
+        <div className="max-w-5xl grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
+          {COMPANY_INFO_ROWS.map((row, i) => (
+            <CompanyInfoCard key={i} row={row} icon={COMPANY_INFO_ICONS[i]} accent={COMPANY_INFO_ACCENTS[i]} language={language} />
+          ))}
         </div>
-      </section>
+      </PageSection>
 
       {/* 區塊 2.5：產業定位 — left-text/right-diagram split (the diagram was
           previously full-width below the text, which rendered far larger
           than the content needs; halving it into a two-column split keeps
           it legible without dominating the section). */}
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-              <div>
-                <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-5 sm:mb-6">
-                  {language === 'zh' ? '產業定位' : 'Industry Positioning'}
-                </h2>
-                <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
-                  {language === 'zh' ? COMPANY_POSITIONING_ZH : COMPANY_POSITIONING_EN}
-                </p>
-              </div>
+      <PageSection>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div>
+            <SectionTitle className="mb-5 sm:mb-6">
+              {language === 'zh' ? '產業定位' : 'Industry Positioning'}
+            </SectionTitle>
+            <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
+              {language === 'zh' ? COMPANY_POSITIONING_ZH : COMPANY_POSITIONING_EN}
+            </p>
+          </div>
 
-              <div>
-                <button
-                  type="button"
-                  onClick={() => setLightboxOpen(true)}
-                  className="group relative block w-full cursor-zoom-in"
-                >
-                  <img
-                    src={INDUSTRY_STRUCTURE_IMAGE}
-                    alt={language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
-                    className="w-full rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
-                  />
-                  <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-[var(--radius-pill)]">
-                    <ZoomIn className="w-3.5 h-3.5" />
-                    {language === 'zh' ? '點擊放大' : 'Click to zoom'}
-                  </span>
-                </button>
-                <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
-                  {language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
-                </p>
-              </div>
-            </div>
-          </FadeInSection>
+          <div>
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              className="group relative block w-full cursor-zoom-in"
+            >
+              <img
+                src={INDUSTRY_STRUCTURE_IMAGE}
+                alt={language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
+                className="w-full rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
+              />
+              <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-[var(--radius-pill)]">
+                <ZoomIn className="w-3.5 h-3.5" />
+                {language === 'zh' ? '點擊放大' : 'Click to zoom'}
+              </span>
+            </button>
+            <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
+              {language === 'zh' ? INDUSTRY_STRUCTURE_CAPTION_ZH : INDUSTRY_STRUCTURE_CAPTION_EN}
+            </p>
+          </div>
         </div>
-      </section>
+      </PageSection>
 
       {lightboxOpen && (
         <div
@@ -214,57 +207,56 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
         <p>{language === 'zh' ? FOUNDING_HISTORY_ZH : FOUNDING_HISTORY_EN}</p>
       </SplitSection>
 
-      {/* 區塊 4：全臺營運布局與多元港埠服務 */}
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-6 sm:mb-8">
+      {/* 區塊 4：全臺營運布局與多元港埠服務 — left text / right milestone
+          cards, same 5/7-column split as the homepage's 關於中櫃 section
+          (see AboutSection.tsx) rather than text-then-full-width-cards. */}
+      <PageSection>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-10 sm:mb-14">
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            <SectionTitle>
               {language === 'zh' ? '全臺營運布局與多元港埠服務' : 'Nationwide Operations & Diversified Port Services'}
-            </h2>
-
-            <p className="max-w-3xl text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose mb-10 sm:mb-14">
+            </SectionTitle>
+            <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
               {language === 'zh' ? OPERATIONS_OVERVIEW_ZH : OPERATIONS_OVERVIEW_EN}
             </p>
+          </div>
 
-            <div className="mb-10 sm:mb-14">
-              <MilestoneTimeline items={MILESTONES} language={language} />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-              <div>
-                <img
-                  src={TAICHUNG_OVERVIEW_IMAGE}
-                  alt={language === 'zh' ? TAICHUNG_OVERVIEW_CAPTION_ZH : TAICHUNG_OVERVIEW_CAPTION_EN}
-                  className="w-full aspect-[4/3] object-cover rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
-                />
-                <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
-                  {language === 'zh' ? TAICHUNG_OVERVIEW_CAPTION_ZH : TAICHUNG_OVERVIEW_CAPTION_EN}
-                </p>
-              </div>
-              <div>
-                <img
-                  src={KEELUNG_OVERVIEW_IMAGE}
-                  alt={language === 'zh' ? KEELUNG_OVERVIEW_CAPTION_ZH : KEELUNG_OVERVIEW_CAPTION_EN}
-                  className="w-full aspect-[4/3] object-cover rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
-                />
-                <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
-                  {language === 'zh' ? KEELUNG_OVERVIEW_CAPTION_ZH : KEELUNG_OVERVIEW_CAPTION_EN}
-                </p>
-              </div>
-            </div>
-          </FadeInSection>
+          <div className="lg:col-span-7">
+            <MilestoneTimeline items={MILESTONES} language={language} />
+          </div>
         </div>
-      </section>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          <div>
+            <img
+              src={TAICHUNG_OVERVIEW_IMAGE}
+              alt={language === 'zh' ? TAICHUNG_OVERVIEW_CAPTION_ZH : TAICHUNG_OVERVIEW_CAPTION_EN}
+              className="w-full aspect-[4/3] object-cover rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
+            />
+            <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
+              {language === 'zh' ? TAICHUNG_OVERVIEW_CAPTION_ZH : TAICHUNG_OVERVIEW_CAPTION_EN}
+            </p>
+          </div>
+          <div>
+            <img
+              src={KEELUNG_OVERVIEW_IMAGE}
+              alt={language === 'zh' ? KEELUNG_OVERVIEW_CAPTION_ZH : KEELUNG_OVERVIEW_CAPTION_EN}
+              className="w-full aspect-[4/3] object-cover rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
+            />
+            <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
+              {language === 'zh' ? KEELUNG_OVERVIEW_CAPTION_ZH : KEELUNG_OVERVIEW_CAPTION_EN}
+            </p>
+          </div>
+        </div>
+      </PageSection>
 
       {/* 區塊 5：雙軸轉型：智慧營運與永續低碳實踐 */}
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-6 sm:mb-8">
-              {language === 'zh' ? '雙軸轉型：智慧營運與永續低碳實踐' : 'Dual Transformation: Smart Operations & Low-Carbon Sustainability'}
-            </h2>
+      <PageSection>
+        <SectionTitle className="mb-6 sm:mb-8">
+          {language === 'zh' ? '雙軸轉型：智慧營運與永續低碳實踐' : 'Dual Transformation: Smart Operations & Low-Carbon Sustainability'}
+        </SectionTitle>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 mb-10 sm:mb-14">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 mb-10 sm:mb-14">
               {/* Smart Operations — brand-blue accent */}
               <div className="group relative bg-white border border-slate-200 rounded-[var(--radius-card)] p-6 sm:p-8 layer-shadow-soft hover:layer-shadow-raised hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: 'var(--color-cta)' }} />
@@ -313,12 +305,10 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
                 className="w-full aspect-video object-cover rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
               />
             </div>
-            <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
-              {language === 'zh' ? DUAL_TRANSFORMATION_SHARED_CAPTION_ZH : DUAL_TRANSFORMATION_SHARED_CAPTION_EN}
-            </p>
-          </FadeInSection>
-        </div>
-      </section>
+        <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
+          {language === 'zh' ? DUAL_TRANSFORMATION_SHARED_CAPTION_ZH : DUAL_TRANSFORMATION_SHARED_CAPTION_EN}
+        </p>
+      </PageSection>
 
       {/* 區塊 6：共創永續未來 */}
       <SplitSection

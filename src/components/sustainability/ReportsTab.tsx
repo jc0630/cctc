@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FileText } from 'lucide-react';
 import { Language } from '../../types';
 import { SUSTAINABILITY_REPORTS } from '../../data/content';
+import { SectionTitle } from '../shared/SectionTitle';
 
 interface ReportsTabProps {
   language: Language;
@@ -36,9 +37,7 @@ const ReportCover: React.FC<{ src: string; year: number }> = ({ src, year }) => 
 export const ReportsTab: React.FC<ReportsTabProps> = ({ language }) => {
   return (
     <div className="flex flex-col gap-8 sm:gap-10">
-      <h2 className="section-title self-start text-2xl sm:text-3xl font-bold tracking-tight">
-        {language === 'zh' ? '永續報告書' : 'Sustainability Reports'}
-      </h2>
+      <SectionTitle>{language === 'zh' ? '永續報告書' : 'Sustainability Reports'}</SectionTitle>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
         {SUSTAINABILITY_REPORTS.map((report) => (

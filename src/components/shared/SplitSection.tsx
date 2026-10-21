@@ -1,5 +1,6 @@
 import React from 'react';
-import { FadeInSection } from './FadeInSection';
+import { PageSection } from './PageSection';
+import { SectionTitle } from './SectionTitle';
 
 interface SplitSectionProps {
   id?: string;
@@ -24,29 +25,25 @@ interface SplitSectionProps {
 // (see ESGSection.tsx / OnlineServices.tsx) rather than a plain gray border.
 export const SplitSection: React.FC<SplitSectionProps> = ({ id, titleZh, reverse, align = 'center', image, imageAlt, imageCaption, children }) => {
   return (
-    <section id={id} className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeInSection>
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 ${align === 'start' ? 'lg:items-start' : 'items-center'}`}>
-            <div className={reverse ? 'lg:order-2' : ''}>
-              <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight mb-5 sm:mb-6">{titleZh}</h2>
-              <div className="flex flex-col gap-4 text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
-                {children}
-              </div>
-            </div>
-            <div className={reverse ? 'lg:order-1' : ''}>
-              <img
-                src={image}
-                alt={imageAlt}
-                className="w-full rounded-[var(--radius-panel)] object-cover border border-[var(--color-blue-300)]/50 layer-shadow-raised"
-              />
-              {imageCaption && (
-                <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">{imageCaption}</p>
-              )}
-            </div>
+    <PageSection id={id}>
+      <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 ${align === 'start' ? 'lg:items-start' : 'items-center'}`}>
+        <div className={reverse ? 'lg:order-2' : ''}>
+          <SectionTitle className="mb-5 sm:mb-6">{titleZh}</SectionTitle>
+          <div className="flex flex-col gap-4 text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
+            {children}
           </div>
-        </FadeInSection>
+        </div>
+        <div className={reverse ? 'lg:order-1' : ''}>
+          <img
+            src={image}
+            alt={imageAlt}
+            className="w-full rounded-[var(--radius-panel)] object-cover border border-[var(--color-blue-300)]/50 layer-shadow-raised"
+          />
+          {imageCaption && (
+            <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">{imageCaption}</p>
+          )}
+        </div>
       </div>
-    </section>
+    </PageSection>
   );
 };

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Warehouse, Building2, Wrench, Construction, Forklift, PackageSearch, Truck, Snowflake, PlugZap, Boxes } from 'lucide-react';
-import { Language, TaichungStatItem, TaichungStatSection, TaichungBerthSpecTable } from '../../types';
+import { Language, TaichungStatSection, TaichungBerthSpecTable } from '../../types';
 import { PageBanner } from '../shared/PageBanner';
-import { FadeInSection } from '../shared/FadeInSection';
+import { PageSection } from '../shared/PageSection';
+import { SectionTitle } from '../shared/SectionTitle';
+import { StatTile } from '../shared/StatTile';
 import { TabPills } from '../sustainability/TabPills';
 import {
   TAICHUNG_DEPOT_BANNER_IMAGE,
@@ -31,36 +33,18 @@ const STAT_ICONS: Record<string, React.ComponentType<{ className?: string }>> = 
   capacity: Boxes
 };
 
-// Same stat-tile recipe as AboutSection's 4 homepage fact tiles (icon chip +
-// big number + label) — reused here so facility/equipment/capacity figures
-// read consistently with the rest of the site instead of inventing a new
-// card style for this page.
-const StatTile: React.FC<{ item: TaichungStatItem; language: Language }> = ({ item, language }) => {
-  const Icon = STAT_ICONS[item.iconKey] ?? Boxes;
-  return (
-    <div className="bg-white border border-slate-200 hover:border-[var(--color-cta)] p-3 sm:p-4 rounded-[var(--radius-card)] flex flex-col items-center text-center transition-all duration-300 layer-shadow-soft group">
-      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-blue-100)] text-[var(--color-cta)] flex items-center justify-center mb-1.5 sm:mb-2 group-hover:bg-[var(--color-cta)] group-hover:text-white transition-colors duration-300">
-        <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-      </div>
-      <span className="text-xl sm:text-2xl lg:text-3xl text-[var(--color-cta)] font-extrabold mb-1 tracking-tight group-hover:text-[var(--color-cta-hover)] transition-colors duration-300">
-        {item.valueZh}
-        <span className="text-sm sm:text-base font-bold ml-1">{language === 'zh' ? item.unitZh : item.unitEn}</span>
-      </span>
-      <span className="text-xs sm:text-sm text-[var(--color-text-body)] font-bold leading-tight">
-        {language === 'zh' ? item.labelZh : item.labelEn}
-      </span>
-    </div>
-  );
-};
-
 const StatSectionBlock: React.FC<{ section: TaichungStatSection; language: Language }> = ({ section, language }) => (
   <div className="flex flex-col gap-4 sm:gap-5">
-    <h2 className="section-title self-start text-lg sm:text-xl font-bold">
-      {language === 'zh' ? section.titleZh : section.titleEn}
-    </h2>
+    <SectionTitle size="lg">{language === 'zh' ? section.titleZh : section.titleEn}</SectionTitle>
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
       {section.items.map((item, i) => (
-        <StatTile key={i} item={item} language={language} />
+        <StatTile
+          key={i}
+          icon={STAT_ICONS[item.iconKey] ?? Boxes}
+          value={item.valueZh}
+          unit={language === 'zh' ? item.unitZh : item.unitEn}
+          label={language === 'zh' ? item.labelZh : item.labelEn}
+        />
       ))}
     </div>
   </div>
@@ -71,9 +55,7 @@ const StatSectionBlock: React.FC<{ section: TaichungStatSection; language: Langu
 // <table> rather than the stat-tile grid.
 const BerthSpecTableBlock: React.FC<{ table: TaichungBerthSpecTable; language: Language }> = ({ table, language }) => (
   <div className="flex flex-col gap-4 sm:gap-5">
-    <h2 className="section-title self-start text-lg sm:text-xl font-bold">
-      {language === 'zh' ? table.titleZh : table.titleEn}
-    </h2>
+    <SectionTitle size="lg">{language === 'zh' ? table.titleZh : table.titleEn}</SectionTitle>
     <div className="overflow-x-auto rounded-[var(--radius-card)] border border-slate-200 layer-shadow-soft">
       <table className="w-full min-w-[480px] border-collapse text-sm sm:text-base">
         <thead>
@@ -120,45 +102,39 @@ export const TaichungDepotPage: React.FC<TaichungDepotPageProps> = ({ language }
         titleZh={TAICHUNG_DEPOT_BANNER_TITLE_ZH}
       />
 
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <div className="flex flex-col gap-6 sm:gap-8">
-              <TabPills
-                tabs={terminals.map((t) => ({ id: t.id, label: language === 'zh' ? t.labelZh : t.labelEn }))}
-                activeId={activeId}
-                onChange={setActiveId}
-              />
+      <PageSection>
+        <div className="flex flex-col gap-6 sm:gap-8">
+          <TabPills
+            tabs={terminals.map((t) => ({ id: t.id, label: language === 'zh' ? t.labelZh : t.labelEn }))}
+            activeId={activeId}
+            onChange={setActiveId}
+          />
 
-              <div key={active.id} className="flex flex-col gap-10 sm:gap-14 animate-in fade-in duration-300">
-                <StatSectionBlock section={active.facilityStats} language={language} />
-                <StatSectionBlock section={active.equipmentStats} language={language} />
-                {active.specTable && <BerthSpecTableBlock table={active.specTable} language={language} />}
-                {active.extraStats && <StatSectionBlock section={active.extraStats} language={language} />}
+          <div key={active.id} className="flex flex-col gap-10 sm:gap-14 animate-in fade-in duration-300">
+            <StatSectionBlock section={active.facilityStats} language={language} />
+            <StatSectionBlock section={active.equipmentStats} language={language} />
+            {active.specTable && <BerthSpecTableBlock table={active.specTable} language={language} />}
+            {active.extraStats && <StatSectionBlock section={active.extraStats} language={language} />}
 
-                <div className="flex flex-col gap-4 sm:gap-5">
-                  <h2 className="section-title self-start text-lg sm:text-xl font-bold">
-                    {language === 'zh' ? '場地圖' : 'Site Layout Map'}
-                  </h2>
-                  {/* Technical diagrams stay horizontally scrollable on mobile
-                      (min-w floor) instead of being squeezed illegibly small
-                      at full width — desktop shows the full map at once. */}
-                  <div className="overflow-x-auto rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised bg-white p-2 sm:p-3">
-                    <img
-                      src={active.layoutImage}
-                      alt={language === 'zh' ? active.layoutImageCaptionZh : active.layoutImageCaptionEn}
-                      className="min-w-[700px] sm:min-w-0 w-full h-auto rounded-[var(--radius-card)]"
-                    />
-                  </div>
-                  <p className="text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
-                    {language === 'zh' ? active.layoutImageCaptionZh : active.layoutImageCaptionEn}
-                  </p>
-                </div>
+            <div className="flex flex-col gap-4 sm:gap-5">
+              <SectionTitle size="lg">{language === 'zh' ? '場地圖' : 'Site Layout Map'}</SectionTitle>
+              {/* Technical diagrams stay horizontally scrollable on mobile
+                  (min-w floor) instead of being squeezed illegibly small
+                  at full width — desktop shows the full map at once. */}
+              <div className="overflow-x-auto rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised bg-white p-2 sm:p-3">
+                <img
+                  src={active.layoutImage}
+                  alt={language === 'zh' ? active.layoutImageCaptionZh : active.layoutImageCaptionEn}
+                  className="min-w-[700px] sm:min-w-0 w-full h-auto rounded-[var(--radius-card)]"
+                />
               </div>
+              <p className="text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">
+                {language === 'zh' ? active.layoutImageCaptionZh : active.layoutImageCaptionEn}
+              </p>
             </div>
-          </FadeInSection>
+          </div>
         </div>
-      </section>
+      </PageSection>
     </div>
   );
 };

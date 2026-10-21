@@ -1,7 +1,8 @@
 import React from 'react';
 import { Language } from '../../types';
 import { PageBanner } from '../shared/PageBanner';
-import { FadeInSection } from '../shared/FadeInSection';
+import { PageSection } from '../shared/PageSection';
+import { SectionTitle } from '../shared/SectionTitle';
 import { SdgIconRow } from './SdgIconRow';
 import { HighlightsTab } from './HighlightsTab';
 import { DashboardTab } from './DashboardTab';
@@ -33,47 +34,27 @@ export const SustainabilityStrategyPage: React.FC<SustainabilityStrategyPageProp
         </div>
       </div>
 
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <div className="flex flex-col gap-6 sm:gap-8">
-              <h2 className="section-title self-start text-2xl sm:text-3xl font-bold tracking-tight">
-                {language === 'zh' ? '永續績效亮點' : 'Sustainability Highlights'}
-              </h2>
-              <HighlightsTab language={language} />
-            </div>
-          </FadeInSection>
+      <PageSection>
+        <div className="flex flex-col gap-6 sm:gap-8">
+          <SectionTitle>{language === 'zh' ? '永續績效亮點' : 'Sustainability Highlights'}</SectionTitle>
+          <HighlightsTab language={language} />
         </div>
-      </section>
+      </PageSection>
 
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <div className="flex flex-col gap-6 sm:gap-8">
-              <h2 className="section-title self-start text-2xl sm:text-3xl font-bold tracking-tight">
-                {language === 'zh' ? '數據儀表板' : 'Data Dashboard'}
-              </h2>
-              <DashboardTab language={language} />
-            </div>
-          </FadeInSection>
+      <PageSection>
+        <div className="flex flex-col gap-6 sm:gap-8">
+          <SectionTitle>{language === 'zh' ? '數據儀表板' : 'Data Dashboard'}</SectionTitle>
+          <DashboardTab language={language} />
         </div>
-      </section>
+      </PageSection>
 
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <StrategyGoalsTab language={language} />
-          </FadeInSection>
-        </div>
-      </section>
+      <PageSection>
+        <StrategyGoalsTab language={language} />
+      </PageSection>
 
-      <section className="w-full py-[20px] sm:py-[35px] lg:py-[50px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInSection>
-            <ReportsTab language={language} />
-          </FadeInSection>
-        </div>
-      </section>
+      <PageSection>
+        <ReportsTab language={language} />
+      </PageSection>
     </div>
   );
 };

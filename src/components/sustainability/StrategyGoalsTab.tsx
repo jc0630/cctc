@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react';
 import { Language } from '../../types';
 import { TabPills } from './TabPills';
 import { SdgIconRow } from './SdgIconRow';
+import { SectionTitle } from '../shared/SectionTitle';
 import { VALUE_CHAIN_INTRO_ZH, VALUE_CHAIN_INTRO_EN, STRATEGY_GOAL_TABS } from '../../data/content';
 
 interface StrategyGoalsTabProps {
@@ -35,9 +36,7 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
     <div className="flex flex-col gap-10 sm:gap-14">
       {/* 區塊 A：永續價值鏈 */}
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h2 className="section-title self-start text-2xl sm:text-3xl font-bold tracking-tight">
-          {language === 'zh' ? '永續價值鏈' : 'Sustainability Value Chain'}
-        </h2>
+        <SectionTitle>{language === 'zh' ? '永續價值鏈' : 'Sustainability Value Chain'}</SectionTitle>
 
         <div className="flex flex-col gap-4 max-w-4xl">
           {intro.map((para, i) => (
@@ -59,9 +58,9 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
 
       {/* 區塊 B：永續發展策略與短中長期目標 */}
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h2 className="section-title self-start text-2xl sm:text-3xl font-bold tracking-tight">
+        <SectionTitle>
           {language === 'zh' ? '永續發展策略與短中長期目標' : 'Strategy & Short/Mid/Long-term Goals'}
-        </h2>
+        </SectionTitle>
 
         <TabPills
           tabs={STRATEGY_GOAL_TABS.map((t) => ({ id: t.id, label: language === 'zh' ? t.labelZh : t.labelEn }))}
