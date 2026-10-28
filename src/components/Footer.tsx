@@ -19,18 +19,16 @@ interface FooterColumn {
   links: FooterLink[];
 }
 
-// Every link routes to the closest matching real homepage section. Three
-// dedicated inner pages already exist (see Header.tsx's NAV_CATEGORIES
-// comment for the full explanation) but are intentionally not linked here
-// yet pending client sign-off — a sitemap footer still needs each item to
-// go somewhere real rather than dead-end, so these three fall back to their
-// old homepage anchors just like every other not-yet-built item.
+// Every link routes to the closest matching real homepage section, except
+// 公司簡介 / 永續發展策略 / 台中貨櫃集散站, which point at their own dedicated
+// page sentinels (see Header.tsx's NAV_CATEGORIES comment) instead of a
+// homepage anchor.
 const FOOTER_COLUMNS: FooterColumn[] = [
   {
     titleZh: '關於中櫃',
     titleEn: 'About Us',
     links: [
-      { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about' },
+      { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about-page' },
       { labelZh: '中櫃大事記', labelEn: 'Milestones', sectionId: 'about' },
       { labelZh: '獲獎及認證', labelEn: 'Awards & Certifications', sectionId: 'about' },
       { labelZh: '人才招募', labelEn: 'Careers', sectionId: 'careers' },
@@ -44,7 +42,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     titleEn: 'Sustainability',
     links: [
       { labelZh: '經營者的話', labelEn: "Management's Message", sectionId: 'about' },
-      { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'esg' },
+      { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'sustainability-strategy-page' },
       { labelZh: '利害關係人', labelEn: 'Stakeholders', sectionId: 'esg' },
       { labelZh: '風險管理', labelEn: 'Risk Management', sectionId: 'esg' },
       { labelZh: '供應鏈管理', labelEn: 'Supply Chain Management', sectionId: 'esg' },
@@ -67,7 +65,7 @@ const FOOTER_COLUMNS: FooterColumn[] = [
       { labelZh: '據點圖', labelEn: 'Terminal Map', sectionId: 'operations' },
       { labelZh: '五堵集散站', labelEn: 'Wudu Depot', sectionId: 'operations' },
       { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
-      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'operations' },
+      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'taichung-depot-page' },
       { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' }
     ]
   },

@@ -25,14 +25,10 @@ interface NavCategory {
 
 // First level only, by design — every category is a hover (desktop) / tap
 // (mobile) dropdown of flat links, no nested second/third level anywhere.
-// Sub-items route to the closest matching real homepage section. Three
-// dedicated inner pages already exist (CompanyProfilePage,
-// SustainabilityStrategyPage, TaichungDepotPage, registered in App.tsx) but
-// are intentionally NOT linked from here yet — client hasn't signed off on
-// showing them publicly — so their nav items still point at the old
-// homepage anchors rather than the page sentinels ('about-page' /
-// 'sustainability-strategy-page' / 'taichung-depot-page'). Re-point these
-// three sectionId values once approved to go live.
+// Sub-items route to the closest matching real homepage section, except
+// 公司簡介 / 永續發展策略 / 台中貨櫃集散站, which point at their own dedicated
+// page sentinels ('about-page' / 'sustainability-strategy-page' /
+// 'taichung-depot-page', registered in App.tsx) instead of a homepage anchor.
 const NAV_CATEGORIES: NavCategory[] = [
   {
     id: 'about',
@@ -40,7 +36,7 @@ const NAV_CATEGORIES: NavCategory[] = [
     labelEn: 'About Us',
     sectionId: 'about',
     items: [
-      { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about' },
+      { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about-page' },
       { labelZh: '中櫃大事記', labelEn: 'Milestones', sectionId: 'about' },
       { labelZh: '獲獎及認證', labelEn: 'Awards & Certifications', sectionId: 'about' },
       { labelZh: '人才招募', labelEn: 'Careers', sectionId: 'careers' },
@@ -56,7 +52,7 @@ const NAV_CATEGORIES: NavCategory[] = [
     sectionId: 'esg',
     items: [
       { labelZh: '經營者的話', labelEn: "Management's Message", sectionId: 'about' },
-      { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'esg' },
+      { labelZh: '永續發展策略', labelEn: 'Sustainability Strategy', sectionId: 'sustainability-strategy-page' },
       { labelZh: '利害關係人', labelEn: 'Stakeholders', sectionId: 'esg' },
       { labelZh: '風險管理', labelEn: 'Risk Management', sectionId: 'esg' },
       { labelZh: '供應鏈管理', labelEn: 'Supply Chain Management', sectionId: 'esg' },
@@ -83,7 +79,7 @@ const NAV_CATEGORIES: NavCategory[] = [
       { labelZh: '據點圖', labelEn: 'Terminal Map', sectionId: 'operations' },
       { labelZh: '五堵集散站', labelEn: 'Wudu Depot', sectionId: 'operations' },
       { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
-      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'operations' },
+      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'taichung-depot-page' },
       { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' }
     ]
   },

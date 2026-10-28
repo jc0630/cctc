@@ -26,9 +26,19 @@ const VIEW_SENTINELS: Record<string, View> = {
   'taichung-depot-page': 'taichung-depot'
 };
 
+const PREVIEWABLE_VIEWS: View[] = ['about-page', 'sustainability-strategy', 'taichung-depot'];
+
+// Lets a direct link (e.g. shared for client preview before the pages are
+// signed off publicly) land straight on one of the dedicated views via
+// ?page=<view>, instead of only being reachable through in-app nav clicks.
+const getInitialView = (): View => {
+  const page = new URLSearchParams(window.location.search).get('page');
+  return PREVIEWABLE_VIEWS.includes(page as View) ? (page as View) : 'home';
+};
+
 export default function App() {
   const [language, setLanguage] = useState<Language>('zh');
-  const [currentView, setCurrentView] = useState<View>('home');
+  const [currentView, setCurrentView] = useState<View>(getInitialView);
 
   const handleNavigate = (sectionId: string) => {
     if (sectionId in VIEW_SENTINELS) {

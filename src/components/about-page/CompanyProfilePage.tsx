@@ -70,7 +70,7 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
       >
         <p>{language === 'zh' ? COMPANY_PROFILE_CERTIFICATIONS_ZH : COMPANY_PROFILE_CERTIFICATIONS_EN}</p>
         <p>{language === 'zh' ? COMPANY_PROFILE_MISSION_ZH : COMPANY_PROFILE_MISSION_EN}</p>
-        <button onClick={() => onNavigateSection('about')} className="self-start btn-explore group">
+        <button type="button" className="self-start btn-explore group">
           <span>{language === 'zh' ? COMPANY_PROFILE_CTA_LABEL_ZH : COMPANY_PROFILE_CTA_LABEL_EN}</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
         </button>

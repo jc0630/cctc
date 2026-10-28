@@ -41,14 +41,8 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ language }) => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
         {SUSTAINABILITY_REPORTS.map((report) => (
-          <a
-            key={report.year}
-            href={report.pdfUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex flex-col gap-3 transition-transform duration-300 hover:-translate-y-1"
-          >
-            <div className="transition-shadow duration-300 group-hover:shadow-lg rounded-[var(--radius-card)]">
+          <div key={report.year} className="group flex flex-col gap-3">
+            <div className="rounded-[var(--radius-card)]">
               <ReportCover src={report.coverImage} year={report.year} />
             </div>
             <div className="flex items-center gap-2 justify-center text-center">
@@ -57,7 +51,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ language }) => {
                 {language === 'zh' ? report.titleZh : report.titleEn}
               </span>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
