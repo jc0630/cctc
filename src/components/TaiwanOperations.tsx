@@ -6,11 +6,13 @@ import { TERMINAL_LOCATIONS } from '../data/content';
 interface TaiwanOperationsProps {
   language: Language;
   onViewAllLocations: () => void;
+  onContactSales: () => void;
 }
 
 export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
   language,
-  onViewAllLocations
+  onViewAllLocations,
+  onContactSales
 }) => {
   const renderCard = (loc: TerminalLocation) => (
     <div
@@ -51,13 +53,16 @@ export const TaiwanOperations: React.FC<TaiwanOperationsProps> = ({
             </h2>
           </div>
 
-          <button
-            onClick={onViewAllLocations}
-            className="order-3 sm:order-2 self-end sm:self-auto btn-explore group"
-          >
-            <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-          </button>
+          <div className="order-3 sm:order-2 self-end sm:self-auto flex flex-wrap items-center gap-3">
+            <button onClick={onContactSales} className="btn-explore group">
+              <span>{language === 'zh' ? '業務洽詢' : 'Contact Sales'}</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </button>
+            <button onClick={onViewAllLocations} className="btn-explore group">
+              <span>{language === 'zh' ? '了解更多' : 'Explore More'}</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
 
           {/* All 4 locations always shown — 2x2 on mobile/tablet, 4-across on desktop */}
           <div className="order-2 sm:order-3 w-full grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">

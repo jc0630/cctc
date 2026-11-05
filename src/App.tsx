@@ -90,7 +90,7 @@ export default function App() {
           ) : currentView === 'about-page' ? (
             <CompanyProfilePage language={language} onNavigateSection={handleNavigate} />
           ) : currentView === 'taichung-depot' ? (
-            <TaichungDepotPage language={language} />
+            <TaichungDepotPage language={language} onNavigateSection={handleNavigate} />
           ) : (
             <>
               {/* 01: Hero Section */}
@@ -111,6 +111,7 @@ export default function App() {
               <TaiwanOperations
                 language={language}
                 onViewAllLocations={() => handleNavigate('operations')}
+                onContactSales={() => handleNavigate('site-footer')}
               />
 
               {/* 06: ESG Sustainability Section */}

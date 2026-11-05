@@ -23,17 +23,25 @@ export const SustainabilityStrategyPage: React.FC<SustainabilityStrategyPageProp
     <div>
       <div className="relative">
         <PageBanner
-          image="/hero/banner-sustainability-strategy.jpg"
-          mobileImage="/hero/mobile-banner-sustainability-strategy.jpg"
+          image="/hero/2-2永續發展策略白1920.jpg"
+          mobileImage="/hero/2-2永續發展策略白800.jpg"
           eyebrowZh="企業永續"
           titleZh="永續發展策略"
           overlay={false}
+          mobileAspectRatio="800/360"
+          desktopAspectRatio="1920/430"
         />
-        {/* All 9 SDGs CCTC maps to, pressed directly onto the banner photo
-            rather than sitting in their own strip below it. */}
-        <div className="absolute inset-x-0 bottom-3 sm:bottom-5 z-10 flex justify-center px-4">
+        {/* All 9 SDGs CCTC maps to — overlaid on the banner itself at sm+,
+            where there's enough height to fit cleanly. Mobile keeps its own
+            band below the banner instead (see the block further down): the
+            short mobile banner doesn't have room for the icon row without
+            overlapping the title. */}
+        <div className="hidden sm:flex absolute inset-x-0 bottom-5 justify-center z-10">
           <SdgIconRow size="xs" />
         </div>
+      </div>
+      <div className="sm:hidden w-full py-5 px-4 flex justify-center bg-white">
+        <SdgIconRow size="xs" />
       </div>
 
       <PageSection>
@@ -44,10 +52,7 @@ export const SustainabilityStrategyPage: React.FC<SustainabilityStrategyPageProp
       </PageSection>
 
       <PageSection>
-        <div className="flex flex-col gap-6 sm:gap-8">
-          <SectionTitle>{language === 'zh' ? '數據儀表板' : 'Data Dashboard'}</SectionTitle>
-          <DashboardTab language={language} />
-        </div>
+        <DashboardTab language={language} />
       </PageSection>
 
       <PageSection>

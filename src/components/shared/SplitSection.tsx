@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageSection } from './PageSection';
 import { SectionTitle } from './SectionTitle';
+import { ImageLightbox, ZoomButton } from './ImageLightbox';
 
 interface SplitSectionProps {
   id?: string;
@@ -21,6 +22,10 @@ interface SplitSectionProps {
    * image in a horizontal-scroll container with a min-width floor instead
    * of shrinking it, same treatment as the Taichung Depot page's site maps. */
   scrollableImage?: boolean;
+  /** Adds a "放大檢視" button (bottom-right corner) that opens the image
+   * full-size in a lightbox — works with a plain photo or a scrollableImage
+   * infographic alike. */
+  zoomable?: boolean;
   children: React.ReactNode;
 }
 
@@ -39,8 +44,11 @@ export const SplitSection: React.FC<SplitSectionProps> = ({
   imageAlt,
   imageCaption,
   scrollableImage,
+  zoomable,
   children
 }) => {
+  const [zoomOpen, setZoomOpen] = useState(false);
+
   return (
     <PageSection id={id}>
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 ${align === 'start' ? 'lg:items-start' : 'lg:items-stretch'}`}>
@@ -52,21 +60,34 @@ export const SplitSection: React.FC<SplitSectionProps> = ({
         </div>
         <div className={`flex flex-col ${reverse ? 'lg:order-1' : ''}`}>
           {scrollableImage ? (
-            <div className="flex-1 min-h-0 overflow-x-auto rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised">
+            <div className="relative flex-1 min-h-0 overflow-x-auto rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised">
               <img src={image} alt={imageAlt} className="min-w-[480px] sm:min-w-[560px] lg:min-w-0 lg:h-full lg:w-auto w-full h-auto" />
+              {zoomable && <ZoomButton onClick={() => setZoomOpen(true)} />}
             </div>
           ) : (
-            <img
-              src={image}
-              alt={imageAlt}
-              className="flex-1 min-h-0 w-full lg:h-full object-cover rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
-            />
+            // The <img> stays in normal flow (not absolutely positioned) so
+            // it keeps contributing its own content height to this wrapper —
+            // on mobile the grid row has no externally-stretched height to
+            // flex-grow into, so an auto-height flex item with no in-flow
+            // content collapses to 0 (confirmed by testing position:absolute
+            // here). Same wrapper pattern as the scrollableImage branch above.
+            <div className="relative flex-1 min-h-0">
+              <img
+                src={image}
+                alt={imageAlt}
+                className="w-full h-auto lg:h-full object-cover rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised"
+              />
+              {zoomable && <ZoomButton onClick={() => setZoomOpen(true)} />}
+            </div>
           )}
           {imageCaption && (
             <p className="mt-2 text-xs sm:text-sm text-[var(--color-text-secondary)] leading-snug">{imageCaption}</p>
           )}
         </div>
       </div>
+      {zoomable && zoomOpen && (
+        <ImageLightbox image={image} imageAlt={imageAlt} onClose={() => setZoomOpen(false)} />
+      )}
     </PageSection>
   );
 };

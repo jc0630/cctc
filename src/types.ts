@@ -172,13 +172,24 @@ export interface TaichungDepotTerminal {
   id: string;
   labelZh: string;
   labelEn: string;
+  /** Entry-card photo (placeholder until the client supplies real per-
+   * terminal photography — see content.ts). */
+  cardImage: string;
+  /** Short intro paragraph — doubles as the entry card's blurb (line-
+   * clamped) and the detail view's lead paragraph before its stats. */
+  introZh: string;
+  introEn: string;
   facilityStats: TaichungStatSection;
   equipmentStats: TaichungStatSection;
   specTable?: TaichungBerthSpecTable;
-  extraStats?: TaichungStatSection;
   layoutImage: string;
   layoutImageCaptionZh: string;
   layoutImageCaptionEn: string;
+  /** Downloadable site-map PDF. Omit until the client supplies the actual
+   * file — the download control only renders when this is set, so a
+   * not-yet-provided asset never becomes a dead link (same approach already
+   * taken for the Sustainability Reports' pdfUrl). */
+  layoutPdfUrl?: string;
 }
 
 export interface HeroSlide {

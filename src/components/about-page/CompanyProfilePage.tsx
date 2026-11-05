@@ -5,6 +5,7 @@ import { PageBanner } from '../shared/PageBanner';
 import { SplitSection } from '../shared/SplitSection';
 import {
   COMPANY_PROFILE_BANNER_IMAGE,
+  COMPANY_PROFILE_BANNER_MOBILE_IMAGE,
   COMPANY_PROFILE_BANNER_EYEBROW_ZH,
   COMPANY_PROFILE_BANNER_TITLE_ZH,
   COMPANY_PROFILE_SECTION_HISTORY_TITLE_ZH,
@@ -45,9 +46,12 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
     <div>
       <PageBanner
         image={COMPANY_PROFILE_BANNER_IMAGE}
+        mobileImage={COMPANY_PROFILE_BANNER_MOBILE_IMAGE}
         eyebrowZh={COMPANY_PROFILE_BANNER_EYEBROW_ZH}
         titleZh={COMPANY_PROFILE_BANNER_TITLE_ZH}
         overlay={false}
+        mobileAspectRatio="800/360"
+        desktopAspectRatio="1920/430"
       />
 
       <SplitSection
@@ -56,9 +60,14 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
         imageAlt={language === 'zh' ? COMPANY_PROFILE_LOCATIONS_MAP_CAPTION_ZH : COMPANY_PROFILE_LOCATIONS_MAP_CAPTION_EN}
         imageCaption={language === 'zh' ? COMPANY_PROFILE_LOCATIONS_MAP_CAPTION_ZH : COMPANY_PROFILE_LOCATIONS_MAP_CAPTION_EN}
         scrollableImage
+        zoomable
       >
         <p>{language === 'zh' ? COMPANY_PROFILE_FOUNDING_ZH : COMPANY_PROFILE_FOUNDING_EN}</p>
         <p>{language === 'zh' ? COMPANY_PROFILE_OPERATIONS_ZH : COMPANY_PROFILE_OPERATIONS_EN}</p>
+        <button type="button" onClick={() => onNavigateSection('about')} className="self-start btn-explore group">
+          <span>{language === 'zh' ? COMPANY_PROFILE_CTA_LABEL_ZH : COMPANY_PROFILE_CTA_LABEL_EN}</span>
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+        </button>
       </SplitSection>
 
       <SplitSection
@@ -67,13 +76,10 @@ export const CompanyProfilePage: React.FC<CompanyProfilePageProps> = ({ language
         image={COMPANY_PROFILE_SECONDARY_IMAGE}
         imageAlt={language === 'zh' ? COMPANY_PROFILE_SECONDARY_IMAGE_CAPTION_ZH : COMPANY_PROFILE_SECONDARY_IMAGE_CAPTION_EN}
         imageCaption={language === 'zh' ? COMPANY_PROFILE_SECONDARY_IMAGE_CAPTION_ZH : COMPANY_PROFILE_SECONDARY_IMAGE_CAPTION_EN}
+        zoomable
       >
         <p>{language === 'zh' ? COMPANY_PROFILE_CERTIFICATIONS_ZH : COMPANY_PROFILE_CERTIFICATIONS_EN}</p>
         <p>{language === 'zh' ? COMPANY_PROFILE_MISSION_ZH : COMPANY_PROFILE_MISSION_EN}</p>
-        <button type="button" className="self-start btn-explore group">
-          <span>{language === 'zh' ? COMPANY_PROFILE_CTA_LABEL_ZH : COMPANY_PROFILE_CTA_LABEL_EN}</span>
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-        </button>
       </SplitSection>
     </div>
   );

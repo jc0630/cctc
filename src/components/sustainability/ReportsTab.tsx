@@ -8,16 +8,19 @@ interface ReportsTabProps {
   language: Language;
 }
 
-// Real cover scans haven't been supplied yet (see SUSTAINABILITY_REPORTS —
-// coverImage points at /reports/cover-{year}.jpg). Until a file exists at
-// that path, each card falls back to a branded placeholder so the grid still
-// reads cleanly; dropping a real cover in later needs no code change.
+// Real cover scans are landscape (the client's supplied files are ~7015×4960,
+// a 1.414:1 ratio) rather than a typical portrait book cover, so the frame
+// matches that ratio exactly — object-cover then has nothing to crop. Years
+// without a real cover yet (coverImage still pointing at /reports/cover-
+// {year}.jpg) fall back to a branded placeholder at the same ratio so the
+// grid stays visually consistent; dropping in a real cover later needs no
+// code change.
 const ReportCover: React.FC<{ src: string; year: number }> = ({ src, year }) => {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
     return (
-      <div className="w-full aspect-[1/1.414] rounded-[var(--radius-card)] bg-[var(--color-blue-100)] border border-[var(--color-blue-300)] flex flex-col items-center justify-center gap-2">
+      <div className="w-full aspect-[7015/4960] rounded-[var(--radius-card)] bg-[var(--color-blue-100)] border border-[var(--color-blue-300)] flex flex-col items-center justify-center gap-2">
         <FileText className="w-10 h-10 sm:w-12 sm:h-12 text-[var(--color-cta)]" />
         <span className="text-sm sm:text-base font-bold text-[var(--color-cta)]">{year}</span>
       </div>
@@ -29,7 +32,7 @@ const ReportCover: React.FC<{ src: string; year: number }> = ({ src, year }) => 
       src={src}
       onError={() => setFailed(true)}
       alt={`${year}`}
-      className="w-full aspect-[1/1.414] object-cover rounded-[var(--radius-card)] border border-slate-200"
+      className="w-full aspect-[7015/4960] object-cover rounded-[var(--radius-card)] border border-slate-200"
     />
   );
 };
@@ -39,7 +42,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ language }) => {
     <div className="flex flex-col gap-8 sm:gap-10">
       <SectionTitle>{language === 'zh' ? '永續報告書' : 'Sustainability Reports'}</SectionTitle>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         {SUSTAINABILITY_REPORTS.map((report) => (
           <div key={report.year} className="group flex flex-col gap-3">
             <div className="rounded-[var(--radius-card)]">

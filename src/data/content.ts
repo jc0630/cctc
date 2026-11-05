@@ -381,7 +381,11 @@ export const NEWS_ARTICLES: NewsArticle[] = [
 // multi-section build entirely. Eyebrow + left-aligned banner title follows
 // the brief's own reference (modeled on U-Ming Marine Transport's 公司簡介
 // page layout).
-export const COMPANY_PROFILE_BANNER_IMAGE = '/hero/banner-company-profile.jpg';
+// Client-supplied crops, sized exactly to the banner's 1920/430 (desktop)
+// and 800/360 (mobile) aspect ratios — see PageBanner's desktopAspectRatio/
+// mobileAspectRatio props on the CompanyProfilePage banner.
+export const COMPANY_PROFILE_BANNER_IMAGE = '/hero/1-1公司簡介1920.jpg';
+export const COMPANY_PROFILE_BANNER_MOBILE_IMAGE = '/hero/1-1公司簡介800.jpg';
 export const COMPANY_PROFILE_BANNER_TITLE_ZH = '公司簡介';
 
 export const COMPANY_PROFILE_BANNER_EYEBROW_ZH = '關於中櫃';
@@ -787,12 +791,8 @@ export const STRATEGY_GOAL_TABS: StrategyGoalTab[] = [
 // ---- 子頁四：永續報告書 ----
 // 年度由近到遠排列；封面與 PDF 檔案待中櫃提供後依下列路徑命名放入對應資料夾即可生效。
 export const SUSTAINABILITY_REPORTS: SustainabilityReportItem[] = [
-  { year: 2025, titleZh: '2025 年永續報告書', titleEn: '2025 Sustainability Report', coverImage: '/reports/cover-2025.jpg', pdfUrl: '/reports/2025-sustainability-report.pdf' },
-  { year: 2024, titleZh: '2024 年永續報告書', titleEn: '2024 Sustainability Report', coverImage: '/reports/cover-2024.jpg', pdfUrl: '/reports/2024-sustainability-report.pdf' },
-  { year: 2023, titleZh: '2023 年永續報告書', titleEn: '2023 Sustainability Report', coverImage: '/reports/cover-2023.jpg', pdfUrl: '/reports/2023-sustainability-report.pdf' },
-  { year: 2022, titleZh: '2022 年永續報告書', titleEn: '2022 Sustainability Report', coverImage: '/reports/cover-2022.jpg', pdfUrl: '/reports/2022-sustainability-report.pdf' },
-  { year: 2021, titleZh: '2021 年永續報告書', titleEn: '2021 Sustainability Report', coverImage: '/reports/cover-2021.jpg', pdfUrl: '/reports/2021-sustainability-report.pdf' },
-  { year: 2020, titleZh: '2020 年永續報告書', titleEn: '2020 Sustainability Report', coverImage: '/reports/cover-2020.jpg', pdfUrl: '/reports/2020-sustainability-report.pdf' }
+  { year: 2025, titleZh: '2025 年永續報告書', titleEn: '2025 Sustainability Report', coverImage: '/images/中國貨櫃_2025年度永續報告書.jpg', pdfUrl: '/reports/2025-sustainability-report.pdf' },
+  { year: 2024, titleZh: '2024 年永續報告書', titleEn: '2024 Sustainability Report', coverImage: '/images/中國貨櫃_2024年度永續報告書.jpg', pdfUrl: '/reports/2024-sustainability-report.pdf' }
 ];
 
 export const MOCK_CONTAINER_RESULTS: Record<string, {
@@ -831,21 +831,41 @@ export const MOCK_CONTAINER_RESULTS: Record<string, {
 };
 
 // ---- 台中貨櫃集散站 (Taichung Container Depot page) ----
-// Two tabs, one per terminal (10-11號碼頭／31號碼頭), each a fully
-// self-contained TaichungDepotTerminal — facility/equipment counts and berth
-// specs are sourced from CCTC's own terminal fact sheets; the two site-layout
-// map images are the company's real yard maps (not the slide deck's AI demo
-// mockup, which was style reference only).
+// One entry screen (depot intro + a card per terminal) leading into two
+// self-contained TaichungDepotTerminal detail views (10-11號碼頭／31號碼頭) —
+// facility/equipment counts and berth specs are sourced from CCTC's own
+// terminal fact sheets; the two site-layout map images are the company's
+// real yard maps (not the slide deck's AI demo mockup, which was style
+// reference only).
 export const TAICHUNG_DEPOT_BANNER_IMAGE = '/hero/banner-taichung-depot.jpg';
 export const TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE = '/hero/mobile-banner-taichung-depot.jpg';
 export const TAICHUNG_DEPOT_BANNER_EYEBROW_ZH = '營運服務';
 export const TAICHUNG_DEPOT_BANNER_TITLE_ZH = '台中貨櫃集散站';
+
+// Depot-level intro shown on the entry screen before the terminal cards.
+// Photo and address are placeholders reused from existing site assets
+// (TERMINAL_LOCATIONS' Taichung entry) pending the client's own dedicated
+// depot photography and a precise per-berth street address.
+export const TAICHUNG_DEPOT_INTRO_IMAGE = '/locations/taichung.jpg';
+export const TAICHUNG_DEPOT_INTRO_ZH =
+  '台中貨櫃集散站位於台中港，為中櫃深耕中台灣的核心營運據點，設有10-11號及31號兩座碼頭，提供貨櫃裝卸、堆存與轉運等一貫化服務。場站具備深水泊位、自動化門式起重機與智慧化櫃場管理系統，長期服務航商、進出口貿易及物流業者，並持續投入高效能機具與綠色能源設備，提升作業效率並降低營運過程中的環境衝擊。';
+export const TAICHUNG_DEPOT_INTRO_EN =
+  "Located at Taichung Port, the Taichung Container Depot is CCTC's core operating base in central Taiwan, comprising Terminal 10-11 and Terminal 31 and offering integrated container handling, storage and transshipment services. The depot features deep-water berths, automated gantry cranes and a smart yard management system, long serving shipping lines, import/export traders and logistics operators, while continuously investing in high-performance equipment and green energy systems to improve efficiency and reduce environmental impact.";
+export const TAICHUNG_DEPOT_ADDRESS_ZH = '台中市梧棲區港區路段';
+export const TAICHUNG_DEPOT_ADDRESS_EN = 'Port Area Rd., Wuqi Dist., Taichung City';
 
 export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
   {
     id: 'berth-10-11',
     labelZh: '10-11號碼頭',
     labelEn: 'Terminal 10-11',
+    // Placeholder entry-card photo pending the client's own per-terminal
+    // photography (see 二 in the brief — "圖片尚未提供，先使用示意圖").
+    cardImage: '/hero/banner-taichung-depot.jpg',
+    introZh:
+      '10-11號碼頭為台中港主力貨櫃碼頭，具備深水泊位與自動化門式起重機，年吞吐量居全站之冠，並持續導入電動解櫃車等低碳設備，強化作業效率與環境友善度。',
+    introEn:
+      "Terminal 10-11 is Taichung Port's primary container terminal, equipped with dedicated deep-water berths and automated gantry cranes, handling the depot's highest throughput while continuously adopting electric container tractors and other low-carbon equipment.",
     facilityStats: {
       titleZh: '場地及建築物規模',
       titleEn: 'Facilities & Area',
@@ -856,19 +876,17 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
         { iconKey: 'workshop', labelZh: '維修廠與機棚面積（1座）', labelEn: 'Workshop Area (1 unit)', valueZh: '1,510', unitZh: '平方公尺', unitEn: 'm²' }
       ]
     },
+    // Consolidated into 5 headline categories (was 10 granular line items)
+    // so the grid stays compact instead of running a card per equipment
+    // type — see 三 in the brief ("移除一項設備一張卡片...改為集中、精簡").
     equipmentStats: {
       titleZh: '機具設備',
       titleEn: 'Handling Equipment',
       items: [
-        { iconKey: 'crane', labelZh: '橋式起重機', labelEn: 'Gantry Cranes', valueZh: '5', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'crane', labelZh: '軌道式起重機', labelEn: 'Rail-Mounted Gantry Cranes', valueZh: '15', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'crane', labelZh: '輪胎式起重機', labelEn: 'Rubber-Tyred Gantry Cranes', valueZh: '11', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'stacker', labelZh: '堆積機', labelEn: 'Reach Stackers', valueZh: '3', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'handler', labelZh: '空櫃機', labelEn: 'Empty Container Handlers', valueZh: '4', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'forklift', labelZh: '堆高機', labelEn: 'Forklifts', valueZh: '40', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'chassis', labelZh: '車架', labelEn: 'Chassis', valueZh: '103', unitZh: '台', unitEn: 'units' },
-        { iconKey: 'reefer', labelZh: '冷凍櫃插座（440伏特）', labelEn: 'Reefer Sockets (440V)', valueZh: '146', unitZh: '座', unitEn: 'units' },
-        { iconKey: 'generator', labelZh: '冷凍櫃場供電用發電機', labelEn: 'Reefer Yard Generator', valueZh: '1', unitZh: '台', unitEn: 'unit' },
+        { iconKey: 'crane', labelZh: '各式橋式機', labelEn: 'Gantry Cranes (All Types)', valueZh: '31', unitZh: '座', unitEn: 'units' },
+        { iconKey: 'stacker', labelZh: '推積機／推高機', labelEn: 'Reach Stackers / Forklifts', valueZh: '47', unitZh: '輛', unitEn: 'units' },
+        { iconKey: 'chassis', labelZh: '車架', labelEn: 'Chassis', valueZh: '100+', unitZh: '', unitEn: '' },
+        { iconKey: 'reefer', labelZh: '冷凍櫃插座 440V', labelEn: 'Reefer Sockets (440V)', valueZh: '146', unitZh: '座', unitEn: 'units' },
         { iconKey: 'tractor', labelZh: '電動解櫃車', labelEn: 'Electric Container Tractors', valueZh: '4', unitZh: '部', unitEn: 'units' }
       ]
     },
@@ -895,6 +913,13 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
     id: 'berth-31',
     labelZh: '31號碼頭',
     labelEn: 'Terminal 31',
+    // Placeholder entry-card photo pending the client's own per-terminal
+    // photography (see 二 in the brief — "圖片尚未提供，先使用示意圖").
+    cardImage: '/locations/taichung.jpg',
+    introZh:
+      '31號碼頭鄰近台中港西側，以空櫃調度及多元作業區規劃見長，提供彈性堆存空間，支援進出口貨櫃集散與轉運需求。',
+    introEn:
+      'Terminal 31, on the western side of Taichung Port, is known for flexible empty-container dispatch and multi-zone yard planning, providing adaptable storage capacity to support import/export container consolidation and transshipment.',
     facilityStats: {
       titleZh: '場地及建築物規模',
       titleEn: 'Facilities & Area',
@@ -905,33 +930,17 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
         { iconKey: 'workshop', labelZh: '維修廠與機棚面積（1座）', labelEn: 'Workshop Area (1 unit)', valueZh: '1,168', unitZh: '平方公尺', unitEn: 'm²' }
       ]
     },
+    // Consolidated into 5 headline categories (was 9 granular line items) —
+    // same rationale as Terminal 10-11 above.
     equipmentStats: {
       titleZh: '機具設備',
       titleEn: 'Handling Equipment',
       items: [
-        { iconKey: 'crane', labelZh: '軌道式起重機', labelEn: 'Rail-Mounted Gantry Cranes', valueZh: '2', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'crane', labelZh: '輪胎式起重機', labelEn: 'Rubber-Tyred Gantry Cranes', valueZh: '5', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'stacker', labelZh: '堆積機', labelEn: 'Reach Stackers', valueZh: '2', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'handler', labelZh: '空櫃機', labelEn: 'Empty Container Handlers', valueZh: '3', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'forklift', labelZh: '堆高機', labelEn: 'Forklifts', valueZh: '15', unitZh: '部', unitEn: 'units' },
-        { iconKey: 'forklift', labelZh: '電動堆高機', labelEn: 'Electric Forklifts', valueZh: '9', unitZh: '台', unitEn: 'units' },
-        { iconKey: 'tractor', labelZh: '解櫃車', labelEn: 'Container Tractor', valueZh: '1', unitZh: '部', unitEn: 'unit' },
-        { iconKey: 'chassis', labelZh: '車架', labelEn: 'Chassis', valueZh: '21', unitZh: '台', unitEn: 'units' },
-        { iconKey: 'reefer', labelZh: '冷凍櫃插座（440伏特）', labelEn: 'Reefer Sockets (440V)', valueZh: '70', unitZh: '座', unitEn: 'units' }
-      ]
-    },
-    extraStats: {
-      titleZh: '主要作業區容量',
-      titleEn: 'Yard Capacity by Zone',
-      items: [
-        { iconKey: 'capacity', labelZh: 'TL作業區', labelEn: 'Zone TL', valueZh: '1,872', unitZh: 'TEU', unitEn: 'TEU' },
-        { iconKey: 'capacity', labelZh: 'TF作業區', labelEn: 'Zone TF', valueZh: '510', unitZh: 'TEU', unitEn: 'TEU' },
-        { iconKey: 'capacity', labelZh: 'RTG作業區', labelEn: 'Zone RTG', valueZh: '1,360', unitZh: 'TEU', unitEn: 'TEU' },
-        { iconKey: 'capacity', labelZh: 'RT作業區', labelEn: 'Zone RT', valueZh: '1,772', unitZh: 'TEU', unitEn: 'TEU' },
-        { iconKey: 'capacity', labelZh: 'A3空櫃區（雙區）', labelEn: 'Zone A3 Empty (×2)', valueZh: '578×2', unitZh: 'TEU', unitEn: 'TEU' },
-        { iconKey: 'capacity', labelZh: 'A2空櫃區', labelEn: 'Zone A2 Empty', valueZh: '900', unitZh: 'TEU', unitEn: 'TEU' },
-        { iconKey: 'capacity', labelZh: 'A1空櫃區', labelEn: 'Zone A1 Empty', valueZh: '306', unitZh: 'TEU', unitEn: 'TEU' },
-        { iconKey: 'reefer', labelZh: '冷凍櫃區', labelEn: 'Reefer Zone', valueZh: '70', unitZh: 'BOX', unitEn: 'BOX' }
+        { iconKey: 'crane', labelZh: '各式橋式機', labelEn: 'Gantry Cranes (All Types)', valueZh: '5', unitZh: '座', unitEn: 'units' },
+        { iconKey: 'stacker', labelZh: '推積機／推高機', labelEn: 'Reach Stackers / Forklifts', valueZh: '23', unitZh: '輛', unitEn: 'units' },
+        { iconKey: 'chassis', labelZh: '車架', labelEn: 'Chassis', valueZh: '20+', unitZh: '', unitEn: '' },
+        { iconKey: 'reefer', labelZh: '冷凍櫃插座 440V', labelEn: 'Reefer Sockets (440V)', valueZh: '70', unitZh: '座', unitEn: 'units' },
+        { iconKey: 'tractor', labelZh: '電動解櫃車', labelEn: 'Electric Container Tractors', valueZh: '1', unitZh: '部', unitEn: 'units' }
       ]
     },
     layoutImage: '/images/operations/taichung-berth-31-layout.jpg',

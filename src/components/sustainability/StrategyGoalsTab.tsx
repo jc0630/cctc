@@ -4,6 +4,7 @@ import { Language } from '../../types';
 import { TabPills } from './TabPills';
 import { SdgIconRow } from './SdgIconRow';
 import { SectionTitle } from '../shared/SectionTitle';
+import { ImageLightbox, ZoomButton } from '../shared/ImageLightbox';
 import { VALUE_CHAIN_INTRO_ZH, VALUE_CHAIN_INTRO_EN, STRATEGY_GOAL_TABS } from '../../data/content';
 
 interface StrategyGoalsTabProps {
@@ -19,8 +20,10 @@ const PERIODS = [
 export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) => {
   const [activeGoalTab, setActiveGoalTab] = useState(STRATEGY_GOAL_TABS[0].id);
   const [openPeriods, setOpenPeriods] = useState<Record<string, boolean>>({ short: true });
+  const [valueChainZoomOpen, setValueChainZoomOpen] = useState(false);
   const activeTab = STRATEGY_GOAL_TABS.find((t) => t.id === activeGoalTab)!;
   const intro = language === 'zh' ? VALUE_CHAIN_INTRO_ZH : VALUE_CHAIN_INTRO_EN;
+  const valueChainAlt = language === 'zh' ? '永續價值鏈流程圖' : 'Sustainability value chain diagram';
 
   const togglePeriod = (id: string) => {
     setOpenPeriods((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -48,12 +51,25 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
 
         {/* Value chain flow diagram, supplied as a finished graphic — covers
             the full flow plus the TOS 2.0/EMS/MMS and ISO-certification
-            callouts that previously lived in separate cards below it. */}
-        <img
-          src="/images/about/image22.png"
-          alt={language === 'zh' ? '永續價值鏈流程圖' : 'Sustainability value chain diagram'}
-          className="w-full rounded-[var(--radius-panel)] border border-slate-200"
-        />
+            callouts that previously lived in separate cards below it. Text
+            inside the graphic is too dense to shrink to a narrow mobile
+            width, so it keeps a min-width floor (horizontal scroll) below lg
+            instead, plus a zoom button for a full-size look at either size. */}
+        <div className="relative overflow-x-auto rounded-[var(--radius-panel)] border border-slate-200">
+          <img
+            src="/images/about/image22.png"
+            alt={valueChainAlt}
+            className="min-w-[900px] lg:min-w-0 w-full h-auto"
+          />
+          <ZoomButton onClick={() => setValueChainZoomOpen(true)} />
+        </div>
+        {valueChainZoomOpen && (
+          <ImageLightbox
+            image="/images/about/image22.png"
+            imageAlt={valueChainAlt}
+            onClose={() => setValueChainZoomOpen(false)}
+          />
+        )}
       </div>
 
       {/* 區塊 B：永續發展策略與短中長期目標 */}
