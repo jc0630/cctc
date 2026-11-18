@@ -8,6 +8,22 @@ import { HighlightsTab } from './HighlightsTab';
 import { DashboardTab } from './DashboardTab';
 import { StrategyGoalsTab } from './StrategyGoalsTab';
 import { ReportsTab } from './ReportsTab';
+import { AnchorNav } from '../shared/AnchorNav';
+
+// Matches the id's StrategyGoalsTab/ReportsTab place on their own content
+// wrappers below — scrollspy targets for AnchorNav, not routes.
+const ANCHOR_NAV_ITEMS_ZH = [
+  { id: 'sustainability-highlights', label: '永續績效亮點' },
+  { id: 'sustainability-value-chain', label: '永續價值鏈' },
+  { id: 'sustainability-strategy-goals', label: '永續發展策略與短中長期目標' },
+  { id: 'sustainability-reports', label: '永續報告書' }
+];
+const ANCHOR_NAV_ITEMS_EN = [
+  { id: 'sustainability-highlights', label: 'Sustainability Highlights' },
+  { id: 'sustainability-value-chain', label: 'Sustainability Value Chain' },
+  { id: 'sustainability-strategy-goals', label: 'Strategy & Short/Mid/Long-term Goals' },
+  { id: 'sustainability-reports', label: 'Sustainability Reports' }
+];
 
 interface SustainabilityStrategyPageProps {
   language: Language;
@@ -44,8 +60,10 @@ export const SustainabilityStrategyPage: React.FC<SustainabilityStrategyPageProp
         <SdgIconRow size="xs" />
       </div>
 
+      <AnchorNav items={language === 'zh' ? ANCHOR_NAV_ITEMS_ZH : ANCHOR_NAV_ITEMS_EN} />
+
       <PageSection>
-        <div className="flex flex-col gap-6 sm:gap-8">
+        <div id="sustainability-highlights" className="flex flex-col gap-6 sm:gap-8">
           <SectionTitle>{language === 'zh' ? '永續績效亮點' : 'Sustainability Highlights'}</SectionTitle>
           <HighlightsTab language={language} />
         </div>

@@ -192,6 +192,24 @@ export interface TaichungDepotTerminal {
   layoutPdfUrl?: string;
 }
 
+// Single-language FAQ content (a page picks COMPANY_PROFILE_FAQ_ZH or _EN
+// wholesale rather than resolving ZH/EN per field) — shared by content.ts's
+// data and the FaqAccordion component that renders it.
+export interface FaqContentItem {
+  /** 1-based question number — rendered as "Q1"/"A1" etc. */
+  number: number;
+  question: string;
+  /** Lead-in sentence(s) of the answer, shown right after the "A1" label. */
+  answer: string;
+  /** Optional "label：detail" bullet list under the answer (e.g. a
+   * breakdown of services or certifications). */
+  bullets?: { label: string; text: string }[];
+  /** Optional supporting infographic — text-dense diagrams stay horizontally
+   * scrollable below lg instead of shrinking, same treatment as
+   * SplitSection's scrollableImage, plus a zoom button for the full size. */
+  image?: { src: string; alt: string; caption: string };
+}
+
 export interface HeroSlide {
   id: number;
   badgeZh: string;

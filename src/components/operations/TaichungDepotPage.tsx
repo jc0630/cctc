@@ -13,6 +13,7 @@ import {
   Boxes,
   Image as ImageIcon,
   ArrowRight,
+  Anchor,
   MapPin,
   Download
 } from 'lucide-react';
@@ -21,20 +22,28 @@ import { PageBanner } from '../shared/PageBanner';
 import { PageSection } from '../shared/PageSection';
 import { SectionTitle } from '../shared/SectionTitle';
 import { StatTile } from '../shared/StatTile';
-import { SplitSection } from '../shared/SplitSection';
 import { ImageLightbox, ZoomButton } from '../shared/ImageLightbox';
 import {
   TAICHUNG_DEPOT_BANNER_IMAGE,
   TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE,
   TAICHUNG_DEPOT_BANNER_EYEBROW_ZH,
   TAICHUNG_DEPOT_BANNER_TITLE_ZH,
-  TAICHUNG_DEPOT_INTRO_IMAGE,
   TAICHUNG_DEPOT_INTRO_ZH,
   TAICHUNG_DEPOT_INTRO_EN,
   TAICHUNG_DEPOT_ADDRESS_ZH,
   TAICHUNG_DEPOT_ADDRESS_EN,
   TAICHUNG_DEPOT_TERMINALS
 } from '../../data/content';
+
+// Terminal labels carry a "台中 " prefix (e.g. "台中 10-11 號碼頭") so the
+// banner/quick-links/cards all read consistently; the entry card's title
+// splits it back out to style the station name and the terminal number
+// separately (station name can wrap to its own line on mobile, the number
+// never breaks mid-string).
+const splitStationLabel = (label: string) => {
+  const spaceIndex = label.indexOf(' ');
+  return spaceIndex === -1 ? { prefix: label, rest: '' } : { prefix: label.slice(0, spaceIndex), rest: label.slice(spaceIndex + 1) };
+};
 
 interface TaichungDepotPageProps {
   language: Language;
@@ -159,15 +168,15 @@ const MapSection: React.FC<{ terminal: TaichungDepotTerminal; language: Language
   return (
     <div className="flex flex-col gap-4 sm:gap-5">
       <SectionTitle size="lg">{language === 'zh' ? '場地圖' : 'Site Layout Map'}</SectionTitle>
-      {/* Technical diagrams stay horizontally scrollable on mobile (min-w
-          floor) instead of being squeezed illegibly small at full width —
-          desktop shows the full map at once; either way a zoom button opens
-          the full-resolution image in a lightbox. */}
-      <div className="relative overflow-x-auto rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised bg-white p-2 sm:p-3">
+      {/* Scales down to fit the viewport at every width instead of keeping
+          a min-width floor, so mobile shows the whole map with no
+          horizontal scroll; the zoom button still opens the full-resolution
+          image in a lightbox for a closer look at the dense labels. */}
+      <div className="relative rounded-[var(--radius-panel)] border border-[var(--color-blue-300)]/50 layer-shadow-raised bg-white p-2 sm:p-3">
         <img
           src={terminal.layoutImage}
           alt={caption}
-          className="min-w-[700px] sm:min-w-0 w-full h-auto rounded-[var(--radius-card)]"
+          className="w-full h-auto rounded-[var(--radius-card)]"
         />
         <ZoomButton onClick={() => setZoomOpen(true)} />
       </div>
@@ -213,41 +222,46 @@ const ContactCTA: React.FC<{ language: Language; onNavigateSection: (sectionId: 
   </button>
 );
 
-// Entry card for a terminal — same visual language as the homepage's
-// Latest News / Taiwan Operations cards (photo + title, interactive-card
-// framing), but clickable end-to-end (those aren't) since this one's whole
-// job is "點擊進入各自詳細頁面".
-const TerminalEntryCard: React.FC<{ terminal: TaichungDepotTerminal; language: Language; onSelect: () => void }> = ({
+// Entry card for a terminal — photo + centered name, same compact framing
+// as the homepage's Taiwan Operations station cards (not the old wider
+// intro-paragraph card) since there are only ever two of these and they sit
+// centered in the grid (lg:col-start-2 on the first one) rather than filling
+// the full row width.
+const TerminalEntryCard: React.FC<{ terminal: TaichungDepotTerminal; language: Language; onSelect: () => void; centerOnDesktop?: boolean }> = ({
   terminal,
   language,
-  onSelect
-}) => (
-  <button
-    type="button"
-    onClick={onSelect}
-    className="interactive-card interactive-card--accent w-full text-left h-full flex flex-col group rounded-[var(--radius-panel)] border-[var(--color-blue-300)]/60 overflow-hidden bg-white layer-shadow-soft"
-  >
-    <div className="relative overflow-hidden aspect-[4/3] bg-slate-100">
-      <img
-        src={terminal.cardImage}
-        alt={language === 'zh' ? terminal.labelZh : terminal.labelEn}
-        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-      />
-    </div>
-    <div className="flex flex-col gap-2 px-5 py-4 sm:px-6 sm:py-5 flex-1">
-      <h3 className="text-lg sm:text-xl font-bold text-[var(--color-ink)]">
-        {language === 'zh' ? terminal.labelZh : terminal.labelEn}
-      </h3>
-      <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
-        {language === 'zh' ? terminal.introZh : terminal.introEn}
-      </p>
-      <span className="mt-auto inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-[var(--color-cta)] group-hover:text-[var(--color-cta-hover)] transition-colors">
-        {language === 'zh' ? '查看詳細資訊' : 'View Details'}
-        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-      </span>
-    </div>
-  </button>
-);
+  onSelect,
+  centerOnDesktop
+}) => {
+  const label = language === 'zh' ? terminal.labelZh : terminal.labelEn;
+  const { prefix, rest } = splitStationLabel(label);
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className={`interactive-card interactive-card--accent w-full text-left h-full flex flex-col group rounded-[var(--radius-panel)] border-[var(--color-blue-300)]/60 overflow-hidden bg-white layer-shadow-soft cursor-pointer ${
+        centerOnDesktop ? 'lg:col-start-2' : ''
+      }`}
+    >
+      <div className="relative overflow-hidden aspect-[4/3] bg-slate-100">
+        <img
+          src={terminal.cardImage}
+          alt={label}
+          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+        />
+      </div>
+      <div className="flex flex-col items-center gap-1.5 px-4 pt-3.5 pb-4 flex-1">
+        <h3 className="text-base sm:text-xl font-bold text-center text-balance text-[var(--color-ink)] leading-snug">
+          <span className="block sm:inline">{prefix}</span> <span className="whitespace-nowrap">{rest}</span>
+        </h3>
+        <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-cta)] group-hover:text-[var(--color-cta-hover)] transition-colors">
+          {language === 'zh' ? '了解更多' : 'Explore More'}
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </button>
+  );
+};
 
 // 「營運服務」單元：台中貨櫃集散站 — an entry screen (depot intro + a card
 // per terminal) leading into each terminal's own detail view (facilities,
@@ -288,28 +302,58 @@ export const TaichungDepotPage: React.FC<TaichungDepotPageProps> = ({ language, 
         titleZh={active ? (language === 'zh' ? active.labelZh : active.labelEn) : TAICHUNG_DEPOT_BANNER_TITLE_ZH}
         descriptionZh={active ? (language === 'zh' ? active.introZh : active.introEn) : undefined}
         overlay={false}
+        mobileAspectRatio={active ? undefined : '800/360'}
+        desktopAspectRatio={active ? undefined : '1920/430'}
+        quickLinks={
+          active
+            ? undefined
+            : terminals.map((terminal) => ({
+                label: language === 'zh' ? terminal.labelZh : terminal.labelEn,
+                onClick: () => selectTerminal(terminal.id)
+              }))
+        }
       />
 
       {!active ? (
         <>
-          <SplitSection
-            titleZh={language === 'zh' ? '場站簡介' : 'Depot Overview'}
-            image={TAICHUNG_DEPOT_INTRO_IMAGE}
-            imageAlt={language === 'zh' ? '台中貨櫃集散站' : 'Taichung Container Depot'}
-          >
-            <p>{language === 'zh' ? TAICHUNG_DEPOT_INTRO_ZH : TAICHUNG_DEPOT_INTRO_EN}</p>
-          </SplitSection>
+          {/* Mobile equivalent of the banner's desktop quick-links bar —
+              homepage-style cards instead of a text overlay, since there's
+              no room on the short mobile banner crop for the gradient bar. */}
+          <div className="lg:hidden grid grid-cols-2 gap-3 sm:gap-4 px-4 sm:px-6 pt-5 bg-white">
+            {terminals.map((terminal) => (
+              <button
+                key={terminal.id}
+                type="button"
+                onClick={() => selectTerminal(terminal.id)}
+                className="interactive-card interactive-card--accent group flex flex-col items-center gap-2 px-3 py-4 rounded-[var(--radius-panel)] border-[var(--color-blue-300)]/60 bg-white layer-shadow-soft text-[var(--color-cta)] cursor-pointer"
+              >
+                <Anchor className="w-6 h-6 sm:w-7 sm:h-7" />
+                <span className="text-sm font-bold tracking-wide text-[var(--color-ink)]">
+                  {language === 'zh' ? terminal.labelZh : terminal.labelEn}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <PageSection>
+            <div className="flex flex-col gap-5 sm:gap-6">
+              <SectionTitle>{language === 'zh' ? '場站簡介' : 'Depot Overview'}</SectionTitle>
+              <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
+                {language === 'zh' ? TAICHUNG_DEPOT_INTRO_ZH : TAICHUNG_DEPOT_INTRO_EN}
+              </p>
+            </div>
+          </PageSection>
 
           <PageSection>
             <div className="flex flex-col gap-6 sm:gap-8">
-              <SectionTitle>{language === 'zh' ? '選擇碼頭' : 'Select a Terminal'}</SectionTitle>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                {terminals.map((terminal) => (
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                {terminals.map((terminal, i) => (
                   <TerminalEntryCard
                     key={terminal.id}
                     terminal={terminal}
                     language={language}
                     onSelect={() => selectTerminal(terminal.id)}
+                    centerOnDesktop={i === 0}
                   />
                 ))}
               </div>

@@ -98,7 +98,7 @@
 /* Clears the fixed header when jumping to a section via nav/anchor links —
    without this, scrollIntoView lands section titles right behind the header. */
 main [id] {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 124px;
 }
 
 /* Layered surface helpers — shared "depth" language across sections */

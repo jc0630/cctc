@@ -39,7 +39,7 @@ const ReportCover: React.FC<{ src: string; year: number }> = ({ src, year }) => 
 
 export const ReportsTab: React.FC<ReportsTabProps> = ({ language }) => {
   return (
-    <div className="flex flex-col gap-8 sm:gap-10">
+    <div id="sustainability-reports" className="flex flex-col gap-8 sm:gap-10">
       <SectionTitle>{language === 'zh' ? '永續報告書' : 'Sustainability Reports'}</SectionTitle>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">

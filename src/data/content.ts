@@ -13,7 +13,8 @@ import {
   DashboardEmissionBreakdown,
   StrategyGoalTab,
   SustainabilityReportItem,
-  TaichungDepotTerminal
+  TaichungDepotTerminal,
+  FaqContentItem
 } from '../types';
 
 export const LOGO_URL = '/images/cctc-logo.png';
@@ -376,11 +377,11 @@ export const NEWS_ARTICLES: NewsArticle[] = [
 // Source: 中櫃集團「公司簡介」網站頁面設計需求書 (2026.10.16，文圖陳核版 2026.10.05)
 // ============================================================
 
-// Rebuilt 2026-10-21 per a short-form brief (banner + 4 paragraphs + a
-// locations map + one supporting photo + one CTA), replacing the previous
-// multi-section build entirely. Eyebrow + left-aligned banner title follows
-// the brief's own reference (modeled on U-Ming Marine Transport's 公司簡介
-// page layout).
+// Rebuilt per the client's PDF brief into 4 sections (成立背景與股票上市／核心
+// 服務與營運據點／集團協力服務 貨暢其流／經營理念與永續發展) plus an FAQ — the
+// previous short-form 4-paragraph build above is entirely superseded. Eyebrow
+// + left-aligned banner title follows the brief's own reference (modeled on
+// U-Ming Marine Transport's 公司簡介 page layout).
 // Client-supplied crops, sized exactly to the banner's 1920/430 (desktop)
 // and 800/360 (mobile) aspect ratios — see PageBanner's desktopAspectRatio/
 // mobileAspectRatio props on the CompanyProfilePage banner.
@@ -390,25 +391,67 @@ export const COMPANY_PROFILE_BANNER_TITLE_ZH = '公司簡介';
 
 export const COMPANY_PROFILE_BANNER_EYEBROW_ZH = '關於中櫃';
 
-export const COMPANY_PROFILE_SECTION_HISTORY_TITLE_ZH = '公司沿革與服務據點';
-export const COMPANY_PROFILE_SECTION_HISTORY_TITLE_EN = 'History & Service Locations';
-export const COMPANY_PROFILE_SECTION_MISSION_TITLE_ZH = '品質管理與經營理念';
-export const COMPANY_PROFILE_SECTION_MISSION_TITLE_EN = 'Quality Management & Business Philosophy';
+export const COMPANY_PROFILE_SECTION_HISTORY_TITLE_ZH = '成立背景與股票上市';
+export const COMPANY_PROFILE_SECTION_HISTORY_TITLE_EN = 'Founding & Stock Listing';
+export const COMPANY_PROFILE_SECTION_CORE_SERVICES_TITLE_ZH = '核心服務與營運據點';
+export const COMPANY_PROFILE_SECTION_CORE_SERVICES_TITLE_EN = 'Core Services & Operating Locations';
+export const COMPANY_PROFILE_SECTION_AFFILIATES_TITLE_ZH = '集團協力服務 貨暢其流';
+export const COMPANY_PROFILE_SECTION_AFFILIATES_TITLE_EN = 'Group Affiliated Services, Keeping Cargo Moving';
+export const COMPANY_PROFILE_SECTION_MISSION_TITLE_ZH = '經營理念與永續發展';
+export const COMPANY_PROFILE_SECTION_MISSION_TITLE_EN = 'Business Philosophy & Sustainability';
 
 export const COMPANY_PROFILE_FOUNDING_ZH =
-  '1969 年 11 月 27 日，為因應貨櫃化運輸發展之需，於交通部貨櫃化運輸促進小組督導下，由十大公、民營單位共同投資成立中國貨櫃運輸股份有限公司（簡稱中櫃），成為我國貨櫃集散站經營業之先驅，並於1995年正式掛牌上市。';
+  '中國貨櫃運輸股份有限公司（簡稱中櫃）於 1969 年 11 月 27 日，為因應鏈結海陸、接軌國際的貨櫃化運輸發展之需，在交通部貨櫃化運輸促進小組督導下，由十大公、民營單位共同投資成立，為我國貨櫃集散站經營業之先驅，並於 1995 年正式掛牌上市，為臺灣首家股票上市之貨櫃集散站業者。';
 export const COMPANY_PROFILE_FOUNDING_EN =
-  "On November 27, 1969, in response to the growing need for containerized transport, China Container Terminal Corporation (CCTC) was jointly established by ten public and private organizations under the guidance of the Ministry of Transportation and Communications' Containerization Promotion Task Force, becoming Taiwan's pioneer in the container freight station business — and was officially listed on the Taiwan Stock Exchange in 1995.";
+  "China Container Terminal Corporation (CCTC) was founded on November 27, 1969, in response to the growing need to link sea and land transport and connect Taiwan to the world of containerized shipping. Under the guidance of the Ministry of Transportation and Communications' Containerization Promotion Task Force, it was jointly established by ten public and private organizations, becoming Taiwan's pioneer in the container freight station business — and in 1995, CCTC became the first container freight station operator to list on the Taiwan Stock Exchange.";
 
-export const COMPANY_PROFILE_LOCATIONS_MAP_IMAGE = '/images/about/company-locations-map.png';
-export const COMPANY_PROFILE_LOCATIONS_MAP_CAPTION_ZH = '中櫃全臺服務據點（總公司／五堵、基隆、臺中、高雄分公司）';
-export const COMPANY_PROFILE_LOCATIONS_MAP_CAPTION_EN =
-  "CCTC's nationwide service locations (Head Office / Wudu, Keelung, Taichung, and Kaohsiung branches)";
+export const COMPANY_PROFILE_FOUNDING_IMAGE = '/images/about/wudu-gate-panorama.jpg';
+export const COMPANY_PROFILE_FOUNDING_IMAGE_CAPTION_ZH = '中櫃五堵內陸貨櫃集散站全景。占地廣闊，為基隆港後線作業的延伸與分流樞紐。';
+export const COMPANY_PROFILE_FOUNDING_IMAGE_CAPTION_EN =
+  "Aerial view of CCTC's Wudu inland container depot — a sprawling site that extends and relieves Keelung Port's back-line operations.";
 
-export const COMPANY_PROFILE_OPERATIONS_ZH =
-  '中櫃於基隆、五堵、台中及高雄設立營運據點，長期深耕臺灣主要商港與物流樞紐，為航商、進出口貿易與物流業者提供專業、穩定、高效的港口與倉儲支援服務，並持續引進高效能機具、優化作業系統。';
-export const COMPANY_PROFILE_OPERATIONS_EN =
-  "CCTC operates service locations in Keelung, Wudu, Taichung, and Kaohsiung, maintaining a long-standing presence at Taiwan's major commercial ports and logistics hubs. The company provides professional, reliable, and efficient port and warehousing support services for shipping lines, import/export traders, and logistics operators, while continuously introducing high-performance equipment and optimizing its operating systems.";
+export const COMPANY_PROFILE_CORE_SERVICES_ZH =
+  '中櫃長期專注經營本業，穩健拓展船舶裝卸作業、櫃場作業及倉棧結關作業等三大核心服務，並在基隆、五堵、臺中及高雄等全臺主要商港與物流樞紐設置營運據點，憑藉專業與經驗兼具的團隊、持續汰舊換新的高效能機具，並在各營運環節導入數位化與標準化管理系統（如 TOS 2.0 智慧物流作業系統、EMS 環境管理系統與 MMS 車機保養維修系統），為航商、進出口貿易與物流業者提供專業、穩定、高效的港口與倉儲支援服務。';
+export const COMPANY_PROFILE_CORE_SERVICES_EN =
+  'CCTC has long focused on its core business, steadily building out three core services — ship handling, yard operations, and warehousing/customs clearance — with operating locations at Taiwan\'s major commercial ports and logistics hubs in Keelung, Wudu, Taichung, and Kaohsiung. Backed by an experienced, professional team and continuously renewed high-performance equipment, and with digital, standardized management systems (such as the TOS 2.0 smart logistics system, the EMS environmental management system, and the MMS vehicle maintenance system) built into every stage of operations, CCTC delivers professional, reliable, and efficient port and warehousing support services to shipping lines, import/export traders, and logistics operators.';
+
+export const COMPANY_PROFILE_CORE_SERVICES_VIDEO_ID = 'bRoVAViqo2M';
+export const COMPANY_PROFILE_CORE_SERVICES_VIDEO_CAPTION_ZH = '中櫃形象簡介影片';
+export const COMPANY_PROFILE_CORE_SERVICES_VIDEO_CAPTION_EN = 'CCTC Corporate Introduction Video';
+export const COMPANY_PROFILE_CORE_SERVICES_IMAGE = '/images/about/taichung-port-aerial.jpg';
+export const COMPANY_PROFILE_CORE_SERVICES_IMAGE_CAPTION_ZH = '中櫃台中貨櫃集散站船邊裝卸與櫃場作業實景。';
+export const COMPANY_PROFILE_CORE_SERVICES_IMAGE_CAPTION_EN =
+  "Shipside handling and yard operations at CCTC's Taichung container depot.";
+
+export const COMPANY_PROFILE_AFFILIATES_INTRO_ZH =
+  '透過投資布局並結合子公司專業團隊的服務，中櫃致力提供客戶更高效、優質與全面的貨櫃集散與港埠物流服務：';
+export const COMPANY_PROFILE_AFFILIATES_INTRO_EN =
+  "Through its investment portfolio and the expertise of its subsidiaries' teams, CCTC is committed to offering customers more efficient, higher-quality, and more complete container depot and port logistics services:";
+export const COMPANY_PROFILE_AFFILIATES: { labelZh: string; labelEn: string; textZh: string; textEn: string }[] = [
+  {
+    labelZh: '中友船舶',
+    labelEn: 'Chung Yu Shipping',
+    textZh: '提供涵蓋基隆、臺中與高雄三港的碼頭前線裝卸、現場作業、貨櫃堆儲、船席調配及海關查驗等一貫化服務。',
+    textEn:
+      'Provides integrated services across the ports of Keelung, Taichung, and Kaohsiung, including front-line terminal handling, on-site operations, container storage, berth allocation, and customs inspection.'
+  },
+  {
+    labelZh: '安躍系統',
+    labelEn: 'Anyue Systems',
+    textZh: '拓展系統開發與維護業務服務。',
+    textEn: 'Expands CCTC\'s systems development and maintenance services.'
+  },
+  {
+    labelZh: '臺運實業',
+    labelEn: 'Taiyun Industrial',
+    textZh: '於高雄港區提供空櫃儲放、修洗櫃、冷凍機電維修及租還櫃等綜合服務。',
+    textEn:
+      'Offers comprehensive services at the Port of Kaohsiung, including empty-container storage, container repair and cleaning, reefer equipment maintenance, and container leasing and returns.'
+  }
+];
+export const COMPANY_PROFILE_AFFILIATES_IMAGE = '/images/about/keelung-terminal.jpg';
+export const COMPANY_PROFILE_AFFILIATES_IMAGE_CAPTION_ZH = '中櫃基隆碼頭集散站作業情況。';
+export const COMPANY_PROFILE_AFFILIATES_IMAGE_CAPTION_EN = "Operations at CCTC's Keelung terminal depot.";
 
 export const COMPANY_PROFILE_CERTIFICATIONS_ZH =
   '為確保作業安全並符合國際供應鏈規範，中櫃持續推動標準化管理，已通過 ISO 9001（品質管理）、ISO 14001（環境管理）及 ISO 45001（職業安全衛生管理）系統認證；並定期執行 ISO 14064-1 組織型碳盤查及 ISO 14067 產品碳足跡盤查。';
@@ -420,15 +463,128 @@ export const COMPANY_PROFILE_MISSION_ZH =
 export const COMPANY_PROFILE_MISSION_EN =
   'Guided by the principles of Passion, Professionalism, Integrity, and Diligence, CCTC continues to deepen its expertise across the port logistics chain, advancing smart and green operations and fulfilling corporate social responsibility through standardized management — consistently creating steady growth in value for customers, shareholders, and partners while pursuing sustainable, shared prosperity.';
 
-export const COMPANY_PROFILE_SECONDARY_IMAGE = '/images/about/keelung-port-aerial.jpg';
-export const COMPANY_PROFILE_SECONDARY_IMAGE_CAPTION_ZH = '基隆港區作業實景';
-export const COMPANY_PROFILE_SECONDARY_IMAGE_CAPTION_EN = 'Keelung Port operations';
+export const COMPANY_PROFILE_MISSION_IMAGE = '/images/about/electric-tractor.jpg';
+export const COMPANY_PROFILE_MISSION_IMAGE_CAPTION_ZH = '中櫃導入電動拖車，致力港區綠色運輸與永續發展。';
+export const COMPANY_PROFILE_MISSION_IMAGE_CAPTION_EN =
+  "CCTC has introduced electric container tractors, committed to green transport and sustainable development at its terminals.";
 
-// CTA has no dedicated destination yet (brief asks for a future 「關於中櫃／
-// 公司簡史」 page); falls back to the homepage's 關於中櫃 anchor until that
-// page exists, same convention as every other not-yet-built nav target.
-export const COMPANY_PROFILE_CTA_LABEL_ZH = '了解更多';
-export const COMPANY_PROFILE_CTA_LABEL_EN = 'Learn More';
+// FAQ (常見問題) — bullets render as "label：text"; image (Q2/Q4 only) stays
+// horizontally scrollable below lg instead of shrinking (same treatment as
+// SplitSection's scrollableImage), since both infographics are text-dense.
+export const COMPANY_PROFILE_FAQ_ZH: FaqContentItem[] = [
+  {
+    number: 1,
+    question: '中櫃是一家什麼樣的公司？主要提供哪些服務？',
+    answer:
+      '中國貨櫃運輸股份有限公司（簡稱中櫃，股票代碼：2613），創立於 1969 年，為臺灣首家股票上市之貨櫃集散站經營商。主要經營業務包括船舶裝卸作業、櫃場作業及倉棧作業等服務。',
+    bullets: [
+      { label: '船舶裝卸作業', text: '主要係在港區之船上或岸邊從事貨櫃之裝卸、搬運及處理作業。' },
+      {
+        label: '櫃場作業',
+        text: '主要係經由搬運機具如拖車或跨載機將貨櫃水平搬運到場站存放堆積、利用場站搬運設備將貨櫃交給外部拖車到場站運輸及貨櫃維修等服務。'
+      },
+      {
+        label: '倉棧作業',
+        text: '主要係客戶將貨物送至出口倉庫結關，由倉棧人員進行裝櫃後送至船邊上船；或貨櫃下船後送至進口倉庫，由倉棧人員將貨物拆出存放於倉庫內待客戶取貨等服務。'
+      }
+    ]
+  },
+  {
+    number: 2,
+    question: '中櫃目前在全臺有哪些營運據點？',
+    answer: '中櫃總公司位於新北市汐止區，全臺服務據點包含：',
+    bullets: [
+      { label: '北部地區', text: '基隆分公司、基隆碼頭集散站（19～21 號碼頭）及五堵內陸集散站。' },
+      { label: '中部地區', text: '台中分公司、台中貨櫃集散站（10～11 號碼頭）及台中 31 號碼頭貨櫃集散站。' },
+      { label: '南部地區', text: '高雄分公司及高雄碼頭貨櫃集散站（66 號、69 號碼頭）。' }
+    ],
+    image: {
+      src: '/images/about/taiwan-operations-map.png',
+      alt: '中國貨櫃運輸股份有限公司全臺營運據點分佈地圖，標示總公司、基隆分公司、五堵集散站、台中分公司與高雄分公司之地理位置及涵蓋子公司資訊。',
+      caption: '中櫃全臺營運據點圖　資料來源：中櫃 2025 永續報告 P.23'
+    }
+  },
+  {
+    number: 3,
+    question: '中櫃有哪些品質管理與永續（ESG）認證與實踐？',
+    answer: '為確保作業安全並符合國際供應鏈規範，中櫃已導入並通過多項國際標準認證：',
+    bullets: [
+      { label: '管理系統認證', text: '包含 ISO 9001（品質管理）、ISO 14001（環境管理）及 ISO 45001（職業安全衛生管理）系統。' },
+      {
+        label: '碳管理與永續實踐',
+        text: '定期執行 ISO 14064-1 組織型溫室氣體盤查與 ISO 14067 產品碳足跡盤查，積極推動智慧與綠色營運，落實企業永續發展。'
+      }
+    ]
+  },
+  {
+    number: 4,
+    question: '貨櫃集散業與貨櫃運輸及進出口貿易有什麼關係？',
+    answer:
+      '貨櫃集散站業係因應國際貨櫃運輸而設置，在整體產業結構中扮演銜接海運與陸運的重要樞紐。其發展與貨櫃化運輸的成長密切相關，也與進出口貿易密不可分。',
+    image: {
+      src: '/images/about/industry-structure-chart.png',
+      alt: '國際貨櫃運輸產業結構圖：呈現貨主、船公司、貨櫃碼頭、貨櫃集散站等業者的分工關係，中櫃為銜接海運與陸運的貨櫃集散站業者。',
+      caption: '中櫃成立於 1969 年，在國際貨櫃運輸產業結構中，屬於銜接海運與陸運的貨櫃集散站業者。　資料來源：中櫃 114 年年報 P.64'
+    }
+  }
+];
+export const COMPANY_PROFILE_FAQ_EN: FaqContentItem[] = [
+  {
+    number: 1,
+    question: 'What kind of company is CCTC, and what services does it mainly provide?',
+    answer:
+      'China Container Terminal Corporation (CCTC, stock code: 2613) was founded in 1969 and is Taiwan\'s first publicly listed container freight station operator. Its core business includes ship handling, yard operations, and warehousing services.',
+    bullets: [
+      { label: 'Ship Handling', text: 'Loading, unloading, moving, and handling containers on board or alongside vessels within the port area.' },
+      {
+        label: 'Yard Operations',
+        text: 'Moving containers horizontally for storage and stacking using equipment such as trailers or straddle carriers, handing containers off to external trailers for onward transport, and container repair services.'
+      },
+      {
+        label: 'Warehousing',
+        text: 'Receiving export cargo for customs clearance and stuffing before it is sent shipside for loading; or, for imports, unstuffing containers after discharge and storing cargo in the warehouse until customer pickup.'
+      }
+    ]
+  },
+  {
+    number: 2,
+    question: 'Where does CCTC currently operate across Taiwan?',
+    answer: "CCTC's head office is located in Xizhi District, New Taipei City, with service locations across Taiwan including:",
+    bullets: [
+      { label: 'Northern Taiwan', text: 'Keelung branch, Keelung terminal depot (Berths 19–21), and the Wudu inland depot.' },
+      { label: 'Central Taiwan', text: 'Taichung branch, Taichung container depot (Berths 10–11), and the Taichung Berth 31 container depot.' },
+      { label: 'Southern Taiwan', text: 'Kaohsiung branch and the Kaohsiung terminal depot (Berths 66 and 69).' }
+    ],
+    image: {
+      src: '/images/about/taiwan-operations-map.png',
+      alt: "Map of CCTC's nationwide operating locations, marking the head office and the Keelung, Wudu, Taichung, and Kaohsiung branches along with their affiliated subsidiaries.",
+      caption: "CCTC's nationwide operating locations. Source: CCTC 2025 Sustainability Report, p.23"
+    }
+  },
+  {
+    number: 3,
+    question: 'What quality management and sustainability (ESG) certifications and practices does CCTC maintain?',
+    answer: 'To ensure operational safety and compliance with international supply chain standards, CCTC has adopted and obtained multiple international certifications:',
+    bullets: [
+      { label: 'Management System Certifications', text: 'ISO 9001 (Quality Management), ISO 14001 (Environmental Management), and ISO 45001 (Occupational Health & Safety Management).' },
+      {
+        label: 'Carbon Management & Sustainability Practices',
+        text: 'Regular ISO 14064-1 organizational greenhouse gas inventories and ISO 14067 product carbon footprint assessments, alongside active efforts toward smart and green operations and sustainable development.'
+      }
+    ]
+  },
+  {
+    number: 4,
+    question: 'How does the container freight station business relate to container shipping and import/export trade?',
+    answer:
+      "Container freight stations exist to serve international container shipping, acting as a key hub connecting sea and land transport within the broader industry structure. Their development is closely tied to the growth of containerization and is inseparable from import/export trade.",
+    image: {
+      src: '/images/about/industry-structure-chart.png',
+      alt: 'Diagram of the international container shipping industry structure, showing the relationships between cargo owners, shipping lines, container terminals, and container freight stations — CCTC operates as a freight station bridging sea and land transport.',
+      caption: "CCTC was founded in 1969 and operates within the international container shipping industry structure as a freight station bridging sea and land transport. Source: CCTC FY114 Annual Report, p.64"
+    }
+  }
+];
 
 // ============================================================
 // 永續發展策略 (Sustainability Strategy) page data
@@ -837,16 +993,17 @@ export const MOCK_CONTAINER_RESULTS: Record<string, {
 // terminal fact sheets; the two site-layout map images are the company's
 // real yard maps (not the slide deck's AI demo mockup, which was style
 // reference only).
-export const TAICHUNG_DEPOT_BANNER_IMAGE = '/hero/banner-taichung-depot.jpg';
-export const TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE = '/hero/mobile-banner-taichung-depot.jpg';
+export const TAICHUNG_DEPOT_BANNER_IMAGE = '/hero/taichung-depot-1920.jpg';
+export const TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE = '/hero/taichung-depot-800.jpg';
 export const TAICHUNG_DEPOT_BANNER_EYEBROW_ZH = '營運服務';
-export const TAICHUNG_DEPOT_BANNER_TITLE_ZH = '台中貨櫃集散站';
+// Doubles as the detail views' back-breadcrumb label (see TaichungDepotPage)
+// — kept short ("台中") rather than the depot's full name now that the two
+// terminal names already carry a "台中 " prefix of their own.
+export const TAICHUNG_DEPOT_BANNER_TITLE_ZH = '台中';
 
 // Depot-level intro shown on the entry screen before the terminal cards.
-// Photo and address are placeholders reused from existing site assets
-// (TERMINAL_LOCATIONS' Taichung entry) pending the client's own dedicated
-// depot photography and a precise per-berth street address.
-export const TAICHUNG_DEPOT_INTRO_IMAGE = '/locations/taichung.jpg';
+// Address is a placeholder reused from existing site assets (TERMINAL_
+// LOCATIONS' Taichung entry) pending a precise per-berth street address.
 export const TAICHUNG_DEPOT_INTRO_ZH =
   '台中貨櫃集散站位於台中港，為中櫃深耕中台灣的核心營運據點，設有10-11號及31號兩座碼頭，提供貨櫃裝卸、堆存與轉運等一貫化服務。場站具備深水泊位、自動化門式起重機與智慧化櫃場管理系統，長期服務航商、進出口貿易及物流業者，並持續投入高效能機具與綠色能源設備，提升作業效率並降低營運過程中的環境衝擊。';
 export const TAICHUNG_DEPOT_INTRO_EN =
@@ -857,8 +1014,8 @@ export const TAICHUNG_DEPOT_ADDRESS_EN = 'Port Area Rd., Wuqi Dist., Taichung Ci
 export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
   {
     id: 'berth-10-11',
-    labelZh: '10-11號碼頭',
-    labelEn: 'Terminal 10-11',
+    labelZh: '台中 10-11 號碼頭',
+    labelEn: 'Taichung Terminal 10-11',
     // Placeholder entry-card photo pending the client's own per-terminal
     // photography (see 二 in the brief — "圖片尚未提供，先使用示意圖").
     cardImage: '/hero/banner-taichung-depot.jpg',
@@ -911,8 +1068,8 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
   },
   {
     id: 'berth-31',
-    labelZh: '31號碼頭',
-    labelEn: 'Terminal 31',
+    labelZh: '台中 31 號碼頭',
+    labelEn: 'Taichung Terminal 31',
     // Placeholder entry-card photo pending the client's own per-terminal
     // photography (see 二 in the brief — "圖片尚未提供，先使用示意圖").
     cardImage: '/locations/taichung.jpg',

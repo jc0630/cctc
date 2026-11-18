@@ -37,7 +37,7 @@ const NAV_CATEGORIES: NavCategory[] = [
     sectionId: 'about',
     items: [
       { labelZh: '公司簡介', labelEn: 'Company Profile', sectionId: 'about-page' },
-      { labelZh: '中櫃大事記', labelEn: 'Milestones', sectionId: 'about' },
+      { labelZh: '公司簡史', labelEn: 'Company History', sectionId: 'about' },
       { labelZh: '獲獎及認證', labelEn: 'Awards & Certifications', sectionId: 'about' },
       { labelZh: '人才招募', labelEn: 'Careers', sectionId: 'careers' },
       { labelZh: '最新消息', labelEn: 'News', sectionId: 'news' },
@@ -76,11 +76,11 @@ const NAV_CATEGORIES: NavCategory[] = [
     labelEn: 'Operations',
     sectionId: 'operations',
     items: [
-      { labelZh: '據點圖', labelEn: 'Terminal Map', sectionId: 'operations' },
-      { labelZh: '五堵集散站', labelEn: 'Wudu Depot', sectionId: 'operations' },
-      { labelZh: '基隆碼頭集散站', labelEn: 'Keelung Terminal', sectionId: 'operations' },
-      { labelZh: '台中貨櫃集散站', labelEn: 'Taichung Depot', sectionId: 'taichung-depot-page' },
-      { labelZh: '高雄貨櫃集散站', labelEn: 'Kaohsiung Depot', sectionId: 'operations' }
+      { labelZh: '營運服務總覽', labelEn: 'Operations Overview', sectionId: 'operations' },
+      { labelZh: '五堵', labelEn: 'Wudu', sectionId: 'operations' },
+      { labelZh: '基隆', labelEn: 'Keelung', sectionId: 'operations' },
+      { labelZh: '台中', labelEn: 'Taichung', sectionId: 'taichung-depot-page' },
+      { labelZh: '高雄', labelEn: 'Kaohsiung', sectionId: 'operations' }
     ]
   },
   {

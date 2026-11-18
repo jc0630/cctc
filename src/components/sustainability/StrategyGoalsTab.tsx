@@ -38,7 +38,7 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
   return (
     <div className="flex flex-col gap-10 sm:gap-14">
       {/* 區塊 A：永續價值鏈 */}
-      <div className="flex flex-col gap-6 sm:gap-8">
+      <div id="sustainability-value-chain" className="flex flex-col gap-6 sm:gap-8">
         <SectionTitle>{language === 'zh' ? '永續價值鏈' : 'Sustainability Value Chain'}</SectionTitle>
 
         <div className="flex flex-col gap-4 max-w-4xl">
@@ -51,15 +51,16 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
 
         {/* Value chain flow diagram, supplied as a finished graphic — covers
             the full flow plus the TOS 2.0/EMS/MMS and ISO-certification
-            callouts that previously lived in separate cards below it. Text
-            inside the graphic is too dense to shrink to a narrow mobile
-            width, so it keeps a min-width floor (horizontal scroll) below lg
-            instead, plus a zoom button for a full-size look at either size. */}
-        <div className="relative overflow-x-auto rounded-[var(--radius-panel)] border border-slate-200">
+            callouts that previously lived in separate cards below it. Scales
+            down to fit the viewport at every width instead of keeping a
+            min-width floor, so mobile shows the whole graphic with no
+            horizontal scroll; the zoom button still opens it full-size for a
+            closer look at the dense text inside. */}
+        <div className="relative rounded-[var(--radius-panel)] border border-slate-200">
           <img
             src="/images/about/image22.png"
             alt={valueChainAlt}
-            className="min-w-[900px] lg:min-w-0 w-full h-auto"
+            className="w-full h-auto"
           />
           <ZoomButton onClick={() => setValueChainZoomOpen(true)} />
         </div>
@@ -73,7 +74,7 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
       </div>
 
       {/* 區塊 B：永續發展策略與短中長期目標 */}
-      <div className="flex flex-col gap-6 sm:gap-8">
+      <div id="sustainability-strategy-goals" className="flex flex-col gap-6 sm:gap-8">
         <SectionTitle>
           {language === 'zh' ? '永續發展策略與短中長期目標' : 'Strategy & Short/Mid/Long-term Goals'}
         </SectionTitle>
