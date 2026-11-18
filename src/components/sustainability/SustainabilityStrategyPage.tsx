@@ -4,6 +4,7 @@ import { PageBanner } from '../shared/PageBanner';
 import { PageSection } from '../shared/PageSection';
 import { SectionTitle } from '../shared/SectionTitle';
 import { SdgIconRow } from './SdgIconRow';
+import { SDG_ICONS } from '../../data/content';
 import { HighlightsTab } from './HighlightsTab';
 import { DashboardTab } from './DashboardTab';
 import { StrategyGoalsTab } from './StrategyGoalsTab';
@@ -37,23 +38,32 @@ interface SustainabilityStrategyPageProps {
 export const SustainabilityStrategyPage: React.FC<SustainabilityStrategyPageProps> = ({ language }) => {
   return (
     <div>
-      <div className="relative">
-        <PageBanner
-          image="/hero/2-2永續發展策略白1920.jpg"
-          mobileImage="/hero/2-2永續發展策略白800.jpg"
-          eyebrowZh="企業永續"
-          titleZh="永續發展策略"
-          overlay={false}
-          mobileAspectRatio="800/360"
-          desktopAspectRatio="1920/430"
-        />
-        {/* All 9 SDGs CCTC maps to — overlaid on the banner itself at sm+,
-            where there's enough height to fit cleanly. Mobile keeps its own
-            band below the banner instead (see the block further down): the
-            short mobile banner doesn't have room for the icon row without
-            overlapping the title. */}
-        <div className="hidden sm:flex absolute inset-x-0 bottom-5 justify-center z-10">
-          <SdgIconRow size="xs" />
+      <PageBanner
+        image="/hero/2-2永續發展策略白1920.jpg"
+        mobileImage="/hero/2-2永續發展策略白800.jpg"
+        eyebrowZh="企業永續"
+        titleZh="永續發展策略"
+        overlay={false}
+        mobileAspectRatio="800/360"
+        desktopAspectRatio="1920/430"
+      />
+      {/* All 9 SDGs CCTC maps to — a light band below the banner at sm+
+          (bigger icons + a label to their left, same light-blue tone as the
+          rest of the site), below the mobile banner too (own band,
+          unchanged) since the mobile crop has no room for icons this size
+          without overlapping the title. */}
+      <div className="hidden sm:block w-full bg-[var(--color-blue-100)]/60 border-b border-[var(--color-blue-300)]/40">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex flex-row items-center gap-4 lg:gap-8">
+          <p className="shrink-0 text-left text-lg font-bold text-[var(--color-ink)] pr-4 lg:pr-8 border-r border-[var(--color-blue-300)]/70">
+            對應之SDGs目標
+          </p>
+          <div className="flex-1 flex justify-start">
+            <div className="flex flex-wrap items-center justify-start gap-3">
+              {SDG_ICONS.map((icon) => (
+                <img key={icon.num} src={icon.image} alt={`SDG ${icon.num}`} className="w-11 h-11 lg:w-14 lg:h-14 rounded-[6px] shadow-sm" />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
       <div className="sm:hidden w-full py-5 px-4 flex justify-center bg-white">
