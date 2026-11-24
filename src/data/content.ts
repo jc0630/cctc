@@ -1014,8 +1014,8 @@ export const TAICHUNG_DEPOT_ADDRESS_EN = 'Port Area Rd., Wuqi Dist., Taichung Ci
 export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
   {
     id: 'berth-10-11',
-    labelZh: '台中 10-11 號碼頭',
-    labelEn: 'Taichung Terminal 10-11',
+    labelZh: '台中分公司 台中10-11號碼頭貨櫃集散站',
+    labelEn: 'Taichung Branch — Taichung Terminal 10-11 Container Depot',
     fullTitleZh: '台中10-11碼頭貨櫃集散站',
     fullTitleEn: 'Taichung Terminal 10-11 Container Depot',
     introZh:
@@ -1084,8 +1084,8 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
   },
   {
     id: 'berth-31',
-    labelZh: '台中 31 號碼頭',
-    labelEn: 'Taichung Terminal 31',
+    labelZh: '台中分公司 台中31號碼頭貨櫃集散站',
+    labelEn: 'Taichung Branch — Taichung Terminal 31 Container Depot',
     fullTitleZh: '台中31碼頭貨櫃集散站',
     fullTitleEn: 'Taichung Terminal 31 Container Depot',
     introZh:

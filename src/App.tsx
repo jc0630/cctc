@@ -111,7 +111,6 @@ export default function App() {
               <TaiwanOperations
                 language={language}
                 onViewAllLocations={() => handleNavigate('operations')}
-                onContactSales={() => handleNavigate('site-footer')}
               />
 
               {/* 06: ESG Sustainability Section */}

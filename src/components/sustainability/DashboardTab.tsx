@@ -104,7 +104,6 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({ language }) => {
         tabs={DASHBOARD_TABS.map((t) => ({ id: t.id, label: language === 'zh' ? t.labelZh : t.labelEn }))}
         activeId={activeTab}
         onChange={setActiveTab}
-        size="lg"
         align="center"
       />
 

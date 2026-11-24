@@ -199,7 +199,7 @@ const PhotoShowcase: React.FC<{ photos: TaichungSitePhoto[]; language: Language 
 
 const ContactCTA: React.FC<{ language: Language; onNavigateSection: (sectionId: string) => void }> = ({ language, onNavigateSection }) => (
   <button type="button" onClick={() => onNavigateSection('site-footer')} className="self-end btn-explore group">
-    <span>{language === 'zh' ? '業務洽詢' : 'Contact Sales'}</span>
+    <span>{language === 'zh' ? '聯絡資訊' : 'Contact'}</span>
     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
   </button>
 );
