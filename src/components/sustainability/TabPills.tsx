@@ -34,14 +34,17 @@ export const TabPills: React.FC<TabPillsProps> = ({ tabs, activeId, onChange, si
     size === 'lg' ? 'px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg' : 'px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base';
 
   return (
-    <div className="w-full overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-      {/* `mx-auto` on the capsule itself (not `flex justify-center` on this
-          wrapper) so centering degrades gracefully when the pills overflow
-          the viewport on mobile: margin:auto just resolves to 0 once the
-          element is wider than its container, leaving it flush left and
+    <div className="w-full overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 flex">
+      {/* The wrapper needs `flex` for the capsule's `mx-auto` to actually
+          center it — auto margins only center a flex ITEM, not a plain
+          inline-flex box sitting in a block parent. Centering this way
+          (rather than `justify-content: center` on the wrapper) still
+          degrades gracefully when the pills overflow the viewport on
+          mobile: the auto margins just resolve toward 0 once there's no
+          free space to distribute, leaving the capsule flush left and
           fully reachable by the wrapper's horizontal scroll — centering via
-          flex justify-content instead traps the start-side overflow outside
-          the scrollable range ("卡到 tab，沒辦法左右滑"). */}
+          justify-content instead traps the start-side overflow outside the
+          scrollable range ("卡到 tab，沒辦法左右滑"). */}
       <div className={`inline-flex rounded-full border border-[var(--color-blue-300)] bg-white ${align === 'center' ? 'mx-auto' : ''}`}>
         {tabs.map((tab) => {
           const active = tab.id === activeId;
