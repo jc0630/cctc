@@ -987,8 +987,8 @@ export const MOCK_CONTAINER_RESULTS: Record<string, {
 };
 
 // ---- 台中貨櫃集散站 (Taichung Container Depot page) ----
-// One entry screen (depot intro + a card per terminal) leading into two
-// self-contained TaichungDepotTerminal detail views (10-11號碼頭／31號碼頭) —
+// One continuous page: a fixed banner + depot intro, then a 2-tab switcher
+// (10-11號碼頭／31號碼頭) swapping in that terminal's own stats/map/photos —
 // facility/equipment counts and berth specs are sourced from CCTC's own
 // terminal fact sheets; the two site-layout map images are the company's
 // real yard maps (not the slide deck's AI demo mockup, which was style
@@ -996,10 +996,10 @@ export const MOCK_CONTAINER_RESULTS: Record<string, {
 export const TAICHUNG_DEPOT_BANNER_IMAGE = '/hero/taichung-depot-1920.jpg';
 export const TAICHUNG_DEPOT_BANNER_MOBILE_IMAGE = '/hero/taichung-depot-800.jpg';
 export const TAICHUNG_DEPOT_BANNER_EYEBROW_ZH = '營運服務';
-// Doubles as the detail views' back-breadcrumb label (see TaichungDepotPage)
-// — kept short ("台中") rather than the depot's full name now that the two
-// terminal names already carry a "台中 " prefix of their own.
-export const TAICHUNG_DEPOT_BANNER_TITLE_ZH = '台中';
+// Fixed banner title — the page no longer swaps the banner's title/eyebrow
+// per selected terminal (that used to double as a back-breadcrumb before the
+// terminal switcher became an in-page tab bar instead of a drill-down view).
+export const TAICHUNG_DEPOT_BANNER_TITLE_ZH = '台中分公司';
 
 // Depot-level intro shown on the entry screen before the terminal cards.
 // Address is a placeholder reused from existing site assets (TERMINAL_
@@ -1016,9 +1016,8 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
     id: 'berth-10-11',
     labelZh: '台中 10-11 號碼頭',
     labelEn: 'Taichung Terminal 10-11',
-    // Placeholder entry-card photo pending the client's own per-terminal
-    // photography (see 二 in the brief — "圖片尚未提供，先使用示意圖").
-    cardImage: '/hero/banner-taichung-depot.jpg',
+    fullTitleZh: '台中10-11碼頭貨櫃集散站',
+    fullTitleEn: 'Taichung Terminal 10-11 Container Depot',
     introZh:
       '10-11號碼頭為台中港主力貨櫃碼頭，具備深水泊位與自動化門式起重機，年吞吐量居全站之冠，並持續導入電動解櫃車等低碳設備，強化作業效率與環境友善度。',
     introEn:
@@ -1064,15 +1063,31 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
     },
     layoutImage: '/images/operations/taichung-berth-10-11-layout.jpg',
     layoutImageCaptionZh: '中國貨櫃公司台中港集散站場地圖',
-    layoutImageCaptionEn: 'CCTC Taichung Port Depot Site Layout Map'
+    layoutImageCaptionEn: 'CCTC Taichung Port Depot Site Layout Map',
+    sitePhotos: [
+      {
+        src: '/images/taichung/10-11-reach-stacker.jpg',
+        altZh: '台中10-11碼頭貨櫃集散站正面吊運機作業',
+        altEn: 'Reach stacker handling a container at Taichung Terminal 10-11'
+      },
+      {
+        src: '/images/taichung/10-11-rtg.jpg',
+        altZh: '台中10-11碼頭貨櫃集散站軌道式門型起重機（RMG）',
+        altEn: 'Rail-mounted gantry cranes at Taichung Terminal 10-11'
+      },
+      {
+        src: '/images/taichung/10-11-quay-crane.jpg',
+        altZh: '台中10-11碼頭貨櫃集散站橋式機船邊裝卸作業',
+        altEn: 'Quay crane loading a vessel at Taichung Terminal 10-11'
+      }
+    ]
   },
   {
     id: 'berth-31',
     labelZh: '台中 31 號碼頭',
     labelEn: 'Taichung Terminal 31',
-    // Placeholder entry-card photo pending the client's own per-terminal
-    // photography (see 二 in the brief — "圖片尚未提供，先使用示意圖").
-    cardImage: '/locations/taichung.jpg',
+    fullTitleZh: '台中31碼頭貨櫃集散站',
+    fullTitleEn: 'Taichung Terminal 31 Container Depot',
     introZh:
       '31號碼頭鄰近台中港西側，以空櫃調度及多元作業區規劃見長，提供彈性堆存空間，支援進出口貨櫃集散與轉運需求。',
     introEn:
@@ -1102,6 +1117,23 @@ export const TAICHUNG_DEPOT_TERMINALS: TaichungDepotTerminal[] = [
     },
     layoutImage: '/images/operations/taichung-berth-31-layout.jpg',
     layoutImageCaptionZh: '中櫃台中港W31號碼頭後線場地平面圖',
-    layoutImageCaptionEn: 'CCTC Taichung Port Terminal 31 Yard Layout Map'
+    layoutImageCaptionEn: 'CCTC Taichung Port Terminal 31 Yard Layout Map',
+    sitePhotos: [
+      {
+        src: '/images/taichung/31-solar-warehouse.jpg',
+        altZh: '台中31碼頭貨櫃集散站倉庫屋頂太陽能板空拍',
+        altEn: 'Aerial view of the rooftop solar panels on a warehouse at Taichung Terminal 31'
+      },
+      {
+        src: '/images/taichung/31-yard-maintenance.jpg',
+        altZh: '台中31碼頭貨櫃集散站機具維修作業',
+        altEn: 'Equipment maintenance in the yard at Taichung Terminal 31'
+      },
+      {
+        src: '/images/taichung/31-forklift.jpg',
+        altZh: '台中31碼頭貨櫃集散站倉庫內堆高機作業',
+        altEn: 'Forklift working inside the warehouse at Taichung Terminal 31'
+      }
+    ]
   }
 ];

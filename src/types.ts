@@ -168,15 +168,22 @@ export interface TaichungBerthSpecTable {
   rows: TaichungBerthSpecRow[];
 }
 
+export interface TaichungSitePhoto {
+  src: string;
+  altZh: string;
+  altEn: string;
+}
+
 export interface TaichungDepotTerminal {
   id: string;
+  /** Short label — used on the tab switcher (e.g. "台中 10-11 號碼頭"). */
   labelZh: string;
   labelEn: string;
-  /** Entry-card photo (placeholder until the client supplies real per-
-   * terminal photography — see content.ts). */
-  cardImage: string;
-  /** Short intro paragraph — doubles as the entry card's blurb (line-
-   * clamped) and the detail view's lead paragraph before its stats. */
+  /** Full name used as the section heading once a terminal is selected
+   * (e.g. "台中10-11碼頭貨櫃集散站") — a different string than `labelZh`,
+   * not just a derived variant. */
+  fullTitleZh: string;
+  fullTitleEn: string;
   introZh: string;
   introEn: string;
   facilityStats: TaichungStatSection;
@@ -190,6 +197,9 @@ export interface TaichungDepotTerminal {
    * not-yet-provided asset never becomes a dead link (same approach already
    * taken for the Sustainability Reports' pdfUrl). */
   layoutPdfUrl?: string;
+  /** Real equipment/site photos — 3-across on desktop, a prev/next pager on
+   * mobile (one photo at a time, see TaichungDepotPage). */
+  sitePhotos: TaichungSitePhoto[];
 }
 
 // Single-language FAQ content (a page picks COMPANY_PROFILE_FAQ_ZH or _EN

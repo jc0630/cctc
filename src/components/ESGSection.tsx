@@ -65,7 +65,7 @@ export const ESGSection: React.FC<ESGSectionProps> = ({
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
               {language === 'zh' ? '企業永續' : 'ESG Sustainability'}
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed mb-3 sm:mb-5 max-w-md">
+            <p className="mt-3 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed mb-3 sm:mb-5">
               {language === 'zh'
                 ? '以環境保護、社會責任及公司治理為核心，持續提升營運韌性，攜手利害關係人共創永續價值。'
                 : 'Centered on environmental protection, social responsibility, and corporate governance, we continuously strengthen operational resilience and create sustainable value together with our stakeholders.'}

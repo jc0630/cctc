@@ -41,7 +41,7 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
       <div id="sustainability-value-chain" className="flex flex-col gap-6 sm:gap-8">
         <SectionTitle>{language === 'zh' ? '永續價值鏈' : 'Sustainability Value Chain'}</SectionTitle>
 
-        <div className="flex flex-col gap-4 max-w-4xl">
+        <div className="flex flex-col gap-4">
           {intro.map((para, i) => (
             <p key={i} className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
               {para}
@@ -58,7 +58,7 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
             closer look at the dense text inside. */}
         <div className="relative rounded-[var(--radius-panel)] border border-slate-200">
           <img
-            src="/images/about/image22.png"
+            src="/images/about/value-chain.jpg"
             alt={valueChainAlt}
             className="w-full h-auto"
           />
@@ -66,7 +66,7 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
         </div>
         {valueChainZoomOpen && (
           <ImageLightbox
-            image="/images/about/image22.png"
+            image="/images/about/value-chain.jpg"
             imageAlt={valueChainAlt}
             onClose={() => setValueChainZoomOpen(false)}
           />
@@ -83,11 +83,12 @@ export const StrategyGoalsTab: React.FC<StrategyGoalsTabProps> = ({ language }) 
           tabs={STRATEGY_GOAL_TABS.map((t) => ({ id: t.id, label: language === 'zh' ? t.labelZh : t.labelEn }))}
           activeId={activeGoalTab}
           onChange={setActiveGoalTab}
+          align="center"
         />
 
         <div key={activeGoalTab} className="flex flex-col gap-6 animate-in fade-in duration-300">
           <div className="flex flex-col gap-4 items-start text-left">
-            <p className="max-w-3xl text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed">
+            <p className="w-full text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed">
               {language === 'zh' ? activeTab.descZh : activeTab.descEn}
             </p>
             <SdgIconRow nums={activeTab.sdgNums} size="sm" align="start" />

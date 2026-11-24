@@ -46,12 +46,12 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
                 aria-labelledby={triggerId}
                 className="px-4 sm:px-6 pb-5 sm:pb-6 pt-4 flex flex-col gap-3 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed border-t border-slate-100"
               >
-                <p className="max-w-4xl">
+                <p>
                   <span className="shrink-0 font-extrabold text-[var(--color-cta)] mr-3">A{item.number}</span>
                   {item.answer}
                 </p>
                 {item.bullets && (
-                  <ul className="flex flex-col gap-2 pl-5 sm:pl-10 max-w-4xl list-disc marker:text-[var(--color-cta)]">
+                  <ul className="flex flex-col gap-2 pl-5 sm:pl-10 list-disc marker:text-[var(--color-cta)]">
                     {item.bullets.map((bullet, i) => (
                       <li key={i}>
                         <strong className="font-bold text-[var(--color-ink)]">{bullet.label}</strong>：{bullet.text}
@@ -60,7 +60,7 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items }) => {
                   </ul>
                 )}
                 {item.image && (
-                  <figure className="flex flex-col max-w-4xl">
+                  <figure className="flex flex-col">
                     {/* Scales down to fit the viewport at every width instead
                         of keeping a min-width floor, so mobile shows the
                         whole infographic with no horizontal scroll; the

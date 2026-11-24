@@ -48,21 +48,16 @@ export const SustainabilityStrategyPage: React.FC<SustainabilityStrategyPageProp
         desktopAspectRatio="1920/430"
       />
       {/* All 9 SDGs CCTC maps to — a light band below the banner at sm+
-          (bigger icons + a label to their left, same light-blue tone as the
-          rest of the site), below the mobile banner too (own band,
-          unchanged) since the mobile crop has no room for icons this size
-          without overlapping the title. */}
+          (bigger icons, centered, same light-blue tone as the rest of the
+          site), below the mobile banner too (own band, unchanged) since the
+          mobile crop has no room for icons this size without overlapping
+          the title. */}
       <div className="hidden sm:block w-full bg-[var(--color-blue-100)]/60 border-b border-[var(--color-blue-300)]/40">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex flex-row items-center gap-4 lg:gap-8">
-          <p className="shrink-0 text-left text-lg font-bold text-[var(--color-ink)] pr-4 lg:pr-8 border-r border-[var(--color-blue-300)]/70">
-            對應之SDGs目標
-          </p>
-          <div className="flex-1 flex justify-start">
-            <div className="flex flex-wrap items-center justify-start gap-3">
-              {SDG_ICONS.map((icon) => (
-                <img key={icon.num} src={icon.image} alt={`SDG ${icon.num}`} className="w-11 h-11 lg:w-14 lg:h-14 rounded-[6px] shadow-sm" />
-              ))}
-            </div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex justify-center">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {SDG_ICONS.map((icon) => (
+              <img key={icon.num} src={icon.image} alt={`SDG ${icon.num}`} className="w-11 h-11 lg:w-14 lg:h-14 rounded-[6px] shadow-sm" />
+            ))}
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ export const HighlightsTab: React.FC<HighlightsTabProps> = ({ language }) => {
           still marked "待確認" in the client's brief, so this ships
           text-only for now — dropping a photo in later just needs a flex
           layout added here.) */}
-      <div className="max-w-4xl flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         {intro.map((para, i) => (
           <p key={i} className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-loose">
             {para}
@@ -35,8 +35,9 @@ export const HighlightsTab: React.FC<HighlightsTabProps> = ({ language }) => {
           tabs={SUSTAINABILITY_HIGHLIGHT_TABS.map((t) => ({ id: t.id, label: language === 'zh' ? t.labelZh : t.labelEn }))}
           activeId={activeTab}
           onChange={setActiveTab}
+          align="center"
         />
-        <ul key={activeTab} className="max-w-3xl w-full flex flex-col gap-3 animate-in fade-in duration-300">
+        <ul key={activeTab} className="w-full flex flex-col gap-3 animate-in fade-in duration-300">
           {(language === 'zh' ? activeTabData.itemsZh : activeTabData.itemsEn).map((item, i) => (
             <li
               key={i}

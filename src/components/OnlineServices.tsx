@@ -61,7 +61,7 @@ export const OnlineServices: React.FC<OnlineServicesProps> = ({
               <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight mb-2 sm:mb-3">
                 {language === 'zh' ? '服務專區' : 'Service Center'}
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed mb-3 sm:mb-5 max-w-md">
+              <p className="mt-3 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed mb-3 sm:mb-5">
                 {language === 'zh'
                   ? '櫃動查詢、船席動態、LINE BOT 與表單下載，一站掌握中櫃營運動態。'
                   : 'Container tracking, berth status, LINE Bot and document downloads — all in one place.'}

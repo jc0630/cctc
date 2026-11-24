@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowDown } from 'lucide-react';
+import React, { useEffect, useId, useState } from 'react';
+import { motion } from 'motion/react';
 
 interface AnchorNavItem {
   id: string;
@@ -11,13 +11,15 @@ interface AnchorNavProps {
 }
 
 // In-page section jump bar for a long single-scroll page (see the
-// Sustainability Strategy page) — one pill per section, horizontally
-// scrollable as a unit on mobile when they don't fit. Deliberately styled
-// distinct from TabPills (underline instead of a filled capsule): these
-// jump to a point on the SAME page rather than switching between mutually
-// exclusive tab content.
+// Sustainability Strategy page) — styled identically to TabPills' segmented
+// capsule (same classes, same sliding active-pill animation) so every tab-
+// like control on the page reads as one consistent pattern, even though
+// this one scrolls to a point on the same page rather than switching
+// content. Keeps its own scroll listener (TabPills has none) to highlight
+// whichever section is currently in view.
 export const AnchorNav: React.FC<AnchorNavProps> = ({ items }) => {
   const [activeId, setActiveId] = useState(items[0]?.id);
+  const layoutId = useId();
 
   useEffect(() => {
     const sections = items
@@ -43,28 +45,35 @@ export const AnchorNav: React.FC<AnchorNavProps> = ({ items }) => {
   }, [items]);
 
   return (
-    <nav aria-label="頁面章節" className="w-full bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto no-scrollbar">
-        <ul className="flex w-max mx-auto">
-          {items.map((item) => {
-            const active = item.id === activeId;
-            return (
-              <li key={item.id} className="shrink-0">
+    <nav aria-label="頁面章節" className="w-full bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+        <div className="w-full overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 flex">
+          <div className="inline-flex rounded-full border border-[var(--color-blue-300)] bg-white mx-auto">
+            {items.map((item) => {
+              const active = item.id === activeId;
+              return (
                 <button
+                  key={item.id}
                   type="button"
                   aria-current={active ? 'location' : undefined}
                   onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })}
-                  className={`inline-flex items-center gap-1.5 px-4 sm:px-6 py-3.5 sm:py-4 -mb-px whitespace-nowrap text-sm sm:text-base font-bold border-b-[3px] cursor-pointer transition-colors duration-200 ${
-                    active ? 'border-[var(--color-cta)] text-[var(--color-cta)]' : 'border-transparent text-[var(--color-ink)] hover:text-[var(--color-cta)]'
+                  className={`relative z-0 shrink-0 whitespace-nowrap px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base font-bold cursor-pointer transition-colors duration-300 ${
+                    active ? 'text-white' : 'text-[var(--color-cta)] hover:text-[var(--color-cta-hover)]'
                   }`}
                 >
-                  <ArrowDown className="w-3.5 h-3.5 shrink-0" />
+                  {active && (
+                    <motion.span
+                      layoutId={`${layoutId}-active`}
+                      className="absolute -top-[2px] -bottom-[2px] left-0 right-0 -z-10 rounded-full bg-[var(--color-cta)]"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                  )}
                   {item.label}
                 </button>
-              </li>
-            );
-          })}
-        </ul>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </nav>
   );
